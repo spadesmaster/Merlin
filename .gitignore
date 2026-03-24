@@ -1,0 +1,6 @@
+node_modules/
+*.log
+workflowy-sync/token.json
+workflowy-sync/credentials.json
+workflowy-sync/.env
+.DS_Store
