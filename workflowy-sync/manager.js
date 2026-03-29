@@ -90,11 +90,10 @@ async function initializeSpreadsheet(auth, existingId = null) {
 
   await sheets.spreadsheets.values.update({
     spreadsheetId,
-    range: "'Completed'!A1:H1",
+    range: "'All Tasks'!A1:G1",
     valueInputOption: 'RAW',
-    resource: { values: completedTasksHeaders },
+    resource: { values: allTasksHeaders },
   });
-
 
   await sheets.spreadsheets.values.update({
     spreadsheetId,
@@ -111,7 +110,7 @@ async function initializeSpreadsheet(auth, existingId = null) {
   });
 
   // 3. Set Dropdowns
-  const rooms = ["Office", "Garage", "Temple", "Shop", "Kitchen", "Dining", "Bath", "Bed", "Living", "Errand", "Yard", "Calls"];
+  const rooms = ["Office", "Garage", "Temple", "Shop", "Kitchen", "Dining", "Bath", "Bed", "Living", "Errand", "Yard", "Calls", "Fun"];
   const statuses = ["Pending", "In-progress", "Complete"];
   
   await sheets.spreadsheets.batchUpdate({
@@ -215,13 +214,11 @@ async function syncPriority(auth, spreadsheetId) {
       resource: { values: prioritizedTasks },
     });
   }
-  
-  console.log(`Synced ${prioritizedTasks.length} tasks to Priority tab.`);
 }
 
 async function main() {
   const auth = await authorize();
-  const spreadsheetId = '1twi7Wxckrwg3qv3pZ7Yp_fPi63W-ziemsnDp1BQx-Cg';
+  const spreadsheetId = process.env.GOOGLE_SPREADSHEET_ID || '1twi7Wxckrwg3qv3pZ7Yp_fPi63W-ziemsnDp1BQx-Cg';
   await initializeSpreadsheet(auth, spreadsheetId);
   await syncPriority(auth, spreadsheetId);
 }
