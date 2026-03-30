@@ -9,6 +9,16 @@ const RAW_DUMP_SUFFIX = process.env.WORKFLOWY_RAW_DUMP_SUFFIX;
 const SPREADSHEET_ID = process.env.GOOGLE_SPREADSHEET_ID;
 
 /**
+ * Generates a GUID for new Workflowy items.
+ */
+function generateGuid() {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+    const r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+    return v.toString(16);
+  });
+}
+
+/**
  * Fetches all tree data from Workflowy.
  */
 async function fetchWorkflowyData() {
@@ -68,6 +78,79 @@ async function pushToWorkflowy(operations, currentTransactionId = null) {
 }
 
 /**
+ * Helper to extract priority, target room, and clean name from text.
+ */
+function extractInfoFromText(text, roomContext) {
+  const { roomMap, roomNames } = roomContext;
+  let currentText = text.trim();
+  let priority = '';
+  let targetRoomId = null;
+  let changed = true;
+
+  const checkMatch = (regex) => {
+    const cleanText = currentText.replace(/<\/?[^>]+(>|$)/g, "");
+    const trimmedClean = cleanText.trimStart();
+    const match = trimmedClean.match(regex);
+    
+    if (match && trimmedClean.indexOf(match[0]) === 0) {
+      let textToStrip = match[0];
+      let newName = currentText.trimStart();
+      while (textToStrip.length > 0 && newName.length > 0) {
+        if (newName.startsWith('<')) {
+          const tag = newName.match(/^<[^>]+>/);
+          if (tag) { newName = newName.slice(tag[0].length); continue; }
+        }
+        if (newName[0].toLowerCase() === textToStrip[0].toLowerCase()) {
+          newName = newName.slice(1);
+          textToStrip = textToStrip.slice(1);
+        } else if (newName[0].match(/[\s-:]/)) {
+          newName = newName.slice(1);
+        } else {
+          currentText = trimmedClean.slice(match[0].length).trim();
+          return match;
+        }
+      }
+      currentText = newName.trim();
+      return match;
+    }
+    return null;
+  };
+
+  while (changed) {
+    changed = false;
+    
+    // 1. Extract Priority from "to" (priority 2)
+    const toMatch = checkMatch(/^to([\s-:]+|$)/i);
+    if (toMatch) { priority = '2'; changed = true; }
+
+    // 2. Extract Priority from digits
+    const pMatch = checkMatch(/^(\d+)([\s-:]+|$)/);
+    if (pMatch) { priority = pMatch[1]; changed = true; }
+
+    // 3. Strip number words and "number"
+    if (checkMatch(/^(one|two|three|four|five|six|seven|eight|nine|ten|number)([\s-:]+|$)/i)) {
+      changed = true;
+    }
+
+    // 4. Extract Room
+    for (const rn of roomNames) {
+      if (checkMatch(new RegExp(`^${rn}([\\s-:]+|$|\\b)`, 'i'))) { 
+        targetRoomId = roomMap[rn.toLowerCase()]; 
+        changed = true; 
+        break; 
+      }
+    }
+  }
+
+  let cleanName = currentText.trim();
+  if (cleanName) {
+    cleanName = cleanName.charAt(0).toUpperCase() + cleanName.slice(1);
+  }
+
+  return { cleanName, priority, targetRoomId };
+}
+
+/**
  * Gets the room mapping and sorted room names.
  */
 function getRoomContext(items) {
@@ -104,7 +187,8 @@ function getRoomContext(items) {
  * Organizes tasks from the Raw Dump section into their respective rooms.
  */
 async function organizeRawDump(items) {
-  const { roomMap, roomNames, rootId } = getRoomContext(items);
+  const roomContext = getRoomContext(items);
+  const { roomMap, rootId } = roomContext;
   const rawDumpNode = items.find(i => i.id === RAW_DUMP_SUFFIX || i.id.endsWith(RAW_DUMP_SUFFIX));
 
   if (!rootId || !rawDumpNode) return;
@@ -121,68 +205,10 @@ async function organizeRawDump(items) {
       let name = item.nm || '';
       if (name.includes('<time')) { processSubtree(item.id); return; }
 
-      let priority = '';
-      let targetRoomId = null;
-
-      const extract = (text) => {
-        let currentText = text.trim();
-        let changed = true;
-        
-        while (changed) {
-          changed = false;
-          
-          const checkMatch = (regex) => {
-            const cleanText = currentText.replace(/<\/?[^>]+(>|$)/g, "").trim();
-            const trimmedClean = cleanText.trimStart();
-            const match = trimmedClean.match(regex);
-            
-            if (match && trimmedClean.indexOf(match[0]) === 0) {
-              let textToStrip = match[0];
-              let newName = currentText.trimStart();
-              while (textToStrip.length > 0 && newName.length > 0) {
-                if (newName.startsWith('<')) {
-                  const tag = newName.match(/^<[^>]+>/);
-                  if (tag) { newName = newName.slice(tag[0].length); continue; }
-                }
-                if (newName[0].toLowerCase() === textToStrip[0].toLowerCase()) {
-                  newName = newName.slice(1);
-                  textToStrip = textToStrip.slice(1);
-                } else if (newName[0].match(/[\s-:]/)) {
-                  newName = newName.slice(1);
-                } else {
-                  currentText = trimmedClean.slice(match[0].length).trim();
-                  return match;
-                }
-              }
-              currentText = newName.trim();
-              return match;
-            }
-            return null;
-          };
-
-          const toMatch = checkMatch(/^to([\s-:]+|$)/i);
-          if (toMatch) { priority = '2'; changed = true; }
-
-          const pMatch = checkMatch(/^(\d+)([\s-:]+|$)/);
-          if (pMatch) { priority = pMatch[1]; changed = true; }
-
-          if (checkMatch(/^(one|two|three|four|five|six|seven|eight|nine|ten|number)([\s-:]+|$)/i)) {
-            changed = true;
-          }
-
-          for (const rn of roomNames) {
-            if (checkMatch(new RegExp(`^${rn}([\\s-:]+|$|\\b)`, 'i'))) { 
-              targetRoomId = roomMap[rn.toLowerCase()]; 
-              changed = true; 
-              break; 
-            }
-          }
-        }
-        return currentText;
-      };
-
-      let cleanedName = extract(name);
-      if (cleanedName) { cleanedName = cleanedName.charAt(0).toUpperCase() + cleanedName.slice(1); }
+      const info = extractInfoFromText(name, roomContext);
+      let cleanedName = info.cleanName;
+      let priority = info.priority;
+      let targetRoomId = info.targetRoomId;
 
       if (!cleanedName && (childMap[item.id] || []).length === 0) return;
 
@@ -240,7 +266,8 @@ async function organizeRawDump(items) {
  * Parses Workflowy data into tasks recursively.
  */
 function parseWorkflowyTasks(items) {
-  const { roomMap, roomNames, idToRoomName, rootId } = getRoomContext(items);
+  const roomContext = getRoomContext(items);
+  const { idToRoomName, rootId } = roomContext;
   if (!rootId) return [];
 
   const childMap = {};
@@ -252,70 +279,16 @@ function parseWorkflowyTasks(items) {
     const children = childMap[nodeId] || [];
     children.forEach(item => {
       let rawName = item.nm || '';
-      let name = rawName;
-      let priority = '';
 
       if (nodeId === rootId && idToRoomName[item.id]) {
         traverse(item.id, idToRoomName[item.id], '');
         return;
       }
 
-      let currentName = name.trim();
-      let suggestedRoomId = null;
-      let changed = true;
-      while (changed) {
-        changed = false;
-        
-        const checkMatch = (regex) => {
-          const cleanText = currentName.replace(/<\/?[^>]+(>|$)/g, "").trim();
-          const trimmedClean = cleanText.trimStart();
-          const match = trimmedClean.match(regex);
-          
-          if (match && trimmedClean.indexOf(match[0]) === 0) {
-            let textToStrip = match[0];
-            let newName = currentName.trimStart();
-            while (textToStrip.length > 0 && newName.length > 0) {
-              if (newName.startsWith('<')) {
-                const tag = newName.match(/^<[^>]+>/);
-                if (tag) { newName = newName.slice(tag[0].length); continue; }
-              }
-              if (newName[0].toLowerCase() === textToStrip[0].toLowerCase()) {
-                newName = newName.slice(1);
-                textToStrip = textToStrip.slice(1);
-              } else if (newName[0].match(/[\s-:]/)) {
-                newName = newName.slice(1);
-              } else {
-                currentName = trimmedClean.slice(match[0].length).trim();
-                return match;
-              }
-            }
-            currentName = newName.trim();
-            return match;
-          }
-          return null;
-        };
-
-        const toMatch = checkMatch(/^to([\s-:]+|$)/i);
-        if (toMatch) { priority = '2'; changed = true; }
-
-        const pMatch = checkMatch(/^(\d+)([\s-:]+|$)/);
-        if (pMatch) { priority = pMatch[1]; changed = true; }
-
-        if (checkMatch(/^(one|two|three|four|five|six|seven|eight|nine|ten|number)([\s-:]+|$)/i)) {
-          changed = true;
-        }
-
-        for (const rn of roomNames) {
-          if (checkMatch(new RegExp(`^${rn}([\\s-:]+|$|\\b)`, 'i'))) {
-            const foundRoomId = roomMap[rn.toLowerCase()];
-            if (foundRoomId) suggestedRoomId = foundRoomId;
-            changed = true;
-            break;
-          }
-        }
-      }
-      name = currentName.trim();
-      if (name) { name = name.charAt(0).toUpperCase() + name.slice(1); }
+      const info = extractInfoFromText(rawName, roomContext);
+      const name = info.cleanName;
+      const priority = info.priority;
+      const suggestedRoomId = info.targetRoomId;
 
       let displayName = parentTaskName ? `${parentTaskName} - ${name}` : name;
       displayName = displayName.trim();
@@ -326,6 +299,7 @@ function parseWorkflowyTasks(items) {
           id: item.id,
           name: displayName,
           cleanName: name,
+          parentTaskName: parentTaskName,
           suggestedRoomId: suggestedRoomId,
           room: roomName,
           priority: priority,
@@ -367,7 +341,7 @@ function sortTasks(tasks, map) {
 }
 
 /**
- * Syncs Google Sheets and Workflowy using header-based mapping.
+ * Syncs Google Sheets and Workflowy.
  */
 async function sync() {
   const auth = await authorize();
@@ -390,21 +364,47 @@ async function sync() {
   valueRanges.forEach(vr => { if (vr.values && vr.values.length > 1) allSheetRows.push(...vr.values.slice(1)); });
 
   const sheetTaskMap = {};
+  const newTasksFromSheet = [];
   allSheetRows.forEach(row => {
     const id = row[headerMap.taskId];
     if (id) {
       if (!sheetTaskMap[id] || row[headerMap.status] === 'Complete') { sheetTaskMap[id] = row; }
+    } else if (row[headerMap.name] && row[headerMap.name].trim()) {
+      newTasksFromSheet.push(row);
     }
   });
 
-  // 2. Workflowy Organize
+  // 2. Workflowy Organize & Fetch
   let wfItems = await fetchWorkflowyData();
-  const organized = await organizeRawDump(wfItems);
-  if (organized) wfItems = await fetchWorkflowyData();
+  const roomContext = getRoomContext(wfItems);
+  const { roomMap, idToRoomName, rootId } = roomContext;
+  let wfChanged = await organizeRawDump(wfItems);
+  
+  // Handle new tasks from sheet
+  if (newTasksFromSheet.length > 0) {
+    const newOps = [];
+    newTasksFromSheet.forEach(row => {
+      const name = row[headerMap.name];
+      const room = row[headerMap.room] || 'Office';
+      const pri = row[headerMap.priority];
+      const targetRoomId = roomMap[room.toLowerCase()] || roomMap['office'];
+      const newId = generateGuid();
+      const info = extractInfoFromText(name, roomContext);
+      const finalPri = pri || info.priority;
+      const finalName = finalPri ? `${finalPri} ${info.cleanName}` : info.cleanName;
+      
+      console.log(`Adding new task: "${finalName}" to room "${room}"`);
+      newOps.push({ type: 'create', data: { projectid: newId, parentid: targetRoomId, priority: 0 } });
+      newOps.push({ type: 'edit', data: { projectid: newId, name: finalName } });
+    });
+    await pushToWorkflowy(newOps);
+    wfChanged = true;
+  }
+
+  if (wfChanged) wfItems = await fetchWorkflowyData();
   let wfTasks = parseWorkflowyTasks(wfItems);
 
-  // 3. Compare
-  const { idToRoomName } = getRoomContext(wfItems);
+  // 3. Compare existing tasks
   const wfOps = [];
 
   wfTasks.forEach(wfTask => {
@@ -413,19 +413,60 @@ async function sync() {
 
     const sheetRow = sheetTaskMap[wfTask.id];
     let effectivePriority = wfTask.priority;
-    if (!effectivePriority && sheetRow && sheetRow[headerMap.priority]) { effectivePriority = sheetRow[headerMap.priority]; }
+    let effectiveCleanName = wfTask.cleanName;
+    let targetRoomId = item.prnt;
 
-    const expectedName = effectivePriority ? `${effectivePriority} ${wfTask.cleanName}` : wfTask.cleanName;
+    if (sheetRow) {
+      // Priority from Sheet
+      const sheetPri = sheetRow[headerMap.priority];
+      if (sheetPri !== undefined && sheetPri !== '') effectivePriority = sheetPri;
+      else if (sheetPri === '') effectivePriority = '';
+
+      // Name and potential Move from Sheet
+      const sheetDisplayName = sheetRow[headerMap.name];
+      if (sheetDisplayName && sheetDisplayName !== wfTask.name) {
+        const info = extractInfoFromText(sheetDisplayName, roomContext);
+        
+        if (info.targetRoomId) {
+          // A. Room prefix detected in sheet name -> Move to that room
+          targetRoomId = info.targetRoomId;
+          effectiveCleanName = info.cleanName;
+          if (info.priority) effectivePriority = info.priority;
+        } else {
+          // B. No room prefix, check parent prefix
+          const parentPrefix = wfTask.parentTaskName ? `${wfTask.parentTaskName} - ` : '';
+          if (wfTask.parentTaskName && sheetDisplayName.startsWith(parentPrefix)) {
+            // Still under parent, extract new leaf name
+            const leafName = sheetDisplayName.slice(parentPrefix.length).trim();
+            const leafInfo = extractInfoFromText(leafName, roomContext);
+            effectiveCleanName = leafInfo.cleanName;
+            if (leafInfo.priority) effectivePriority = leafInfo.priority;
+          } else if (wfTask.parentTaskName) {
+            // C. Parent prefix REMOVED -> Pull out to room level
+            targetRoomId = roomMap[wfTask.room.toLowerCase()];
+            const info = extractInfoFromText(sheetDisplayName, roomContext);
+            effectiveCleanName = info.cleanName;
+            if (info.priority) effectivePriority = info.priority;
+          } else {
+            // D. Not a subtask, just a rename
+            effectiveCleanName = info.cleanName;
+            if (info.priority) effectivePriority = info.priority;
+          }
+        }
+      }
+    }
+
+    const expectedName = effectivePriority ? `${effectivePriority} ${effectiveCleanName}` : effectiveCleanName;
     if (item.nm !== expectedName) {
-      console.log(`Renaming: "${item.nm}" -> "${expectedName}"`);
+      console.log(`Updating Workflowy Name: "${item.nm}" -> "${expectedName}" (Source: Sheet)`);
       item.nm = expectedName;
       wfOps.push({ type: 'edit', data: { projectid: wfTask.id, name: expectedName } });
     }
 
-    if (wfTask.suggestedRoomId && wfTask.suggestedRoomId !== item.prnt) {
-      console.log(`Moving: "${item.nm}" -> room "${idToRoomName[wfTask.suggestedRoomId]}"`);
-      item.prnt = wfTask.suggestedRoomId;
-      wfOps.push({ type: 'bulk_move', data: { projectids_json: JSON.stringify([wfTask.id]), parentid: wfTask.suggestedRoomId, priority: 0 } });
+    if (targetRoomId !== item.prnt) {
+      console.log(`Moving Workflowy Item: "${item.nm}" -> room "${idToRoomName[targetRoomId]}"`);
+      item.prnt = targetRoomId;
+      wfOps.push({ type: 'bulk_move', data: { projectids_json: JSON.stringify([wfTask.id]), parentid: targetRoomId, priority: 0 } });
     }
 
     if (sheetRow) {
@@ -500,13 +541,11 @@ async function sync() {
       dateCreated = sheetRow[headerMap.dateCreated] || today;
       notes = sheetRow[headerMap.notes] || notes;
       if (status === 'Complete') {
-        const completedHeaders = valueRanges.find(vr => vr.range.includes('Completed')).values[0];
-        const completedMap = getHeaderMap(completedHeaders);
+        const completedMap = getHeaderMap(valueRanges.find(vr => vr.range.includes('Completed')).values[0]);
         dateCompleted = sheetRow[completedMap.dateCompleted] || today;
       }
     }
 
-    // ID, Pri, Room, Task Name, Status, Date Created, Notes
     const rowData = [wfTask.id, priority, wfTask.room, wfTask.name, status, dateCreated, notes];
     
     if (status === 'Complete') {
@@ -517,9 +556,10 @@ async function sync() {
     }
   });
 
-  sortTasks(finalAllTasks, headerMap);
-  sortTasks(finalCompletedTasks, headerMap);
-  Object.keys(finalRoomTasks).forEach(r => sortTasks(finalRoomTasks[r], headerMap));
+  const sortMap = { priority: 1, room: 2, name: 3 };
+  sortTasks(finalAllTasks, sortMap);
+  sortTasks(finalCompletedTasks, sortMap);
+  Object.keys(finalRoomTasks).forEach(r => sortTasks(finalRoomTasks[r], sortMap));
 
   // 6. Update Sheets
   const clearRanges = ["'All Tasks'!A2:G1000", "'Completed'!A2:H1000"];
