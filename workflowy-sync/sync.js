@@ -1,5 +1,5 @@
 const axios = require('axios');
-const { authorize, syncPriority } = require('./manager.js');
+const { authorize, syncPriority, syncTabFormatting, getHeaderMap } = require('./manager.js');
 const { google } = require('googleapis');
 require('dotenv').config({ path: __dirname + '/.env' });
 
@@ -68,11 +68,11 @@ async function pushToWorkflowy(operations, currentTransactionId = null) {
 }
 
 /**
- * Gets the room mapping and sorted room names (including aliases).
+ * Gets the room mapping and sorted room names.
  */
 function getRoomContext(items) {
   const root = items.find(i => i.id === BRANCH_ID_SUFFIX || i.id.endsWith(BRANCH_ID_SUFFIX));
-  if (!root) return { roomMap: {}, roomNames: [], idToRoomName: {} };
+  if (!root) return { roomMap: {}, roomNames: [], idToRoomName: {}, rootId: null };
 
   const rooms = items.filter(i => i.prnt === root.id);
   const roomMap = {}; 
@@ -132,7 +132,7 @@ async function organizeRawDump(items) {
           changed = false;
           
           const checkMatch = (regex) => {
-            const cleanText = currentText.replace(/<\/?[^>]+(>|$)/g, "");
+            const cleanText = currentText.replace(/<\/?[^>]+(>|$)/g, "").trim();
             const trimmedClean = cleanText.trimStart();
             const match = trimmedClean.match(regex);
             
@@ -344,51 +344,66 @@ function parseWorkflowyTasks(items) {
 }
 
 /**
- * Sorts tasks by Priority (asc, blanks last), Room (asc), then Name (asc).
+ * Sorts tasks by Priority, Room, then Name using mapped indices.
  */
-function sortTasks(tasks, priorityIndex = 3, roomIndex = 2, nameIndex = 1) {
+function sortTasks(tasks, map) {
+  const pIdx = map.priority;
+  const rIdx = map.room;
+  const nIdx = map.name;
+
   return tasks.sort((a, b) => {
-    const pA = a[priorityIndex] || '999';
-    const pB = b[priorityIndex] || '999';
+    const pA = a[pIdx] || '999';
+    const pB = b[pIdx] || '999';
     if (pA !== pB) return pA.localeCompare(pB, undefined, { numeric: true });
 
-    const rA = a[roomIndex] || '';
-    const rB = b[roomIndex] || '';
+    const rA = a[rIdx] || '';
+    const rB = b[rIdx] || '';
     if (rA !== rB) return rA.localeCompare(rB);
 
-    const nA = a[nameIndex] || '';
-    const nB = b[nameIndex] || '';
+    const nA = a[nIdx] || '';
+    const nB = b[nIdx] || '';
     return nA.localeCompare(nB);
   });
 }
 
 /**
- * Syncs Google Sheets and Workflowy.
+ * Syncs Google Sheets and Workflowy using header-based mapping.
  */
 async function sync() {
   const auth = await authorize();
   const sheets = google.sheets({ version: 'v4', auth });
 
-  // 1. Fetch current Sheet data from all relevant tabs
-  const [allTasksRes, completedRes] = await Promise.all([
-    sheets.spreadsheets.values.get({ spreadsheetId: SPREADSHEET_ID, range: "'All Tasks'!A2:G1000" }),
-    sheets.spreadsheets.values.get({ spreadsheetId: SPREADSHEET_ID, range: "'Completed'!A2:H1000" })
-  ]);
+  const rooms = ["Office", "Garage", "Temple", "Shop", "Kitchen", "Dining", "Bath", "Bed", "Living", "Errand", "Yard", "Calls", "Fun"];
 
-  const allTasksRows = allTasksRes.data.values || [];
-  const completedRows = completedRes.data.values || [];
-  const allSheetRows = [...allTasksRows, ...completedRows];
+  // 1. Fetch current Sheet data from all tabs
+  const ranges = ["'All Tasks'!A1:G1000", "'Completed'!A1:H1000"];
+  rooms.forEach(room => ranges.push(`'${room}'!A1:G1000`));
+
+  const batchRes = await sheets.spreadsheets.values.batchGet({ spreadsheetId: SPREADSHEET_ID, ranges: ranges });
+  const valueRanges = batchRes.data.valueRanges || [];
+  
+  const allTasksRange = valueRanges.find(vr => vr.range.includes('All Tasks'));
+  if (!allTasksRange || !allTasksRange.values) throw new Error("Could not find 'All Tasks' tab headers.");
+  const headerMap = getHeaderMap(allTasksRange.values[0]);
+  
+  const allSheetRows = [];
+  valueRanges.forEach(vr => { if (vr.values && vr.values.length > 1) allSheetRows.push(...vr.values.slice(1)); });
 
   const sheetTaskMap = {};
-  allSheetRows.forEach(row => { if (row[0]) sheetTaskMap[row[0]] = row; });
+  allSheetRows.forEach(row => {
+    const id = row[headerMap.taskId];
+    if (id) {
+      if (!sheetTaskMap[id] || row[headerMap.status] === 'Complete') { sheetTaskMap[id] = row; }
+    }
+  });
 
-  // 2. Fetch current Workflowy data and organize Raw Dump
+  // 2. Workflowy Organize
   let wfItems = await fetchWorkflowyData();
   const organized = await organizeRawDump(wfItems);
   if (organized) wfItems = await fetchWorkflowyData();
   let wfTasks = parseWorkflowyTasks(wfItems);
 
-  // 3. Compare and generate operations for Workflowy
+  // 3. Compare
   const { idToRoomName } = getRoomContext(wfItems);
   const wfOps = [];
 
@@ -398,7 +413,7 @@ async function sync() {
 
     const sheetRow = sheetTaskMap[wfTask.id];
     let effectivePriority = wfTask.priority;
-    if (!effectivePriority && sheetRow && sheetRow[3]) { effectivePriority = sheetRow[3]; }
+    if (!effectivePriority && sheetRow && sheetRow[headerMap.priority]) { effectivePriority = sheetRow[headerMap.priority]; }
 
     const expectedName = effectivePriority ? `${effectivePriority} ${wfTask.cleanName}` : wfTask.cleanName;
     if (item.nm !== expectedName) {
@@ -410,14 +425,11 @@ async function sync() {
     if (wfTask.suggestedRoomId && wfTask.suggestedRoomId !== item.prnt) {
       console.log(`Moving: "${item.nm}" -> room "${idToRoomName[wfTask.suggestedRoomId]}"`);
       item.prnt = wfTask.suggestedRoomId;
-      wfOps.push({
-        type: 'bulk_move',
-        data: { projectids_json: JSON.stringify([wfTask.id]), parentid: wfTask.suggestedRoomId, priority: 0 }
-      });
+      wfOps.push({ type: 'bulk_move', data: { projectids_json: JSON.stringify([wfTask.id]), parentid: wfTask.suggestedRoomId, priority: 0 } });
     }
 
     if (sheetRow) {
-      const status = sheetRow[4];
+      const status = sheetRow[headerMap.status];
       if (status === 'Complete' && wfTask.status === 'Pending') {
         wfOps.push({ type: 'complete', data: { projectid: wfTask.id } });
         wfTask.status = 'Complete';
@@ -430,7 +442,7 @@ async function sync() {
     }
   });
 
-  // 4. Update Workflowy
+  // 4. Update Workflowy & Sort
   if (wfOps.length > 0) {
     const BATCH_SIZE = 50;
     let lastTransactionId = null;
@@ -450,7 +462,6 @@ async function sync() {
     roomsInWf.forEach(room => {
       const roomChildren = childMap[room.id] || [];
       if (roomChildren.length <= 1) return;
-
       const sortedChildren = [...roomChildren].sort((a, b) => {
         const pA = parseInt((a.nm.match(/^(\d+)/) || [null, "999"])[1]);
         const pB = parseInt((b.nm.match(/^(\d+)/) || [null, "999"])[1]);
@@ -459,11 +470,8 @@ async function sync() {
         const nB = b.nm.replace(/^(\d+)\s*/, "").toLowerCase();
         return nA.localeCompare(nB);
       });
-
-      const sortedIds = sortedChildren.map(c => c.id);
-      if (JSON.stringify(roomChildren.map(c => c.id)) !== JSON.stringify(sortedIds)) {
-        console.log(`Re-sorting room: ${room.nm.replace(/<\/?[^>]+(>|$)/g, "")}`);
-        sortOps.push({ type: 'bulk_move', data: { projectids_json: JSON.stringify(sortedIds), parentid: room.id, priority: 0 } });
+      if (JSON.stringify(roomChildren.map(c => c.id)) !== JSON.stringify(sortedChildren.map(c => c.id))) {
+        sortOps.push({ type: 'bulk_move', data: { projectids_json: JSON.stringify(sortedChildren.map(c => c.id)), parentid: room.id, priority: 0 } });
       }
     });
     if (sortOps.length > 0) await pushToWorkflowy(sortOps);
@@ -473,48 +481,70 @@ async function sync() {
   wfTasks = parseWorkflowyTasks(wfItems);
   const finalAllTasks = [];
   const finalCompletedTasks = [];
+  const finalRoomTasks = {};
+  rooms.forEach(r => finalRoomTasks[r] = []);
+
   const today = new Date().toISOString().split('T')[0];
 
   wfTasks.forEach(wfTask => {
     const sheetRow = sheetTaskMap[wfTask.id];
     let priority = wfTask.priority;
     let status = wfTask.status === 'Completed' ? 'Complete' : 'Pending';
+    let dateCreated = today;
     let dateCompleted = '';
+    let notes = wfTask.notes;
 
     if (sheetRow) {
-      priority = priority || sheetRow[3];
-      status = sheetRow[4];
-      if (status === 'Complete') { dateCompleted = sheetRow[6] || today; }
+      priority = priority || sheetRow[headerMap.priority];
+      status = sheetRow[headerMap.status];
+      dateCreated = sheetRow[headerMap.dateCreated] || today;
+      notes = sheetRow[headerMap.notes] || notes;
+      if (status === 'Complete') {
+        const completedHeaders = valueRanges.find(vr => vr.range.includes('Completed')).values[0];
+        const completedMap = getHeaderMap(completedHeaders);
+        dateCompleted = sheetRow[completedMap.dateCompleted] || today;
+      }
     }
 
+    // ID, Pri, Room, Task Name, Status, Date Created, Notes
+    const rowData = [wfTask.id, priority, wfTask.room, wfTask.name, status, dateCreated, notes];
+    
     if (status === 'Complete') {
-      finalCompletedTasks.push([wfTask.id, wfTask.name, wfTask.room, priority, status, today, dateCompleted, wfTask.notes]);
+      finalCompletedTasks.push([wfTask.id, priority, wfTask.room, wfTask.name, status, dateCreated, dateCompleted, notes]);
     } else {
-      finalAllTasks.push([wfTask.id, wfTask.name, wfTask.room, priority, status, today, wfTask.notes]);
+      finalAllTasks.push(rowData);
+      if (finalRoomTasks[wfTask.room]) finalRoomTasks[wfTask.room].push(rowData);
     }
   });
 
-  sortTasks(finalAllTasks);
-  sortTasks(finalCompletedTasks);
+  sortTasks(finalAllTasks, headerMap);
+  sortTasks(finalCompletedTasks, headerMap);
+  Object.keys(finalRoomTasks).forEach(r => sortTasks(finalRoomTasks[r], headerMap));
 
-  // 6. Update Google Sheets
-  await Promise.all([
-    sheets.spreadsheets.values.clear({ spreadsheetId: SPREADSHEET_ID, range: "'All Tasks'!A2:G1000" }),
-    sheets.spreadsheets.values.clear({ spreadsheetId: SPREADSHEET_ID, range: "'Completed'!A2:H1000" })
-  ]);
+  // 6. Update Sheets
+  const clearRanges = ["'All Tasks'!A2:G1000", "'Completed'!A2:H1000"];
+  rooms.forEach(room => clearRanges.push(`'${room}'!A2:G1000`));
+  await sheets.spreadsheets.values.batchClear({ spreadsheetId: SPREADSHEET_ID, resource: { ranges: clearRanges } });
 
   const updates = [];
   if (finalAllTasks.length > 0) updates.push({ range: `'All Tasks'!A2:G${finalAllTasks.length + 1}`, values: finalAllTasks });
   if (finalCompletedTasks.length > 0) updates.push({ range: `'Completed'!A2:H${finalCompletedTasks.length + 1}`, values: finalCompletedTasks });
+  rooms.forEach(room => {
+    const tasksInRoom = finalRoomTasks[room];
+    if (tasksInRoom && tasksInRoom.length > 0) updates.push({ range: `'${room}'!A2:G${tasksInRoom.length + 1}`, values: tasksInRoom });
+  });
 
   for (const update of updates) {
     await sheets.spreadsheets.values.update({ spreadsheetId: SPREADSHEET_ID, range: update.range, valueInputOption: 'RAW', resource: { values: update.values } });
   }
 
   await syncPriority(auth, SPREADSHEET_ID);
+  await syncTabFormatting(auth, SPREADSHEET_ID);
 
   console.log(`Sync complete. Pushed ${wfOps.length} updates to Workflowy.`);
 }
 
-if (require.main === module) { sync().catch(console.error); }
+if (require.main === module) {
+  sync().catch(console.error);
+}
 module.exports = { sync };

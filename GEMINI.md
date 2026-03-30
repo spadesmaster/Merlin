@@ -12,16 +12,32 @@ This project is a specialized Node.js automation tool designed to provide a bidi
     *   Recursively sorts items into "Room" nodes based on prefixes (e.g., "Office", "Garage").
     *   Defaults unassigned tasks to the **Office** room.
     *   Cleans task names by removing room prefixes while maintaining priority numbers.
-    *   Physically sorts items in Workflowy by priority number (Ascending).
+    *   **Priority Parsing:** 
+        *   Leading digits (1-9) are parsed as priority.
+        *   "to" (e.g., "to Task") is parsed as priority 2.
+        *   Leading number words (One, Two, etc.) and "number" are stripped and ignored.
+    *   **Formatting:** The first word of a task (after any leading numbers/rooms) is automatically capitalized.
+    *   **Smart Re-categorization:** Items are automatically moved to the correct room if a room prefix is detected in their name.
+    *   **Category Mapping:** 
+        *   Handles singular and plural room names (e.g., "Errand" or "Errands").
+        *   Maps "Studio" to the "Shop" room.
+        *   Matches room names case-insensitively.
+    *   Physically sorts items in Workflowy by **Priority** (ascending) and then **Alphabetically**.
 *   **Recursive Subtask Parsing:**
     *   Detects nested Workflowy items and syncs them as individual rows in Google Sheets.
     *   Automatically prepends the parent task name to subtasks (e.g., "Parent Task - Subtask").
 *   **Google Sheet Management:**
     *   **All Tasks Tab:** The master list of active tasks.
-    *   **Priority Tab:** An auto-generated view of high-priority, pending items.
+    *   **Priority Tab:** An auto-generated view of tasks with a specified priority of **1**, sorted by Room -> Task Name.
+    *   **Room Tabs:** Individual tabs for each category (Office, Garage, etc.) showing their respective active tasks.
     *   **Completed Tab:** Archives finished tasks with a "Date Completed" timestamp.
-    *   **Sorting:** Automatically sorts all tabs by Priority -> Room -> Task Name.
-    *   **Dropdowns:** Includes rooms (Office, Garage, Temple, Shop, Kitchen, Dining, Bath, Bed, Living, Errand, Yard, Calls) and status.
+    *   **Persistence:** The **"Date Created"** field remains permanent once a task is added to the sheet, even if the task name or other details are modified.
+    *   **Two-Way Sync from Any Tab:** Status changes (like marking a task "Complete") made on *any* room tab or the master list are automatically detected and synced back to Workflowy and moved to the Completed tab.
+    *   **Header-Driven Mapping:** The system automatically identifies columns by their names (ID, Pri, Room, etc.), allowing you to move or rename columns without breaking the sync.
+    *   **Visual Synchronization:** Automatically synchronizes column widths and header coloring from the "All Tasks" tab to all room-specific tabs.
+    *   **Clean View:** The "ID" column is automatically hidden on all active task tabs to keep the interface focused on priorities and task names.
+    *   **Sorting:** Automatically sorts all tabs by Priority -> Room -> Task Name (except the Priority tab which sorts by Room -> Task Name).
+    *   **Dropdowns:** Includes rooms (Office, Garage, Temple, Shop, Kitchen, Dining, Bath, Bed, Living, Errand, Yard, Calls, Fun) and status.
 
 ## Architecture & Key Files
 

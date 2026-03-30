@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const { google } = require('googleapis');
+require('dotenv').config({ path: path.join(__dirname, '.env') });
 
 const TOKEN_PATH = path.join(__dirname, 'token.json');
 const CREDENTIALS_PATH = path.join(__dirname, 'credentials.json');
@@ -21,7 +22,6 @@ async function authorize() {
   const token = fs.readFileSync(TOKEN_PATH);
   oAuth2Client.setCredentials(JSON.parse(token));
 
-  // Automatically save new tokens when they are refreshed
   oAuth2Client.on('tokens', (tokens) => {
     const currentToken = JSON.parse(fs.readFileSync(TOKEN_PATH));
     const updatedToken = { ...currentToken, ...tokens };
@@ -33,139 +33,115 @@ async function authorize() {
 }
 
 /**
+ * Maps header row to column indices.
+ */
+function getHeaderMap(headers) {
+  const map = {};
+  if (!headers) return map;
+  headers.forEach((header, index) => {
+    if (!header) return;
+    const h = header.toLowerCase().replace(/[\s_]+/g, '');
+    if (h === 'taskid' || h === 'id') map.taskId = index;
+    else if (h === 'priority' || h === 'p' || h === 'pri') map.priority = index;
+    else if (h === 'room' || h === 'category') map.room = index;
+    else if (h === 'taskname' || h === 'name' || h === 'task') map.name = index;
+    else if (h === 'status') map.status = index;
+    else if (h === 'datecreated' || h === 'created') map.dateCreated = index;
+    else if (h === 'datecompleted' || h === 'completed' || h === 'datecomp') map.dateCompleted = index;
+    else if (h === 'notes') map.notes = index;
+  });
+  return map;
+}
+
+/**
  * Creates a new spreadsheet or uses an existing ID.
  */
 async function initializeSpreadsheet(auth, existingId = null) {
   const sheets = google.sheets({ version: 'v4', auth });
-  let spreadsheetId = existingId;
+  let spreadsheetId = existingId || process.env.GOOGLE_SPREADSHEET_ID;
 
-  if (!spreadsheetId) {
-    const resource = {
-      properties: {
-        title: 'Workflowy Task Manager',
-      },
-    };
-    const response = await sheets.spreadsheets.create({
-      resource,
-      fields: 'spreadsheetId',
-    });
-    spreadsheetId = response.data.spreadsheetId;
-    console.log(`Created new spreadsheet with ID: ${spreadsheetId}`);
-    console.log(`View it here: https://docs.google.com/spreadsheets/d/${spreadsheetId}/edit`);
-  }
-
-  // 1. Create Sheets (All Tasks, Priority)
-  // Check existing sheets first
   const ss = await sheets.spreadsheets.get({ spreadsheetId });
   const sheetNames = ss.data.sheets.map(s => s.properties.title);
 
+  const rooms = ["Office", "Garage", "Temple", "Shop", "Kitchen", "Dining", "Bath", "Bed", "Living", "Errand", "Yard", "Calls", "Fun"];
   const requests = [];
 
-  if (!sheetNames.includes('All Tasks')) {
-    requests.push({ addSheet: { properties: { title: 'All Tasks' } } });
-  }
-  if (!sheetNames.includes('Priority')) {
-    requests.push({ addSheet: { properties: { title: 'Priority' } } });
-  }
-  if (!sheetNames.includes('Completed')) {
-    requests.push({ addSheet: { properties: { title: 'Completed' } } });
-  }
+  if (!sheetNames.includes('All Tasks')) requests.push({ addSheet: { properties: { title: 'All Tasks' } } });
+  if (!sheetNames.includes('Priority')) requests.push({ addSheet: { properties: { title: 'Priority' } } });
+  if (!sheetNames.includes('Completed')) requests.push({ addSheet: { properties: { title: 'Completed' } } });
+
+  rooms.forEach(room => {
+    if (!sheetNames.includes(room)) requests.push({ addSheet: { properties: { title: room } } });
+  });
 
   if (requests.length > 0) {
-    await sheets.spreadsheets.batchUpdate({
-      spreadsheetId,
-      resource: { requests },
-    });
+    await sheets.spreadsheets.batchUpdate({ spreadsheetId, resource: { requests } });
   }
 
-  // Refresh metadata to get sheetIds
   const ssRefresh = await sheets.spreadsheets.get({ spreadsheetId });
-  const allTasksSheetId = ssRefresh.data.sheets.find(s => s.properties.title === 'All Tasks').properties.sheetId;
-  const completedTasksSheetId = ssRefresh.data.sheets.find(s => s.properties.title === 'Completed').properties.sheetId;
-
-  // 2. Set Headers
-  const allTasksHeaders = [['Task ID', 'Task Name', 'Room', 'Priority', 'Status', 'Date Created', 'Notes']];
-  const priorityHeaders = [['Priority', 'Task Name', 'Room', 'Status', 'Date Created', 'Notes']];
-  const completedTasksHeaders = [['Task ID', 'Task Name', 'Room', 'Priority', 'Status', 'Date Created', 'Date Completed', 'Notes']];
-
-  await sheets.spreadsheets.values.update({
-    spreadsheetId,
-    range: "'All Tasks'!A1:G1",
-    valueInputOption: 'RAW',
-    resource: { values: allTasksHeaders },
-  });
-
-  await sheets.spreadsheets.values.update({
-    spreadsheetId,
-    range: "'Priority'!A1:F1",
-    valueInputOption: 'RAW',
-    resource: { values: priorityHeaders },
-  });
-
-  await sheets.spreadsheets.values.update({
-    spreadsheetId,
-    range: "'Completed'!A1:H1",
-    valueInputOption: 'RAW',
-    resource: { values: completedTasksHeaders },
-  });
-
-  // 3. Set Dropdowns
-  const rooms = ["Office", "Garage", "Temple", "Shop", "Kitchen", "Dining", "Bath", "Bed", "Living", "Errand", "Yard", "Calls", "Fun"];
-  const statuses = ["Pending", "In-progress", "Complete"];
   
-  await sheets.spreadsheets.batchUpdate({
-    spreadsheetId,
-    resource: {
-      requests: [
-        {
-          setDataValidation: {
-            range: {
-              sheetId: allTasksSheetId,
-              startRowIndex: 1,
-              endRowIndex: 1000,
-              startColumnIndex: 2, // Column C (Room)
-              endColumnIndex: 3,
-            },
-            rule: {
-              condition: { type: 'ONE_OF_LIST', values: rooms.map(r => ({ userEnteredValue: r })) },
-              showCustomUi: true, strict: true,
-            },
-          },
-        },
-        {
-          setDataValidation: {
-            range: {
-              sheetId: allTasksSheetId,
-              startRowIndex: 1,
-              endRowIndex: 1000,
-              startColumnIndex: 4, // Column E (Status)
-              endColumnIndex: 5,
-            },
-            rule: {
-              condition: { type: 'ONE_OF_LIST', values: statuses.map(s => ({ userEnteredValue: s })) },
-              showCustomUi: true, strict: true,
-            },
-          },
-        },
-        {
-          setDataValidation: {
-            range: {
-              sheetId: completedTasksSheetId,
-              startRowIndex: 1,
-              endRowIndex: 1000,
-              startColumnIndex: 4, // Column E (Status)
-              endColumnIndex: 5,
-            },
-            rule: {
-              condition: { type: 'ONE_OF_LIST', values: statuses.map(s => ({ userEnteredValue: s })) },
-              showCustomUi: true, strict: true,
-            },
-          },
-        }
-      ],
-    },
+  // Headers
+  const standardHeaders = [['ID', 'Pri', 'Room', 'Task Name', 'Status', 'Date Created', 'Notes']];
+  const completedHeaders = [['ID', 'Pri', 'Room', 'Task Name', 'Status', 'Date Created', 'Date Completed', 'Notes']];
+
+  const headerUpdates = [
+    { range: "'All Tasks'!A1:G1", values: standardHeaders },
+    { range: "'Priority'!A1:G1", values: standardHeaders },
+    { range: "'Completed'!A1:H1", values: completedHeaders }
+  ];
+
+  rooms.forEach(room => headerUpdates.push({ range: `'${room}'!A1:G1`, values: standardHeaders }));
+
+  for (const update of headerUpdates) {
+    await sheets.spreadsheets.values.update({ spreadsheetId, range: update.range, valueInputOption: 'RAW', resource: { values: update.values } });
+  }
+
+  // Dropdowns and Hiding ID Column
+  const statuses = ["Pending", "In-progress", "Complete"];
+  const validationRequests = [];
+
+  const setupSheet = (sId) => {
+    validationRequests.push({
+      setDataValidation: {
+        range: { sheetId: sId, startRowIndex: 1, endRowIndex: 1000, startColumnIndex: 2, endColumnIndex: 3 }, // Room
+        rule: { condition: { type: 'ONE_OF_LIST', values: rooms.map(r => ({ userEnteredValue: r })) }, showCustomUi: true, strict: true }
+      }
+    });
+    validationRequests.push({
+      setDataValidation: {
+        range: { sheetId: sId, startRowIndex: 1, endRowIndex: 1000, startColumnIndex: 4, endColumnIndex: 5 }, // Status
+        rule: { condition: { type: 'ONE_OF_LIST', values: statuses.map(s => ({ userEnteredValue: s })) }, showCustomUi: true, strict: true }
+      }
+    });
+    // Hide ID Column (startIndex 0, endIndex 1)
+    validationRequests.push({
+      updateDimensionProperties: {
+        range: { sheetId: sId, dimension: 'COLUMNS', startIndex: 0, endIndex: 1 },
+        properties: { hiddenByUser: true },
+        fields: 'hiddenByUser'
+      }
+    });
+  };
+
+  const allTasksSheetId = ssRefresh.data.sheets.find(s => s.properties.title === 'All Tasks').properties.sheetId;
+  const prioritySheetId = ssRefresh.data.sheets.find(s => s.properties.title === 'Priority').properties.sheetId;
+  const completedSheetId = ssRefresh.data.sheets.find(s => s.properties.title === 'Completed').properties.sheetId;
+
+  setupSheet(allTasksSheetId);
+  setupSheet(prioritySheetId);
+  rooms.forEach(room => {
+    const s = ssRefresh.data.sheets.find(sh => sh.properties.title === room);
+    if (s) setupSheet(s.properties.sheetId);
   });
 
+  validationRequests.push({
+    setDataValidation: {
+      range: { sheetId: completedSheetId, startRowIndex: 1, endRowIndex: 1000, startColumnIndex: 4, endColumnIndex: 5 },
+      rule: { condition: { type: 'ONE_OF_LIST', values: statuses.map(s => ({ userEnteredValue: s })) }, showCustomUi: true, strict: true }
+    }
+  });
+  
+  await sheets.spreadsheets.batchUpdate({ spreadsheetId, resource: { requests: validationRequests } });
   return spreadsheetId;
 }
 
@@ -174,57 +150,139 @@ async function initializeSpreadsheet(auth, existingId = null) {
  */
 async function syncPriority(auth, spreadsheetId) {
   const sheets = google.sheets({ version: 'v4', auth });
-  
-  // 1. Read All Tasks
-  const response = await sheets.spreadsheets.values.get({
-    spreadsheetId,
-    range: "'All Tasks'!A2:G1000",
-  });
-  
+  const response = await sheets.spreadsheets.values.get({ spreadsheetId, range: "'All Tasks'!A1:G1000" });
   const rows = response.data.values || [];
+  if (rows.length <= 1) return;
+
+  const map = getHeaderMap(rows[0]);
+  const dataRows = rows.slice(1);
   
-  // 2. Filter: Priority (D - index 3) is not empty AND Status (E - index 4) is Pending or In-progress
-  const prioritizedTasks = rows.filter(row => {
-    const priority = row[3];
-    const status = row[4] ? row[4].toLowerCase() : '';
-    return priority && (status === 'pending' || status === 'in-progress');
+  const prioritizedTasks = dataRows.filter(row => {
+    const priority = row[map.priority];
+    const status = row[map.status] ? row[map.status].toLowerCase() : '';
+    return priority === '1' && (status === 'pending' || status === 'in-progress');
   }).map(row => {
-    // Priority (index 3), Task Name (index 1), Room (index 2), Status (index 4), Date (index 5), Notes (index 6)
-    return [row[3], row[1], row[2], row[4], row[5], row[6]];
+    return [
+      row[map.taskId] || '',
+      row[map.priority] || '',
+      row[map.room] || '',
+      row[map.name] || '',
+      row[map.status] || '',
+      row[map.dateCreated] || '',
+      row[map.notes] || ''
+    ];
   });
 
-  // 3. Sort by Priority (Ascending)
   prioritizedTasks.sort((a, b) => {
-    const pA = parseInt(a[0]);
-    const pB = parseInt(b[0]);
-    return pA - pB;
+    const roomA = a[2] || '';
+    const roomB = b[2] || '';
+    if (roomA !== roomB) return roomA.localeCompare(roomB);
+    const nameA = a[3] || '';
+    const nameB = b[3] || '';
+    return nameA.localeCompare(nameB);
   });
 
-  // 4. Clear and Update Priority Sheet
-  await sheets.spreadsheets.values.clear({
-    spreadsheetId,
-    range: "'Priority'!A2:F1000",
-  });
-
+  await sheets.spreadsheets.values.clear({ spreadsheetId, range: "'Priority'!A2:G1000" });
   if (prioritizedTasks.length > 0) {
     await sheets.spreadsheets.values.update({
-      spreadsheetId,
-      range: `'Priority'!A2:F${prioritizedTasks.length + 1}`,
-      valueInputOption: 'RAW',
-      resource: { values: prioritizedTasks },
+      spreadsheetId, range: `'Priority'!A2:G${prioritizedTasks.length + 1}`, valueInputOption: 'RAW', resource: { values: prioritizedTasks }
     });
+  }
+}
+
+/**
+ * Synchronizes formatting from 'All Tasks' to room tabs.
+ */
+async function syncTabFormatting(auth, spreadsheetId) {
+  const sheets = google.sheets({ version: 'v4', auth });
+  
+  // 1. Get ALL sheet properties (titles and IDs)
+  const ssMetadata = await sheets.spreadsheets.get({ spreadsheetId });
+  const allSheets = ssMetadata.data.sheets;
+
+  // 2. Fetch formatting strictly from 'All Tasks'
+  const ssSource = await sheets.spreadsheets.get({
+    spreadsheetId,
+    includeGridData: true,
+    ranges: ["'All Tasks'!A1:G1"],
+  });
+
+  const allTasksSheet = ssSource.data.sheets.find(s => s.properties.title === 'All Tasks');
+  if (!allTasksSheet || !allTasksSheet.data || !allTasksSheet.data[0]) {
+    console.error("Could not find source formatting data in 'All Tasks'.");
+    return;
+  }
+
+  const sheetData = allTasksSheet.data[0];
+  const headerRow = sheetData.rowData ? sheetData.rowData[0] : null;
+  const columnMetadata = sheetData.columnMetadata;
+
+  if (!headerRow) {
+    console.error("No header row formatting found in 'All Tasks'.");
+    return;
+  }
+
+  const rooms = ["Office", "Garage", "Temple", "Shop", "Kitchen", "Dining", "Bath", "Bed", "Living", "Errand", "Yard", "Calls", "Fun"];
+  const requests = [];
+
+  allSheets.forEach(sheet => {
+    const title = sheet.properties.title;
+    const sheetId = sheet.properties.sheetId;
+
+    if (rooms.includes(title)) {
+      // Apply Header Colors and Widths to Room Tabs
+      requests.push({
+        updateCells: {
+          range: { sheetId: sheetId, startRowIndex: 0, endRowIndex: 1, startColumnIndex: 0, endColumnIndex: 7 },
+          rows: [{ values: headerRow.values.map(v => ({ userEnteredFormat: v.userEnteredFormat || {} })) }],
+          fields: 'userEnteredFormat'
+        }
+      });
+
+      if (columnMetadata) {
+        columnMetadata.forEach((meta, idx) => {
+          if (meta.pixelSize) {
+            requests.push({
+              updateDimensionProperties: {
+                range: { sheetId: sheetId, dimension: 'COLUMNS', startIndex: idx, endIndex: idx + 1 },
+                properties: { pixelSize: meta.pixelSize },
+                fields: 'pixelSize'
+              }
+            });
+          }
+        });
+      }
+    } else if (title === 'Priority') {
+      // Apply ONLY Widths to Priority Tab
+      if (columnMetadata) {
+        columnMetadata.forEach((meta, idx) => {
+          if (meta.pixelSize) {
+            requests.push({
+              updateDimensionProperties: {
+                range: { sheetId: sheetId, dimension: 'COLUMNS', startIndex: idx, endIndex: idx + 1 },
+                properties: { pixelSize: meta.pixelSize },
+                fields: 'pixelSize'
+              }
+            });
+          }
+        });
+      }
+    }
+  });
+
+  if (requests.length > 0) {
+    await sheets.spreadsheets.batchUpdate({ spreadsheetId, resource: { requests } });
+    console.log(`Successfully synced formatting from 'All Tasks' to category and Priority tabs.`);
   }
 }
 
 async function main() {
   const auth = await authorize();
-  const spreadsheetId = process.env.GOOGLE_SPREADSHEET_ID || '1twi7Wxckrwg3qv3pZ7Yp_fPi63W-ziemsnDp1BQx-Cg';
-  await initializeSpreadsheet(auth, spreadsheetId);
-  await syncPriority(auth, spreadsheetId);
+  const spreadsheetId = process.env.GOOGLE_SPREADSHEET_ID;
+  const actualId = await initializeSpreadsheet(auth, spreadsheetId);
+  await syncPriority(auth, actualId);
+  await syncTabFormatting(auth, actualId);
 }
 
-if (require.main === module) {
-  main().catch(console.error);
-}
-
-module.exports = { authorize, initializeSpreadsheet, syncPriority };
+if (require.main === module) main().catch(console.error);
+module.exports = { authorize, initializeSpreadsheet, syncPriority, syncTabFormatting, getHeaderMap };
