@@ -27,6 +27,13 @@
     - Generated `#MissionBriefing - Wednesday, April 1` in Workflowy (!MERLIN-GOALS!).
     - Missions for Wed: Warrior (Judge letter/Tidy Van), King (Glue MC decals/Tires), Vizier (Costco/Walmart/Adv Auto), Lover (Assemble workbench), Rogue (Confirm/Attend VB@7).
 - **Events (Wed):** Meds/Sch@8, Men's Group@8:40, Plants/Home@10:30, VB @ 7.
+- **Hardware Identification:** Identified the "Voice Input Device" as the **Senstone Scripter**. Prepared setup guide and automated task creation for tomorrow's integration.
+- **Infrastructure:** Implemented the **Merlin Automation Core** (Factory First approach).
+    - `WorkflowyClient`: Low-level API management with GUID/Transaction support.
+    - `MerlinFactory`: High-level semantic object for Briefings, Inboxes, and KPIs.
+    - Refactored `sync.js` to use the new core architecture.
+- **Workspace Cleanup:** Moved Senstone assets to `workflowy-sync/assets/` and purged redundant temporary scripts.
+- **Protocol:** Established "API-first" design rule and mandatory "Commit before Design" and "Update Context before Commit" protocols.
 - **Hardware Check:** Notified user to charge watch, ring, phone, and tablet for tomorrow's 8:00 AM wakeup.
 
 ## Next Steps (Wednesday AM)
