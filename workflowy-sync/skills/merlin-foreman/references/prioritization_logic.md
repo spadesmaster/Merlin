@@ -7,6 +7,10 @@ The primary factor in prioritization is alignment with higher-level goals.
 - **Monthly Goals (M1-M5):** The highest level of focus.
 - **Weekly Goals (W1-W5):** Derived from Monthly goals.
 - **Daily Goals (G1-G5):** Should directly support Weekly goals.
+- **Weekly KPI Aggregation:**
+    - **Averages:** Calculate weekly averages for Sleep Score, Job Leads, and Exercise from the Daily tab.
+    - **Financials/Health:** Update Weight (Wt) and Bank Balance ($$) once per week on the Weekly tab.
+    - **Wins/Blocks:** Summarize Daily Wins and Blockers into the Weekly "Extra" or "Win" columns.
 
 **Ranking Rule:**
 - G1 should ideally support W1.

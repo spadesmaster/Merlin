@@ -13,6 +13,7 @@ This skill manages your daily "Combat Plan" by assigning your top 5 goals to a s
 - **M-TNK (Tinker - Goal 3):** Physical Projects, Repairs, Assembly.
 - **M-LUV (Lover - Goal 4):** Heart, Connection, Joy.
 - **M-ROG / M-THF (Rogue/Thief - Goal 5):** Opportunity, Resources, Job Leads.
+- **M-BRD (Bard - Goal 6):** Morale, Music, Gamified Learning, VR Fitness.
 
 ## Interaction Workflow
 

@@ -21,6 +21,12 @@ This project is a specialized Node.js automation tool designed to provide a bidi
     *   **Category Mapping:** 
         *   Handles singular and plural room names (e.g., "Errand" or "Errands").
         *   Maps "Studio" to the "Shop" room.
+        *   **Entity Mappings:**
+            *   **Joyce:** The Yard (Astronomy/Nature/Cosmos).
+            *   **Gurpreet:** The Temple (Spirituality/Internal reflection).
+            *   **Boni (The Navigator):** The Bridge (Centralized control/Dashboard).
+            *   **Dan:** The Office (Work/Productivity).
+            *   **Nik (The Tinkerer):** The Dining Room (Gaming/Socialization).
         *   Matches room names case-insensitively.
     *   Physically sorts items in Workflowy by **Priority** (ascending) and then **Alphabetically**.
 *   **Recursive Subtask Parsing:**
@@ -37,7 +43,7 @@ This project is a specialized Node.js automation tool designed to provide a bidi
     *   **Visual Synchronization:** Automatically synchronizes column widths and header coloring from the "All Tasks" tab to all room-specific tabs.
     *   **Clean View:** The "ID" column is automatically hidden on all active task tabs to keep the interface focused on priorities and task names.
     *   **Sorting:** Automatically sorts all tabs by Priority -> Room -> Task Name (except the Priority tab which sorts by Room -> Task Name).
-    *   **Dropdowns:** Includes rooms (Office, Garage, Temple, Shop, Kitchen, Dining, Bath, Bed, Living, Errand, Yard, Calls, Fun) and status.
+    *   **Dropdowns:** Includes rooms (Office, Garage, Temple, Shop, Kitchen, Dining, Bath, Bed, Living, Errand, Yard, Calls, Fun, Bridge) and status.
 
 ## Architecture & Key Files
 
