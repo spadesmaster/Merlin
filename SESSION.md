@@ -36,5 +36,5 @@
 - **Unity Build Farm:** Integrate Mac Minis as headless build systems for game development automation.
 - **SCRUM Standup:** Implement 8am daily "Combat Briefing" using SCRUM methodologies (Yesterday/Today/Blockers).
 - **Flight Instrument Panel:** A full-time SITREP dashboard running on Mac Mini as a "Character Sheet" overview.
-- **IoT & Mood Setting:** Integrate Alexa/Media control (Spotify, Plex, YouTube) across all zones mapped to Party Members and the 8-Hex framework for Breathwork and environment alignment.
-- **Daily Flow Engine:** A system that automatically rotates environmental settings and media playlists to keep the user in "Flow" and on task throughout the day.
+- **IoT & Mood Setting:** Integrate Alexa/Media control (Spotify, Plex, YouTube) across all zones. Map each of the 8 Alexa devices as the physical embodiment/voice of the 8 Lenses (Party Members) for Breathwork and environment alignment.
+- **Daily Flow Engine:** A system that automatically shifts environmental settings. It uses sound ditties/tones to signal mode transitions (Chill, Sleep, Awake, Work, Learn) based on a scheduled allocation. It automatically starts assigned playlists in the user's current area to maintain "Flow" and task alignment.
