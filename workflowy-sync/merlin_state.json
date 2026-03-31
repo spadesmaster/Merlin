@@ -29,7 +29,7 @@
   },
   "subprojects": {
     "court_letter": {
-      "status": "drafting_letter",
+      "status": "ready_for_review",
       "path": "judge_letter/",
       "docs": [
         "2025-07-24 Budget Truck Rental $2k for Week with Discount.pdf",
@@ -50,6 +50,7 @@
         "2025-10-01 Warrenton Accident Google Maps Timeline.jpg",
         "2025-10-01 Warrenton Accident Legal Solicitation.pdf",
         "2025-10-01 Warrenton Accident Towed.jpg",
+        "Letter_to_Judge_Biermann.md",
         "Warrenton Accident Legal Brief - Google Docs.pdf",
         "Williamson Determination Letter.docx",
         "Williamson Penske Rental Agreement.pdf",

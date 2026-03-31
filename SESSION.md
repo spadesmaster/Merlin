@@ -38,7 +38,7 @@
     - Initiated transition to "State-Driven Context" via `merlin_state.json`.
     - Established `ToMerlin` drop zone at `C:\Users\spade\OneDrive\Documents\ToMerlin` for secure file ingestion.
 - **Subprojects Established:**
-    - `judge_letter/`: Created for drafting the court letter to Judge William Christopher Biermann regarding Case 240910007. Ingested 23 documents (including Legal Brief, evidence photos/video, and receipts). Analysis of Legal Brief reveals key defense: Defendant stayed at the scene for ~2 hours post-accident, interacted with 4 officers, and provided all credentials; primary issue is lack of awareness of the collision at the time it occurred.
+    - `judge_letter/`: Created for drafting the court letter to Judge William Christopher Biermann regarding Case 240910007. Ingested 23 documents; drafted "Request for Continuance and Motion for Alternative Fingerprinting" for the April 2nd hearing, highlighting financial hardship and proposing remote fingerprinting (IdentoGO or MD police).
     - `dads_will/`: Created for Robert Edward Williamson's Will review; analyzed the 2015 Will (died Oct 31, 2025) identifying Caryl J. McNeilly as Executor and Christopher Preston Williamson as a 5% residuary beneficiary.
 - **Hardware Check:** Notified user to charge watch, ring, phone, and tablet for tomorrow's 8:00 AM wakeup.
 
