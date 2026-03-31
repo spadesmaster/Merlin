@@ -1,0 +1,89 @@
+const fs = require('fs');
+const path = require('path');
+const { google } = require('googleapis');
+
+const TOKEN_PATH = path.join(__dirname, '../workflowy-sync/token.json');
+const CREDENTIALS_PATH = path.join(__dirname, '../workflowy-sync/credentials.json');
+const FILE_ID = '1DLLYGqhF64y4oPY33YnXa9FcdtSv9s4cAjSL-9-IPw8';
+
+async function updateGoogleDoc() {
+  const credentials = JSON.parse(fs.readFileSync(CREDENTIALS_PATH));
+  const { client_id, client_secret, redirect_uris } = credentials.installed || credentials.web;
+  const oAuth2Client = new google.auth.OAuth2(client_id, client_secret, redirect_uris[0]);
+  
+  const token = JSON.parse(fs.readFileSync(TOKEN_PATH));
+  oAuth2Client.setCredentials(token);
+
+  const docs = google.docs({ version: 'v1', auth: oAuth2Client });
+
+  // Full content update with refinements
+  const newContent = `REQUEST FOR CONTINUANCE AND MOTION FOR ALTERNATIVE FINGERPRINTING
+
+TO: The Honorable Judge William Christopher Biermann
+COURT: 12th Judicial Circuit, Warren County, Missouri
+CASE NUMBER: 240910007
+DEFENDANT: Christopher Preston Williamson
+HEARING DATE: April 2, 2026
+
+Dear Judge Biermann,
+
+I am writing to respectfully request a continuance of my hearing scheduled for April 2, 2026, and to submit a motion for an alternative method of fulfilling the fingerprinting requirement mandated by this Court.
+
+Accompanying this letter, I have enclosed a non-refundable money order for the full amount of the court costs and my signed acceptance of the Prosecuting Attorney’s recommendation. My primary goal is to resolve this matter responsibly and efficiently; however, I am currently facing significant personal and financial obstacles that make my physical appearance in Warrenton on April 2nd an extreme hardship.
+
+1. Significant Financial and Personal Hardship
+I am currently residing in Maryland, where I am managing my late father’s estate and actively seeking employment. The cost of travel from Maryland to Missouri—including airfare, car rental, and lodging—is estimated to exceed $1,000. Having already expended approximately $2,000 on legal counsel and now paying the required court costs, I now find that these travel expenses represent almost all of the remainder of my savings. I simply do not have the financial resources to fly to Missouri solely for a hearing or for the administrative task of fingerprinting.
+
+2. Request for Alternative Fingerprinting
+I am eager to comply with the Court’s order for fingerprinting. However, the requirement to travel to the City of Warrenton specifically for this task is a prohibitive financial burden. I respectfully request that the Court allow me to complete this requirement via one of the following alternatives:
+
+* Local Law Enforcement: Fulfilling the requirement at a local police department in Maryland and having the certified results mailed directly to the Court.
+* IdentoGO: Utilizing IdentoGO, which is a preferred fingerprinting partner for the State of Missouri, at a location near my current residence.
+
+I am prepared to coordinate with the Court Clerk to ensure that the certified results are transmitted in a format that meets the Court’s specific administrative requirements.
+
+3. Good Faith Effort and Statutory Context
+While I am fully prepared to resolve this via the PA’s recommendation, I wish to respectfully highlight that the physical evidence supports a lack of "knowledge"—a key statutory requirement of Section 310.110. As a volunteer EMT, I am professionally trained to respond to and evaluate accident scenes; I am acutely aware of the signs of a collision. However, the physics of this specific incident—operating a 26-foot moving truck with heavy-duty suspension and a mass orders of magnitude greater than the unoccupied passenger vehicle—meant that there was no perceptible impact or sound inside the cab. Neither I nor my passenger had any "knowledge" that a collision occurred.
+
+Furthermore, I never "left the scene" in the spirit of the law. I remained at the Warrenton Shoppes for approximately two hours, proactively approached the police upon their arrival, and immediately volunteered my credentials to four different officers. I have been fully forthcoming and cooperative with law enforcement and with the Court.
+
+I am submitting the signed PA’s recommendation and providing payment now solely because I cannot afford the severe financial burden of a trial, and I have been informed by the Court Clerk that neither a remote hearing nor a public defender is an option.
+
+Restitution and Insurance
+At the scene, I provided all my insurance information (Travelers Insurance) to the responding officer, who I presume relayed it to the other party. In the nine months since the incident, I have done everything in my power to ensure my insurer could facilitate repairs. I have no control over the fact that the other party has neither filed a claim nor responded to my insurer’s numerous attempts to arrange for restitution. I respectfully submit that my commitment to restitution is complete, and I ask the Court to allow the agreement to proceed despite the other party's lack of response.
+
+Conclusion
+I am a responsible citizen managing a difficult family situation and financial transition. I respectfully ask that the Court consider the following:
+
+1. In the interest of justice, consider an outright dismissal of this charge, as the undisputed facts show I lacked knowledge of the accident and never left the scene without providing my information as required by Section 310.110.
+2. Alternatively, grant a continuance for the April 2nd hearing and accept the PA's recommendation with an approved alternative method for fingerprinting in Maryland to prevent further financial depletion.
+
+I have enclosed the required payment and signed documents to demonstrate my commitment to resolving this case. Thank you for your time and for your consideration of this request.
+
+Respectfully,
+
+Christopher Preston Williamson
+4719 Dorset Avenue, Chevy Chase, MD 20815
+303-351-2216
+spadesmaster@gmail.com`;
+
+  try {
+    // Clear and update the Doc
+    // This is complex with the Docs API, so we'll use the Drive API to overwrite with media
+    const drive = google.drive({ version: 'v3', auth: oAuth2Client });
+    await drive.files.update({
+      fileId: FILE_ID,
+      media: {
+        mimeType: 'text/plain',
+        body: newContent,
+      },
+    });
+
+    fs.writeFileSync(path.join(__dirname, 'Letter_to_Judge_Biermann.md'), newContent);
+    console.log('Successfully updated Google Doc and local file with refinements.');
+  } catch (err) {
+    console.error('Error updating Google Doc:', err);
+  }
+}
+
+updateGoogleDoc();
