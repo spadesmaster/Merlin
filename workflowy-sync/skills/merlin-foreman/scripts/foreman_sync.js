@@ -71,7 +71,7 @@ async function updateDailyTab(auth, rowData) {
             resource: { requests: [{ addSheet: { properties: { title: 'Daily' } } }] }
         });
         // Headers
-        const headers = [['Date', 'Events', 'G1 Name', 'G1 Est', 'G1 Act', 'G2 Name', 'G2 Est', 'G2 Act', 'G3 Name', 'G3 Est', 'G3 Act', 'G4 Name', 'G4 Est', 'G4 Act', 'G5 Name', 'G5 Est', 'G5 Act', 'Win %', 'Sleep', 'Job Leads', 'Exercise', 'Bank', 'Wins/Notes', 'Blocked']];
+        const headers = [['Date', 'Events', 'Warrior', 'War Est', 'War Act', 'Vizier', 'Viz Est', 'Viz Act', 'King', 'Kin Est', 'Kin Act', 'Lover', 'Lov Est', 'Lov Act', 'Rogue', 'Rog Est', 'Rog Act', 'Win %', 'Sleep', 'Job Leads', 'Exercise', 'Bank', 'Wins/Notes', 'Blocked']];
         await sheets.spreadsheets.values.update({
             spreadsheetId: SPREADSHEET_ID,
             range: "'Daily'!A1",

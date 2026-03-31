@@ -1,50 +1,46 @@
 ---
 name: merlin-foreman
-description: Practical job management, prioritization, and estimation for the Merlin sync system. Use this skill to perform daily check-ins, plan today/tomorrow by pulling tasks from Google Sheets (Priority tab) and events from Google Calendar, shorthand them for a Workflowy HUD (the !MERLIN-RAW-INBOX-BEFORE-SYNC! node), and record stats (Sleep, Job Leads, Exercise, Bank) back to a Daily tab in Sheets.
+description: Practical job management, prioritization, and estimation for the Merlin sync system. Use this skill to perform daily check-ins as a "Party Briefing" (Warrior, Vizier, King, Lover, Rogue), pulling tasks from Google Sheets and events from Google Calendar to shorthand them for a Workflowy HUD and record stats back to the Daily tab.
 ---
 
-# Merlin-Foreman
+# Merlin-Foreman (The Party Briefing)
 
-This skill provides a structured, interactive workflow for managing your daily tasks, schedule, and goals. It bridges Google Sheets (blueprint), Google Calendar (schedule), and Workflowy (execution).
+This skill manages your daily "Combat Plan" by assigning your top 5 goals to a specialized D&D-style party. 
 
-## Daily Check-in Workflow
+## The Merlin Party
+- **Warrior (Goal 1):** Action, Execution, Discipline.
+- **Vizier (Goal 2):** Strategy, Technology, Wisdom.
+- **King (Goal 3):** Order, Legacy, Stewardship.
+- **Lover (Goal 4):** Heart, Connection, Joy.
+- **Rogue (Goal 5):** Opportunity, Resources, Job Leads.
 
-Follow this sequence for every check-in:
+## Interaction Workflow
 
 ### 1. Preparation (Context & Review)
-- **Identify Target Day:** Ask "Is this check-in for Today ([Date]) or Tomorrow ([Date])?" (Default: Tomorrow).
-- **Review Yesterday's Performance:**
-    - Read the **Daily** tab from Google Sheets for the *previous* entry.
-    - Ask for **% Completion** (0-100%) for each of the 5 Goals from that day.
-    - Ask for **Actual Time Spent** (in hours) for each of those goals.
-    - **Rollover Decision:** If a goal was < 80% complete, ask: "Should [Task Name] be moved to tomorrow as a top priority?"
-    - **Record Stats:** Prompt for **Sleep Score**, **Job Leads**, **Exercise Mins**, **Bank Balance**, **Extra Wins**, and **Blocked Items**.
-    - **Calculate Win %:** Automatically calculate the average % completion of the 5 goals.
-    - **Save:** Write these "Actuals" and "Stats" back to the row for the previous day in the **Daily** tab.
+- **Identify Target Day:** Ask "Today or Tomorrow?" (Default: Tomorrow).
+- **Review Yesterday's Combat:**
+    - Each "Class" asks for their own **% Completion** and **Actual Time Spent** (hours).
+    - **Rogue** specifically prompts for **Job Leads** and **Bank Balance**.
+    - **Lover** prompts for **Sleep Score** and **Exercise**.
+- **Calculate Win %:** Average completion across all 5 classes.
 
-### 2. Planning (The "Foreman's" Strategy)
-- **Calendar Mining:** 
-    - Fetch events from `Appt` and `VB/Fun MD` calendars for the target day.
-    - **Shorthand:** Present a condensed list (e.g., `Piano@9, Meter@9:30, Jeff@10`). Ask: "Should I add these to the schedule?"
-- **Task Selection:** 
-    - Read the **Priority** tab in Google Sheets.
-    - **Shorthand Prompting:** For each top task, suggest a shorthand name (< 30 chars). Ask: "Add [Shorthand] as a Goal for [Date]?"
-- **Strategic Alignment & Ranking:**
-    - Read the **Weekly** and **Monthly** tabs for alignment context.
-    - **Foreman Suggestion:** Propose a 1-5 ranking. *Example: "I suggest G1: [Task A] because it aligns with Weekly Goal 1. Confirm or Re-rank?"*
-- **Estimation:** 
-    - For each selected Goal (G1-G5), ask for an **Estimated Time** (in hours).
+### 2. Planning (The "Tactical Briefing")
+- **Calendar Mining:** Fetch from `Appt` and `VB/Fun MD`. Shorthand the events.
+- **Class Assignments:** 
+    - The **Warrior** suggests the top action task.
+    - The **Vizier** suggests the top systems/learning task.
+    - ...and so on, shorthanding each to < 30 chars.
+- **Estimation:** Ask for **Estimated Time** (hours) for each class mission.
 
-### 3. Execution (Update Systems)
-- **Update Sheets:** Write the new row (Date, Shorthand Events, G1-G5 Names, G1-G5 Estimates) to the **Daily** tab.
+### 3. Execution (Update HUD)
+- **Update Sheets:** Write to the **Daily** tab using Class columns (e.g., `Warrior`, `War Est`, `War Act`).
 - **Update Workflowy (The HUD):** 
-    - Find the node named `!MERLIN-RAW-INBOX-BEFORE-SYNC!`.
-    - Overwrite it with a structured report:
+    - Find `!MERLIN-RAW-INBOX-BEFORE-SYNC!`.
+    - Overwrite with:
         - `#ForemanReport [Date]`
-        - `#Stats` (Today's metrics: Sleep, Leads, Bank, etc.)
-        - `#Schedule` (The shorthand events list)
-        - `#DailyGoals` (The 5 ranked goals with `#G1` tags and `#Est:Xh` tags)
-        - `#Inbox` (Empty node for new items)
+        - `#PartyStats` (Sleep, Leads, Bank, etc.)
+        - `#Schedule` (Shorthand events)
+        - `#CombatPlan` (Class-tagged goals: `#Warrior`, `#Vizier`, etc.)
 
 ## Prioritization & Estimation Guidelines
 - **Priority:** Always align Daily Goals with the highest-ranking Weekly/Monthly goals.
