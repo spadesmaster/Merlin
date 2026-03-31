@@ -1,81 +1,14 @@
 const axios = require('axios');
 const { authorize, syncPriority, syncTabFormatting, getHeaderMap } = require('./manager.js');
 const { google } = require('googleapis');
+const WorkflowyClient = require('./workflowy_client.js');
 require('dotenv').config({ path: __dirname + '/.env' });
 
-const SESSION_ID = process.env.WORKFLOWY_SESSION_ID;
 const BRANCH_ID_SUFFIX = process.env.WORKFLOWY_BRANCH_SUFFIX;
 const RAW_DUMP_SUFFIX = process.env.WORKFLOWY_RAW_DUMP_SUFFIX;
 const SPREADSHEET_ID = process.env.GOOGLE_SPREADSHEET_ID;
 
-/**
- * Generates a GUID for new Workflowy items.
- */
-function generateGuid() {
-  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-    const r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
-    return v.toString(16);
-  });
-}
-
-/**
- * Fetches all tree data from Workflowy.
- */
-async function fetchWorkflowyData() {
-  const response = await axios.get('https://workflowy.com/get_tree_data/', {
-    headers: { Cookie: `sessionid=${SESSION_ID}` },
-  });
-  return response.data.items;
-}
-
-/**
- * Pushes operations to Workflowy.
- */
-async function pushToWorkflowy(operations, currentTransactionId = null) {
-  if (operations.length === 0) return currentTransactionId;
-
-  const initResponse = await axios.get('https://workflowy.com/get_initialization_data', {
-    headers: { Cookie: `sessionid=${SESSION_ID}` }
-  });
-  const projectTreeData = initResponse.data.projectTreeData;
-  const clientId = projectTreeData.clientId;
-  const ownerId = projectTreeData.mainProjectTreeInfo.ownerId;
-  const dateJoinedTimestamp = projectTreeData.dateJoinedTimestamp;
-
-  const lastId = currentTransactionId || projectTreeData.mainProjectTreeInfo.initialMostRecentOperationTransactionId;
-
-  const pushPollData = [];
-  if (projectTreeData.auxiliaryProjectTreeInfos) {
-    projectTreeData.auxiliaryProjectTreeInfos.forEach(info => {
-      pushPollData.push({ most_recent_operation_transaction_id: info.initialMostRecentOperationTransactionId.toString(), share_id: info.shareId });
-    });
-  }
-
-  pushPollData.push({
-    most_recent_operation_transaction_id: lastId.toString(),
-    operations: operations.map(op => ({
-      ...op,
-      client_timestamp: Math.floor(Date.now() / 1000) - dateJoinedTimestamp
-    })),
-  });
-
-  const payload = new URLSearchParams();
-  payload.append('client_id', clientId);
-  payload.append('client_version', '28');
-  payload.append('push_poll_id', Math.random().toString(36).substring(2, 10));
-  payload.append('push_poll_data', JSON.stringify(pushPollData));
-  payload.append('crosscheck_user_id', ownerId.toString());
-
-  const response = await axios.post('https://workflowy.com/push_and_poll', payload, {
-    headers: { Cookie: `sessionid=${SESSION_ID}`, 'Content-Type': 'application/x-www-form-urlencoded' },
-  });
-
-  if (response.data.results && response.data.results.includes('error')) {
-    throw new Error('Workflowy push failed: ' + JSON.stringify(response.data.results));
-  }
-
-  return response.data.results[0].new_most_recent_operation_transaction_id;
-}
+const wf = new WorkflowyClient();
 
 /**
  * Helper to extract priority, target room, and clean name from text.
@@ -217,7 +150,7 @@ async function organizeRawDump(items) {
       if (targetRoomId) {
         const finalName = priority ? `${priority} ${cleanedName}` : cleanedName;
         if (finalName !== item.nm) {
-          edits.push({ type: 'edit', data: { projectid: item.id, name: finalName } });
+          wf.editNode(item.id, finalName);
           item.nm = finalName;
         }
         
@@ -234,7 +167,6 @@ async function organizeRawDump(items) {
 
   processSubtree(rawDumpNode.id);
 
-  const operations = [];
   Object.keys(roomMoves).forEach(roomId => {
     const sortedItemIds = roomMoves[roomId].sort((aId, bId) => {
       const a = items.find(i => i.id === aId);
@@ -247,16 +179,11 @@ async function organizeRawDump(items) {
       return nA.localeCompare(nB);
     });
 
-    operations.push({ type: 'bulk_move', data: { projectids_json: JSON.stringify(sortedItemIds), parentid: roomId, priority: 0 } });
+    wf.bulkMoveNodes(sortedItemIds, roomId, 0);
   });
-  operations.push(...edits);
 
-  if (operations.length > 0) {
-    const BATCH_SIZE = 50;
-    let lastTransactionId = null;
-    for (let i = 0; i < operations.length; i += BATCH_SIZE) {
-      lastTransactionId = await pushToWorkflowy(operations.slice(i, i + BATCH_SIZE), lastTransactionId);
-    }
+  if (wf.operations.length > 0) {
+    await wf.push();
     return true;
   }
   return false;
@@ -375,38 +302,34 @@ async function sync() {
   });
 
   // 2. Workflowy Organize & Fetch
-  let wfItems = await fetchWorkflowyData();
+  let wfItems = await wf.fetchTree();
   const roomContext = getRoomContext(wfItems);
   const { roomMap, idToRoomName, rootId } = roomContext;
   let wfChanged = await organizeRawDump(wfItems);
   
   // Handle new tasks from sheet
   if (newTasksFromSheet.length > 0) {
-    const newOps = [];
     newTasksFromSheet.forEach(row => {
       const name = row[headerMap.name];
       const room = row[headerMap.room] || 'Office';
       const pri = row[headerMap.priority];
       const targetRoomId = roomMap[room.toLowerCase()] || roomMap['office'];
-      const newId = generateGuid();
+      
       const info = extractInfoFromText(name, roomContext);
       const finalPri = pri || info.priority;
       const finalName = finalPri ? `${finalPri} ${info.cleanName}` : info.cleanName;
       
       console.log(`Adding new task: "${finalName}" to room "${room}"`);
-      newOps.push({ type: 'create', data: { projectid: newId, parentid: targetRoomId, priority: 0 } });
-      newOps.push({ type: 'edit', data: { projectid: newId, name: finalName } });
+      wf.createNode(targetRoomId, finalName);
     });
-    await pushToWorkflowy(newOps);
+    await wf.push();
     wfChanged = true;
   }
 
-  if (wfChanged) wfItems = await fetchWorkflowyData();
+  if (wfChanged) wfItems = await wf.fetchTree();
   let wfTasks = parseWorkflowyTasks(wfItems);
 
   // 3. Compare existing tasks
-  const wfOps = [];
-
   wfTasks.forEach(wfTask => {
     const item = wfItems.find(i => i.id === wfTask.id);
     if (!item) return;
@@ -428,27 +351,22 @@ async function sync() {
         const info = extractInfoFromText(sheetDisplayName, roomContext);
         
         if (info.targetRoomId) {
-          // A. Room prefix detected in sheet name -> Move to that room
           targetRoomId = info.targetRoomId;
           effectiveCleanName = info.cleanName;
           if (info.priority) effectivePriority = info.priority;
         } else {
-          // B. No room prefix, check parent prefix
           const parentPrefix = wfTask.parentTaskName ? `${wfTask.parentTaskName} - ` : '';
           if (wfTask.parentTaskName && sheetDisplayName.startsWith(parentPrefix)) {
-            // Still under parent, extract new leaf name
             const leafName = sheetDisplayName.slice(parentPrefix.length).trim();
             const leafInfo = extractInfoFromText(leafName, roomContext);
             effectiveCleanName = leafInfo.cleanName;
             if (leafInfo.priority) effectivePriority = leafInfo.priority;
           } else if (wfTask.parentTaskName) {
-            // C. Parent prefix REMOVED -> Pull out to room level
             targetRoomId = roomMap[wfTask.room.toLowerCase()];
             const info = extractInfoFromText(sheetDisplayName, roomContext);
             effectiveCleanName = info.cleanName;
             if (info.priority) effectivePriority = info.priority;
           } else {
-            // D. Not a subtask, just a rename
             effectiveCleanName = info.cleanName;
             if (info.priority) effectivePriority = info.priority;
           }
@@ -460,23 +378,23 @@ async function sync() {
     if (item.nm !== expectedName) {
       console.log(`Updating Workflowy Name: "${item.nm}" -> "${expectedName}" (Source: Sheet)`);
       item.nm = expectedName;
-      wfOps.push({ type: 'edit', data: { projectid: wfTask.id, name: expectedName } });
+      wf.editNode(wfTask.id, expectedName);
     }
 
     if (targetRoomId !== item.prnt) {
       console.log(`Moving Workflowy Item: "${item.nm}" -> room "${idToRoomName[targetRoomId]}"`);
       item.prnt = targetRoomId;
-      wfOps.push({ type: 'bulk_move', data: { projectids_json: JSON.stringify([wfTask.id]), parentid: targetRoomId, priority: 0 } });
+      wf.moveNode(wfTask.id, targetRoomId, 0);
     }
 
     if (sheetRow) {
       const status = sheetRow[headerMap.status];
       if (status === 'Complete' && wfTask.status === 'Pending') {
-        wfOps.push({ type: 'complete', data: { projectid: wfTask.id } });
+        wf.completeNode(wfTask.id);
         wfTask.status = 'Complete';
         item.cp = true;
       } else if ((status === 'Pending' || status === 'In-progress') && wfTask.status === 'Completed') {
-        wfOps.push({ type: 'uncomplete', data: { projectid: wfTask.id } });
+        wf.uncompleteNode(wfTask.id);
         wfTask.status = 'Pending';
         item.cp = false;
       }
@@ -484,12 +402,8 @@ async function sync() {
   });
 
   // 4. Update Workflowy & Sort
-  if (wfOps.length > 0) {
-    const BATCH_SIZE = 50;
-    let lastTransactionId = null;
-    for (let i = 0; i < wfOps.length; i += BATCH_SIZE) {
-      lastTransactionId = await pushToWorkflowy(wfOps.slice(i, i + BATCH_SIZE), lastTransactionId);
-    }
+  if (wf.operations.length > 0) {
+    await wf.push();
   }
 
   // 4b. Re-sort Workflowy
@@ -499,7 +413,6 @@ async function sync() {
     const childMap = {};
     wfItems.forEach(i => { if (!childMap[i.prnt]) childMap[i.prnt] = []; childMap[i.prnt].push(i); });
 
-    const sortOps = [];
     roomsInWf.forEach(room => {
       const roomChildren = childMap[room.id] || [];
       if (roomChildren.length <= 1) return;
@@ -512,10 +425,10 @@ async function sync() {
         return nA.localeCompare(nB);
       });
       if (JSON.stringify(roomChildren.map(c => c.id)) !== JSON.stringify(sortedChildren.map(c => c.id))) {
-        sortOps.push({ type: 'bulk_move', data: { projectids_json: JSON.stringify(sortedChildren.map(c => c.id)), parentid: room.id, priority: 0 } });
+        wf.bulkMoveNodes(sortedChildren.map(c => c.id), room.id, 0);
       }
     });
-    if (sortOps.length > 0) await pushToWorkflowy(sortOps);
+    if (wf.operations.length > 0) await wf.push();
   }
 
   // 5. Update Sheets Data
@@ -581,7 +494,7 @@ async function sync() {
   await syncPriority(auth, SPREADSHEET_ID);
   await syncTabFormatting(auth, SPREADSHEET_ID);
 
-  console.log(`Sync complete. Pushed ${wfOps.length} updates to Workflowy.`);
+  console.log(`Sync complete.`);
 }
 
 if (require.main === module) {
