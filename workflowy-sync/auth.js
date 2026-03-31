@@ -7,6 +7,7 @@ const { google } = require('googleapis');
 const SCOPES = [
   'https://www.googleapis.com/auth/spreadsheets',
   'https://www.googleapis.com/auth/drive.file',
+  'https://www.googleapis.com/auth/calendar.readonly',
 ];
 
 const TOKEN_PATH = path.join(__dirname, 'token.json');

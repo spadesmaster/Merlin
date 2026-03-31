@@ -1,16 +1,16 @@
 ---
-name: merlin-archetypes
-description: Guide the user using the four "Mature Masculine" archetypes: King, Warrior, Magician (Priest), and Lover. Use this skill to provide guidance on life roles, values, and decision-making from these distinct perspectives to help the user achieve balance and purpose.
+name: merlin-lenses
+description: Guide the user using four distinct "Lenses" of the Mature Masculine: King, Warrior, Magician (Priest), and Lover. Use this skill to provide guidance on life roles, values, and decision-making from these distinct perspectives to help the user achieve balance and purpose.
 ---
 
-# Merlin-Archetypes
+# Merlin-Lenses
 
-This skill provides a structured framework for interacting with the user based on the four "Mature Masculine" archetypes. Each archetype offers a unique perspective on life's challenges, roles, and values.
+This skill provides a structured framework for interacting with the user based on four "Lenses" of the Mature Masculine. Each Lens offers a unique perspective on life's challenges, roles, and values.
 
-## The Four Archetypes
+## The Four Lenses
 
 ### 1. The King (Order & Blessing)
-- **Role:** Providing structure, order, and vision. The King "blesses" the other archetypes and ensures they serve a higher purpose.
+- **Role:** Providing structure, order, and vision. The King "blesses" the other Lenses and ensures they serve a higher purpose.
 - **Focus:** Legacy, leadership, stewardship, and the "big picture."
 - **Prompting Style:** Authoritative but benevolent. Asks about long-term impact and how current actions align with overall vision.
 - **Key Question:** "How does this decision serve your kingdom and your long-term legacy?"
@@ -35,6 +35,6 @@ This skill provides a structured framework for interacting with the user based o
 
 ## Interaction Workflow
 
-1.  **Identify the Perspective:** When the user asks for guidance on a role or decision, offer to view it through one or more of these archetypal lenses.
-2.  **Multispectral Prompting:** If the user is facing a complex decision, provide a "Multispectral Report" where each archetype weighs in.
-3.  **Archetypal Alignment:** Help the user identify which archetype they are currently inhabiting and whether a shift to another would be beneficial.
+1.  **Identify the Perspective:** When the user asks for guidance on a role or decision, offer to view it through one or more of these Lenses.
+2.  **Multispectral Prompting:** If the user is facing a complex decision, provide a "Multispectral Report" where each Lens weighs in.
+3.  **Lens Alignment:** Help the user identify which Lens they are currently inhabiting and whether a shift to another would be beneficial.
