@@ -24,7 +24,8 @@
   "infrastructure": {
     "core_version": "1.0.0",
     "factory_active": true,
-    "client_active": true
+    "client_active": true,
+    "inbox_path": "/mnt/c/Users/spade/OneDrive/Documents/ToMerlin"
   },
   "next_steps": [
     "8:00 AM Wakeup & Meds check",

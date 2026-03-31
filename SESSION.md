@@ -34,7 +34,9 @@
     - Refactored `sync.js` to use the new core architecture.
 - **Workspace Cleanup:** Moved Senstone assets to `workflowy-sync/assets/` and purged redundant temporary scripts.
 - **Protocol:** Established "API-first" design rule and mandatory "Commit before Design" and "Update Context before Commit" protocols.
-- **Pipeline Optimization:** Initiated transition to "State-Driven Context" via `merlin_state.json` to improve precision and reduce context bloat.
+- **Pipeline Optimization:** 
+    - Initiated transition to "State-Driven Context" via `merlin_state.json`.
+    - Established `ToMerlin` drop zone at `C:\Users\spade\OneDrive\Documents\ToMerlin` for secure file ingestion.
 - **Hardware Check:** Notified user to charge watch, ring, phone, and tablet for tomorrow's 8:00 AM wakeup.
 
 ## Next Steps (Wednesday AM)
