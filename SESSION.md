@@ -37,6 +37,9 @@
 - **Pipeline Optimization:** 
     - Initiated transition to "State-Driven Context" via `merlin_state.json`.
     - Established `ToMerlin` drop zone at `C:\Users\spade\OneDrive\Documents\ToMerlin` for secure file ingestion.
+- **Subprojects Established:**
+    - `judge_letter/`: Created for drafting the court letter to Judge William Christopher Biermann (12th Judicial Circuit, Warren County, MO) regarding Case 240910007 (Leaving the scene of an accident on Aug 2, 2025). Ingested 7 documents including the police report and order for fingerprinting.
+    - `dads_will/`: Created for Robert Edward Williamson's Will review; analyzed the 2015 Will (died Oct 31, 2025) identifying Caryl J. McNeilly as Executor and Christopher Preston Williamson as a 5% residuary beneficiary (shifting to a trust if the spouse predeceases).
 - **Hardware Check:** Notified user to charge watch, ring, phone, and tablet for tomorrow's 8:00 AM wakeup.
 
 ## Next Steps (Wednesday AM)

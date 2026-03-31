@@ -27,6 +27,28 @@
     "client_active": true,
     "inbox_path": "/mnt/c/Users/spade/OneDrive/Documents/ToMerlin"
   },
+  "subprojects": {
+    "court_letter": {
+      "status": "drafting_letter",
+      "path": "judge_letter/",
+      "docs": [
+        "2025-08-02 Warrenton Accident Order for Fingerprinting.pdf",
+        "2025-08-02 Warrenton Accident Police Report.pdf",
+        "2025-08-02 Warrenton Accident Prosecutor's Recommendation.pdf",
+        "Williamson Determination Letter.docx",
+        "Williamson Penske Rental Agreement.pdf",
+        "Williamson Signed PA Recommendation.pdf",
+        "Williamson, Christopher Preston - Court Document.pdf"
+      ]
+    },
+    "will_review": {
+      "status": "review_complete",
+      "path": "dads_will/",
+      "docs": [
+        "20260110_W125250_ROBERT_WILLIAMSON_Will_10Pages_539413.pdf"
+      ]
+    }
+  },
   "next_steps": [
     "8:00 AM Wakeup & Meds check",
     "9:00 AM Daily Standup (Initialize from merlin_state.json)",
