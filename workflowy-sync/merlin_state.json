@@ -1,0 +1,35 @@
+{
+  "date": "2026-03-31",
+  "status": "PM_UPDATE_COMPLETE",
+  "stats": {
+    "win_percent": "20%",
+    "sleep": null,
+    "job_leads": 0,
+    "exercise": 0
+  },
+  "missions": {
+    "warrior": "Judge letter / Tidy Van",
+    "king": "Glue MC decals, air tires, find chgr",
+    "vizier": "Costco / Walmart / Adv Auto",
+    "lover": "Assemble workbench",
+    "rogue": "Confirm and attend VB @ 7"
+  },
+  "hardware": {
+    "senstone": {
+      "identified": true,
+      "model": "Scripter",
+      "status": "awaiting_integration"
+    }
+  },
+  "infrastructure": {
+    "core_version": "1.0.0",
+    "factory_active": true,
+    "client_active": true
+  },
+  "next_steps": [
+    "8:00 AM Wakeup & Meds check",
+    "9:00 AM Daily Standup (Initialize from merlin_state.json)",
+    "Execute Warrior mission: Judge letter / Tidy Van",
+    "Execute Vizier mission: Costco / Walmart / Adv Auto run"
+  ]
+}

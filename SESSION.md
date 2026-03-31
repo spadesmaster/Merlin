@@ -34,11 +34,12 @@
     - Refactored `sync.js` to use the new core architecture.
 - **Workspace Cleanup:** Moved Senstone assets to `workflowy-sync/assets/` and purged redundant temporary scripts.
 - **Protocol:** Established "API-first" design rule and mandatory "Commit before Design" and "Update Context before Commit" protocols.
+- **Pipeline Optimization:** Initiated transition to "State-Driven Context" via `merlin_state.json` to improve precision and reduce context bloat.
 - **Hardware Check:** Notified user to charge watch, ring, phone, and tablet for tomorrow's 8:00 AM wakeup.
 
 ## Next Steps (Wednesday AM)
 1. 8:00 AM Wakeup & Meds check.
-2. 9:00 AM Daily Standup & SITREP review.
+2. 9:00 AM Daily Standup: **Initialize Standup from `merlin_state.json`**.
 3. Execute Warrior mission: Judge letter / Tidy Van.
 4. Execute Vizier mission: Costco / Walmart / Adv Auto run.
 
