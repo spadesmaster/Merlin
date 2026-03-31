@@ -24,10 +24,8 @@ async function getEvents(auth, dateStr) {
     const calendar = google.calendar({ version: 'v3', auth });
     const { apptId, vbId } = await getCalendarIds(auth);
     
-    const start = new Date(dateStr);
-    start.setHours(0, 0, 0, 0);
-    const end = new Date(dateStr);
-    end.setHours(23, 59, 59, 999);
+    const start = new Date(dateStr + 'T00:00:00');
+    const end = new Date(dateStr + 'T23:59:59');
 
     const fetchFrom = async (id) => {
         if (!id) return [];
@@ -37,6 +35,7 @@ async function getEvents(auth, dateStr) {
             timeMax: end.toISOString(),
             singleEvents: true,
             orderBy: 'startTime',
+            timeZone: 'America/New_York'
         });
         return res.data.items || [];
     };
