@@ -50,8 +50,13 @@
 2. 8:40 AM Men's Group (Calendar).
 3. 9:00 AM Confirm fax receipt with Court Clerk (8:00 AM Central / 9:00 AM Eastern).
 4. 11:00 AM (Post-Men's Group): Use **Shippo** to print FedEx label and drop off physical package at FedEx Office (7010 Wisconsin Ave).
-5. 7:00 PM Volleyball (VB).
-6. Daily Standup: **Initialize Standup from `merlin_state.json`** (to be performed at the start of our next session).
+5. Execute Lover mission: **Complete Mail/Checks and MC photos**.
+6. 7:00 PM Volleyball (VB).
+7. Daily Standup: **Initialize Standup from `merlin_state.json`** (Review Inbox items: Test Factory Senstone, JetBrains training).
+
+## Next Steps (Thursday, April 2nd)
+1. 8:30 AM Warren County Court Hearing (Faxed Continuance pending).
+2. Execute Lover mission: **Assemble Workbench** (deferred from Wed).
 
 ## Long-Term Vision
 - **Voice Integration:** Enable voice-command check-ins to allow for planning away from bright screens.

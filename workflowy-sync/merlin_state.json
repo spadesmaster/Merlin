@@ -11,9 +11,14 @@
     "warrior": "Judge letter / Tidy Van",
     "king": "Glue MC decals, air tires, find chgr",
     "vizier": "Costco / Walmart / Adv Auto",
-    "lover": "Assemble workbench",
+    "lover": "Mail/Checks and MC photos",
     "rogue": "Confirm and attend VB @ 7"
   },
+  "inbox": [
+    "Test Factory Senstone",
+    "JetBrains training setup",
+    "Assemble workbench (Moved to Thursday)"
+  ],
   "hardware": {
     "senstone": {
       "identified": true,
