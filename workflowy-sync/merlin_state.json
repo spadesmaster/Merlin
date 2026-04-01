@@ -22,7 +22,8 @@
   "inbox": [
     "Test Factory Senstone",
     "JetBrains training setup",
-    "Factory method discussion"
+    "Factory methods for WorkflowyClient/MerlinFactory",
+    "MC photo shop appts"
   ],
   "infrastructure": {
     "core_version": "1.0.0",
