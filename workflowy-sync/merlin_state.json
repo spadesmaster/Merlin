@@ -14,10 +14,13 @@
     "lover": "Mail/Checks and MC photos",
     "rogue": "Confirm and attend VB @ 7"
   },
+  "thursday_missions": {
+    "lover": "Assemble workbench"
+  },
   "inbox": [
     "Test Factory Senstone",
     "JetBrains training setup",
-    "Assemble workbench (Moved to Thursday)"
+    "Notes: Discussion on Factory methods for WorkflowyClient/MerlinFactory"
   ],
   "hardware": {
     "senstone": {
