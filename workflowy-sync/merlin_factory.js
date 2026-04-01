@@ -5,67 +5,89 @@ class MerlinFactory {
     this.client = new WorkflowyClient();
     this.PARENTS = {
       GOALS: "7093b270-f42e-8d95-8916-6d58aab57f5e", // !MERLIN-GOALS!
-      RAW_INBOX: "7da491bf-25ab-443b-648b-8a7da491bf25" // Example, verify if needed
+      RAW_INBOX: "428d2830-b6f0-4152-f1c2-e4fe8e4cc1af" // !MERLIN-RAW-INBOX-BEFORE-SYNC!
     };
   }
 
   /**
-   * Creates a mission briefing node with events and role-based missions.
+   * Creates an ultra-brief mission briefing node with KPIs, Weather, and Missions.
+   * Mandates bolding for mission tasks and specific component order.
    */
-  async createBriefing(dateStr, events, missions) {
+  async createBriefing(dateStr, data = {}) {
+    const { weather, traffic, events, missions, kpis, pmUpdate } = data;
+    
+    // Create header: 📋 #MissionBriefing - Wednesday, April 1, 2026
     const briefingId = this.client.createNode(this.PARENTS.GOALS, `📋 #MissionBriefing - ${dateStr}`);
     
-    if (events) {
-      this.client.createNode(briefingId, `**Events:** ${events}`);
+    // 1. KPIs at the top
+    if (kpis) this.client.createNode(briefingId, kpis, 0);
+    
+    // 2. Weather (Ultra-brief: 🌤️ Weather: 83/61 AM: ☁️ 10% 2PM: 🌦️ 45-65% 7PM: 🌧️ 70% 🌬️ 15-25 🔭 1/10)
+    if (weather) this.client.createNode(briefingId, weather, 1);
+    
+    // 3. Traffic (Metro-only, no bus)
+    if (traffic) this.client.createNode(briefingId, traffic, 2);
+    
+    // 4. Events
+    if (events) this.client.createNode(briefingId, events, 3);
+
+    // 5. Missions (Role-based, bolded tasks)
+    if (missions && Array.isArray(missions)) {
+      missions.forEach((m, idx) => {
+        this.client.createNode(briefingId, m, idx + 4);
+      });
     }
 
-    missions.forEach((mission, idx) => {
-      this.client.createNode(briefingId, mission, idx + 1);
-    });
+    // 6. PM Update (Notes from previous day)
+    if (pmUpdate) this.client.createNode(briefingId, pmUpdate, 10);
 
     await this.client.push();
+    
+    // Ensure this briefing is at the top of the briefings list (below inboxes)
+    await this.reorganizeGoals();
+    
     return briefingId;
   }
 
   /**
-   * Creates an inbox node with subtasks.
+   * Creates a bolded action item starting with 📥 at the top of GOALS.
    */
-  async createInbox(name, subtasks = []) {
-    const inboxId = this.client.createNode(this.PARENTS.GOALS, `📥 Inbox - ${name}`);
-    
-    subtasks.forEach((task, idx) => {
-      this.client.createNode(inboxId, task, idx);
-    });
-
+  async createActionItem(name) {
+    const boldName = `<b>📥 ${name}</b>`;
+    const nodeId = this.client.createNode(this.PARENTS.GOALS, boldName);
     await this.client.push();
-    return inboxId;
+    await this.reorganizeGoals();
+    return nodeId;
   }
 
   /**
-   * Updates or creates a KPI node.
+   * Reorganizes the GOALS node: Inboxes (📥) at top, Briefings (📋) in reverse-chronological order.
    */
-  async updateKPIs(dateStr, stats) {
-    const kpiId = this.client.createNode(this.PARENTS.GOALS, `📊 #KPIs - ${dateStr}`);
+  async reorganizeGoals() {
+    const items = await this.client.fetchTree();
+    const children = items.filter(i => i.prnt === this.PARENTS.GOALS);
     
-    Object.entries(stats).forEach(([label, value], idx) => {
-      this.client.createNode(kpiId, `${label}: ${value}`, idx);
-    });
-
+    const inboxes = children.filter(c => c.nm.includes('📥'));
+    const briefings = children.filter(c => c.nm.includes('📋')).sort((a,b) => b.nm.localeCompare(a.nm));
+    
+    const sorted = [...inboxes, ...briefings];
+    
+    // Force order by moving each to their respective index
+    for (let i = 0; i < sorted.length; i++) {
+      this.client.moveNode(sorted[i].id, this.PARENTS.GOALS, i);
+    }
+    
     await this.client.push();
-    return kpiId;
   }
 
   /**
-   * Overwrites the HUD node with new content.
+   * Updates the HUD node with Metro and road-only info.
    */
   async updateHUD(content) {
     const items = await this.client.fetchTree();
     const hudNode = items.find(i => (i.nm || '').includes('!MERLIN-RAW-INBOX-BEFORE-SYNC!'));
     
-    if (!hudNode) {
-      console.error("HUD Node '!MERLIN-RAW-INBOX-BEFORE-SYNC!' not found.");
-      return;
-    }
+    if (!hudNode) return;
 
     const childIds = items.filter(i => i.prnt === hudNode.id).map(i => i.id);
     childIds.forEach(id => this.client.deleteNode(id));
