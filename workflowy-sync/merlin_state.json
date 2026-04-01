@@ -8,27 +8,22 @@
     "exercise": 0
   },
   "missions": {
-    "warrior": "Judge letter / Tidy Van",
-    "king": "Glue MC decals, air tires, find chgr",
-    "vizier": "Costco / Walmart / Adv Auto",
-    "lover": "Mail/Checks and MC photos",
-    "rogue": "Confirm and attend VB @ 7"
-  },
-  "thursday_missions": {
-    "lover": "Assemble workbench"
+    "wednesday": {
+      "warrior": "Judge letter / Tidy Van",
+      "king": "Glue MC decals, air tires, find chgr",
+      "vizier": "Costco / Walmart / Adv Auto",
+      "lover": "Mail/Checks and MC photos",
+      "rogue": "Confirm and attend VB @ 7"
+    },
+    "thursday": {
+      "lover": "Assemble workbench"
+    }
   },
   "inbox": [
     "Test Factory Senstone",
     "JetBrains training setup",
-    "Notes: Discussion on Factory methods for WorkflowyClient/MerlinFactory"
+    "Factory method discussion"
   ],
-  "hardware": {
-    "senstone": {
-      "identified": true,
-      "model": "Scripter",
-      "status": "awaiting_integration"
-    }
-  },
   "infrastructure": {
     "core_version": "1.0.0",
     "factory_active": true,
@@ -38,46 +33,11 @@
   "subprojects": {
     "court_letter": {
       "status": "ready_for_review",
-      "path": "judge_letter/",
-      "docs": [
-        "2025-07-24 Budget Truck Rental $2k for Week with Discount.pdf",
-        "2025-08-02 Warrenton Accident Citation and Receipts.pdf",
-        "2025-08-02 Warrenton Accident Order for Fingerprinting.pdf",
-        "2025-08-02 Warrenton Accident Police Report.pdf",
-        "2025-08-02 Warrenton Accident Prosecutor's Recommendation.pdf",
-        "2025-08-02 Warrenton Accident Struck Car Damage.jpg",
-        "2025-08-02 Warrenton Accident Truck Damage.jpg",
-        "2025-08-02 Warrenton Truck Accident Car Damaged.jpg",
-        "2025-08-02 Warrenton Truck Accident Truck no Car.jpg",
-        "2025-08-02 Warrenton Truck Accident Video of Parking Lot.mp4",
-        "2025-10-01 Warrenton Accident Back of Car Undamaged.jpg",
-        "2025-10-01 Warrenton Accident Car Being Towed.jpg",
-        "2025-10-01 Warrenton Accident Citation.pdf",
-        "2025-10-01 Warrenton Accident Closeup of Damage.jpg",
-        "2025-10-01 Warrenton Accident Error Adding Case.png",
-        "2025-10-01 Warrenton Accident Google Maps Timeline.jpg",
-        "2025-10-01 Warrenton Accident Legal Solicitation.pdf",
-        "2025-10-01 Warrenton Accident Towed.jpg",
-        "Letter_to_Judge_Biermann.md",
-        "Warrenton Accident Legal Brief - Google Docs.pdf",
-        "Williamson Determination Letter.docx",
-        "Williamson Penske Rental Agreement.pdf",
-        "Williamson Signed PA Recommendation.pdf",
-        "Williamson, Christopher Preston - Court Document.pdf"
-      ]
+      "path": "judge_letter/"
     },
     "will_review": {
       "status": "review_complete",
-      "path": "dads_will/",
-      "docs": [
-        "20260110_W125250_ROBERT_WILLIAMSON_Will_10Pages_539413.pdf"
-      ]
+      "path": "dads_will/"
     }
-  },
-  "next_steps": [
-    "8:00 AM Wakeup & Meds check",
-    "9:00 AM Daily Standup (Initialize from merlin_state.json)",
-    "Execute Warrior mission: Judge letter / Tidy Van",
-    "Execute Vizier mission: Costco / Walmart / Adv Auto run"
-  ]
+  }
 }
