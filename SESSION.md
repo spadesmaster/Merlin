@@ -45,12 +45,13 @@
     - Verified `ToMerlin` drop zone workflow for secure file ingestion.
 - **Hardware Check:** Notified user to charge watch, ring, phone, and tablet for tomorrow's 8:00 AM wakeup.
 
-## Next Steps (Wednesday AM)
+## Next Steps (Wednesday, April 1st)
 1. 8:00 AM Wakeup & Meds check.
-2. 9:00 AM Daily Standup: **Initialize Standup from `merlin_state.json`**.
-3. Confirm fax receipt with Court Clerk (8:00 AM Central / 9:00 AM Eastern).
-4. Use **Shippo** to print FedEx label for physical mailing.
-5. Drop off physical package at FedEx Office (7010 Wisconsin Ave) before afternoon cutoff.
+2. 8:40 AM Men's Group (Calendar).
+3. 9:00 AM Confirm fax receipt with Court Clerk (8:00 AM Central / 9:00 AM Eastern).
+4. 11:00 AM (Post-Men's Group): Use **Shippo** to print FedEx label and drop off physical package at FedEx Office (7010 Wisconsin Ave).
+5. 7:00 PM Volleyball (VB).
+6. Daily Standup: **Initialize Standup from `merlin_state.json`** (to be performed at the start of our next session).
 
 ## Long-Term Vision
 - **Voice Integration:** Enable voice-command check-ins to allow for planning away from bright screens.
