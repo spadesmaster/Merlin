@@ -1,7 +1,7 @@
 # Session Context - Wednesday, April 1, 2026
 
 ## Wednesday (Apr 1) Final Battle Plan
-- **Weather:** Chevy Chase: 83°F/61°F (Rain) | Warrenton: 73°F/49°F (Storms)
+- **Weather:** Chevy Chase: 83°F/61°F. Morning: Dry (10%). Afternoon: Light rain starts (45-65%). Winds: 15-25mph gusts.
 - **Traffic:** Rain impact on I-495/I-270; Construction on Wisconsin Ave NW (Friendship Heights).
 - **Events:** 📅 `Meds@8 Men's@8:40 Fedex@11 VB@7`
 - **Missions:**
@@ -31,7 +31,9 @@
 5. 9:00 AM Daily Standup: **Initialize Standup from merlin_state.json**.
 
 ## Inbox
-- Test Factory Senstone
-- JetBrains training setup
-- Factory methods for WorkflowyClient/MerlinFactory
+- **📥 Senstone Integration**
+- **📥 Test Factory Integration**
+- **📥 JetBrains training**
+- **📥 Review Will**
 - MC photo shop appts
+- Factory methods for WorkflowyClient/MerlinFactory
