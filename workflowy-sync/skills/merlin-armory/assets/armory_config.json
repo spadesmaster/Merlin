@@ -1,0 +1,94 @@
+{
+  "system_config": "DreamQuest Armory: Good Lock Hardware Hooks",
+  "last_updated": "2026-04-01T10:15:00Z",
+  "device_owner": "Christopher P. Williamson",
+  "modules": [
+    {
+      "module": "Home Up",
+      "agent_lead": "Boni (The Navigator)",
+      "station": "The Bridge (Midnight Blue)",
+      "config": {
+        "home_grid": "7x7",
+        "folder_grid": "4x4",
+        "task_changer": "Slim List",
+        "objective": "Maximize data density for project telemetry and flight controls."
+      }
+    },
+    {
+      "module": "Sound Assistant",
+      "agent_lead": "Dan (The Bard)",
+      "station": "Office (Red)",
+      "config": {
+        "individual_app_volumes": true,
+        "multi_sound": "Enabled",
+        "separate_app_sound": "Bluetooth for Music / Phone for STAR Stories",
+        "objective": "Simultaneous piano practice and career strategy recording."
+      }
+    },
+    {
+      "module": "Camera Assistant",
+      "agent_lead": "Joyce (The Ranger)",
+      "station": "Yard (Green)",
+      "config": {
+        "auto_lens_switching": false,
+        "quick_shutter": true,
+        "distortion_correction": "High",
+        "objective": "Manual control for NexStar 6 SE astrophotography and nature scouting."
+      }
+    },
+    {
+      "module": "Game Booster Plus",
+      "agent_lead": "Nyx (The Sorcerer)",
+      "station": "Dining (Yellow)",
+      "config": {
+        "per_game_settings": "Max Quality",
+        "dreamquest_builds": "High Performance Mode",
+        "objective": "Stress-test Lori's game dev builds and optimize Board Game Arena."
+      }
+    },
+    {
+      "module": "One Hand Operation +",
+      "agent_lead": "Merlin (The Vizier)",
+      "station": "Global / Bedroom (Pink)",
+      "config": {
+        "left_handle_up": "Bridge Mode (Boni)",
+        "left_handle_down": "Wellness Mode (Gurpreet)",
+        "right_handle_long": "CLI Session / GitHub (Lori)",
+        "objective": "Instant access to the Council through gesture-based 'Shortcuts to Power'."
+      }
+    }
+  ],
+  "desktop_modules": [
+    {
+      "module": "PDF Arranger",
+      "agent_lead": "Haley (The Tinker)",
+      "station": "The Workshop (Gray)",
+      "config": {
+        "license": "Open Source (GPLv3)",
+        "platform": "Windows / Linux",
+        "objective": "Zero-friction, ad-free PDF merging and visual page reordering for court-ready documents."
+      }
+    },
+    {
+      "module": "Dropbox Fax (HelloFax)",
+      "agent_lead": "Haley (The Tinker)",
+      "station": "The Workshop (Gray)",
+      "config": {
+        "license": "Freemium (10 pages free)",
+        "platform": "Web / Google Docs Integration",
+        "objective": "Reliable, record-tracked facsimile transmission for court filings."
+      }
+    },
+    {
+      "module": "Shippo",
+      "agent_lead": "Haley (The Tinker)",
+      "station": "The Workshop (Gray)",
+      "config": {
+        "license": "Free account (pay per label)",
+        "platform": "Web",
+        "objective": "Access to commercial FedEx/UPS/USPS rates for discounted legal shipping."
+      }
+    }
+  ],
+  "integration_notes": "Use Samsung Modes & Routines to trigger these HEX color shifts based on GPS (Somerset) or App Launch (Unity/Steam)."
+}

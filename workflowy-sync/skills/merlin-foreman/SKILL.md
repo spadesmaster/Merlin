@@ -9,11 +9,11 @@ This skill manages your daily "Combat Plan" by assigning your top 5 goals to a s
 
 ## The Merlin Party
 - **M-KNG (King - Goal 1):** Vision, Legacy, Structural/Legal.
-- **M-VIZ (Vizier - Goal 2):** Strategy, Technology, Wisdom.
-- **M-TNK (Tinker - Goal 3):** Physical Projects, Repairs, Assembly.
-- **M-LUV (Lover - Goal 4):** Heart, Connection, Joy.
-- **M-ROG / M-THF (Rogue/Thief - Goal 5):** Opportunity, Resources, Job Leads.
-- **M-BRD (Bard - Goal 6):** Morale, Music, Gamified Learning, VR Fitness.
+- **M-VIZ (Dan - Goal 2):** **System Architecture & App UI:** Strategy, UX Density, Logic Flow, and Software Design.
+- **M-TNK (Haley - Goal 3):** **The Armory & Mastery:** Hardware Hooks, Tool Maintenance, Training, and Physical Repairs. Creative, feminine tinkerer energy; fixes everything with a smile.
+- **M-LUV (Gurpreet - Goal 4):** Heart, Connection, Joy. Warm, connected, empathetic.
+- **M-ROG / M-THF (Boni - Goal 5):** Opportunity, Resources, Job Leads. The Navigator/Navigator; centralized control.
+- **M-BRD (Nyx - Goal 6):** Morale, Music, Gamified Learning, VR Fitness. Child-like, playful, dancing fairy energy; somewhat taboo and spirited.
 
 ## Interaction Workflow
 
@@ -32,6 +32,9 @@ This skill manages your daily "Combat Plan" by assigning your top 5 goals to a s
     - The **Vizier (M-VIZ)** suggests the top systems/learning task.
     - ...and so on, shorthanding each to < 30 chars.
 - **Estimation:** Ask for **Estimated Time** (hours) for each class mission.
+- **Blocker Management (Scrum Standup):** Ask: "Are there any blockers preventing progress today?" 
+    - Record blockers in the **Blocked** column of the `Daily` tab.
+    - Provide at least one tactical or engineering suggestion to resolve each blocker.
 
 ### 3. Execution (Update HUD)
 - **Update Sheets:** Write to the **Daily** tab using Class columns (e.g., `M-WAR`, `WAR Est`, `WAR Act`).

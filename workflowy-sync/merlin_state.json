@@ -1,22 +1,26 @@
 {
-  "date": "2026-03-31",
-  "status": "PM_UPDATE_COMPLETE",
+  "date": "2026-04-01",
+  "status": "COURT_FILING_COMPLETE",
   "stats": {
-    "win_percent": "20%",
+    "win_percent": "60%",
     "sleep": null,
     "job_leads": 0,
     "exercise": 0
   },
   "missions": {
     "wednesday": {
-      "warrior": "Judge letter / Tidy Van",
-      "king": "Glue MC decals, air tires, find chgr",
-      "vizier": "Costco / Walmart / Adv Auto",
-      "lover": "Mail/Checks and MC photos",
-      "rogue": "Confirm and attend VB @ 7"
+      "warrior": "DONE: Judge letter Filed",
+      "king": "DONE: MC Prep Complete",
+      "vizier": "Mail / Checks / Will",
+      "lover": "Early Bed (11 PM)",
+      "rogue": "DONE: VB (Spring Break Cancelled)"
     },
     "thursday": {
-      "lover": "Assemble workbench"
+      "warrior": "Tidy Van",
+      "vizier": "Costco / Walmart / Adv Auto",
+      "tinker": "Configure 'Niagara Bridge' + Install Bullzip Workflow",
+      "lover": "Assemble workbench",
+      "special": "Deploy One UI 'Stacked Armory'"
     }
   },
   "inbox": [
@@ -26,15 +30,31 @@
     "MC photo shop appts"
   ],
   "infrastructure": {
-    "core_version": "1.0.0",
+    "core_version": "1.1.0",
     "factory_active": true,
     "client_active": true,
+    "armory_active": true,
     "inbox_path": "/mnt/c/Users/spade/OneDrive/Documents/ToMerlin"
   },
+  "armory": {
+    "device": "Samsung Galaxy S24 Ultra",
+    "last_sync": "2026-04-01",
+    "active_station": "The Bridge"
+  },
+  "subscriptions": [
+    {
+      "name": "Dropbox Fax",
+      "cost": "$2.50/mo",
+      "cancel_by": "2026-04-25",
+      "status": "active",
+      "notes": "Cancel after court confirmation"
+    }
+  ],
   "subprojects": {
     "court_letter": {
-      "status": "ready_for_review",
-      "path": "judge_letter/"
+      "status": "filed",
+      "path": "judge_letter/",
+      "date_filed": "2026-04-01"
     },
     "will_review": {
       "status": "review_complete",

@@ -1,5 +1,12 @@
 # workflowy-sync
 
+## Session Startup
+At the beginning of every session in this project:
+1. Read `SESSION.md` and output a concise bulleted summary of "Last Steps" and "Next Steps."
+2. Verify that the foreman agent (`workflowy-sync/sync.js`) is running (check `pgrep -f sync.js`) and report its status.
+3. Check `workflowy-sync/merlin_state.json` to confirm the current day's initialization status.
+4. **Blocker Management (Scrum Standup):** Prompt the user for any potential blocks on missions or tasks. Record these in the "Blocked" section of the `Daily` tab and offer tactical suggestions to overcome them.
+
 ## Project Overview
 This project is a specialized Node.js automation tool designed to provide a bidirectional synchronization between **Workflowy** and **Google Sheets**. It serves as a custom task management system that leverages Workflowy's flexible outlining for capture and Google Sheets' structured data for prioritization and reporting.
 
@@ -25,8 +32,9 @@ This project is a specialized Node.js automation tool designed to provide a bidi
             *   **Joyce:** The Yard (Astronomy/Nature/Cosmos).
             *   **Gurpreet:** The Temple (Spirituality/Internal reflection).
             *   **Boni (The Navigator):** The Bridge (Centralized control/Dashboard).
-            *   **Dan:** The Office (Work/Productivity).
-            *   **Nik (The Tinkerer):** The Dining Room (Gaming/Socialization).
+            *   **Dan (The Vizier):** The Office (Work/Productivity).
+            *   **Haley (The Tinker):** The Dining Room (Gaming/Socialization).
+            *   **Nyx (The Bard):** Global/Play (Morale/Music/Dance).
         *   Matches room names case-insensitively.
     *   Physically sorts items in Workflowy by **Priority** (ascending) and then **Alphabetically**.
 *   **Recursive Subtask Parsing:**

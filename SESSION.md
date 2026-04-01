@@ -11,24 +11,33 @@
     - ❤️ **LOVER:** Mail/Checks and MC photos
     - 🕵️ **ROGUE:** Confirm and attend VB @ 7
 
-## PM Update Summary (9:30 PM)
-- **Judge Letter:** Finalized with physics/EMT/insurance defense; ready for Fax filing tonight/tomorrow.
-- **Subprojects:** Completed initial review of Robert E. Williamson's 2015 Will.
-- **Workflow:** Established Google Doc sync scripts for collaborative editing.
-- **Missions:** Pushed Assemble workbench to Thursday; prioritized Mail/Checks and MC photos for Wednesday.
-- **Drop Zone:** Cleared ToMerlin folder after successful ingestion.
+## PM Update Summary (6:30 PM)
+## Wednesday (Apr 1) Status
+- ⚔️ **WARRIOR:** DONE: Judge letter Filed (Faxed & Physically Dropped).
+- 👑 **KING:** DONE: MC Prep COMPLETE (Decals, air, photos, vest).
+- 🧙 **VIZIER:** Mail / Checks / Will (In Progress).
+- ❤️ **LOVER:** Early Bed (11 PM) - **ACTIVE GOAL.**
+- 🕵️ **ROGUE:** DONE: VB (Spring Break Cancelled).
+
+## PM Update Summary (10:00 PM)
+- **Judge Letter:** FILING COMPLETE. Receipt saved. Corrected PA fax verified as (636) 456-5285.
+- **Will Review:** Initial analysis complete. 5% share in 10-year trust identified. Communication strategy drafted.
+- **Armory:** Haley (Tinker) and Nyx (Bard) personas established. Added PDF Arranger, Dropbox Fax, and Shippo to the stack.
+- **Launcher:** Hybrid "Stacked Armory" architecture designed for S24+.
+
+## Next Steps (Thursday AM)
+1. **9:00 AM:** Call Court Clerk (636) 456-3363 to confirm fax receipt.
+2. **Standup:** Initialize Thursday Combat Plan from `merlin_state.json`.
+3. **Execution:** Deploy One UI Stacked Widget setup.
 
 ## Thursday (Apr 2) Battle Plan
-- **Events:** 📅 `Court@8:30`
+- **Events:** 📅 `Court Clerk Check@9:00`
 - **Missions:**
+    - ⚔️ **WARRIOR:** Tidy Van
+    - 🧙 **VIZIER:** Costco / Walmart / Adv Auto
+    - ⚒️ **TINKER:** Configure 'Niagara Bridge' + Install Bullzip Workflow + SPF Fix
     - ❤️ **LOVER:** Assemble workbench
-
-## Next Steps (Wednesday AM)
-1. 8:00 AM Wakeup & Meds check.
-2. 8:40 AM Men's Group (Calendar).
-3. 9:00 AM Confirm fax receipt with Court Clerk (636) 456-3363.
-4. 11:00 AM FedEx drop off (7010 Wisconsin Ave).
-5. 9:00 AM Daily Standup: **Initialize Standup from merlin_state.json**.
+    - 📱 **SPECIAL:** Deploy One UI 'Stacked Armory' (Core/Modes)
 
 ## Inbox
 - **📥 Senstone Integration**
