@@ -38,7 +38,7 @@
     - Initiated transition to "State-Driven Context" via `merlin_state.json`.
     - Established `ToMerlin` drop zone at `C:\Users\spade\OneDrive\Documents\ToMerlin` for secure file ingestion.
 - **Subprojects Established:**
-    - `judge_letter/`: Finalized and committed "Request for Continuance and Motion for Alternative Fingerprinting" for Judge Biermann (Case 240910007). The letter emphasizes EMT background, physics of the 26ft truck impact, and 9-month lack of victim response despite proactive insurance disclosure. Integrated Google Doc synchronization for collaborative editing.
+    - `judge_letter/`: Finalized and committed "Request for Continuance and Motion for Alternative Fingerprinting" for Judge Biermann (Case 240910007). User is printing and faxing the signed letter tonight to both the Court Clerk (636-456-8573) and the PA (636-456-7817). Physical originals and money order will be shipped Wednesday via Shippo (FedEx) for Thursday arrival.
     - `dads_will/`: Completed initial review of Robert Edward Williamson's 2015 Will; identified key beneficiaries and executor.
 - **Tools & Infrastructure:** 
     - Established Google Drive/Docs synchronization scripts (`create_google_doc.js`, `pull_google_doc.js`, `push_google_doc.js`) for the `judge_letter` subproject.
@@ -48,9 +48,9 @@
 ## Next Steps (Wednesday AM)
 1. 8:00 AM Wakeup & Meds check.
 2. 9:00 AM Daily Standup: **Initialize Standup from `merlin_state.json`**.
-3. Monitor FedEx tracking for the letter to Warren County Court.
-3. Execute Warrior mission: Judge letter / Tidy Van.
-4. Execute Vizier mission: Costco / Walmart / Adv Auto run.
+3. Confirm fax receipt with Court Clerk (8:00 AM Central / 9:00 AM Eastern).
+4. Use **Shippo** to print FedEx label for physical mailing.
+5. Drop off physical package at FedEx Office (7010 Wisconsin Ave) before afternoon cutoff.
 
 ## Long-Term Vision
 - **Voice Integration:** Enable voice-command check-ins to allow for planning away from bright screens.
