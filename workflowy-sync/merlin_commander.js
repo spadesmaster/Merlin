@@ -53,7 +53,7 @@ async function watchSystem() {
           const fullPath = path.join(INBOX_PATH, file);
           if (fs.lstatSync(fullPath).isFile()) {
             console.log(`[SHADOW] Ingesting: ${file}`);
-            const hudNode = items.find(i => (i.nm || '').includes('!MERLIN-RAW-INBOX-BEFORE-SYNC!'));
+            const hudNode = items.find(i => (i.nm || '').includes('!MERLIN-WORKING!'));
             if (hudNode) {
               factory.client.createNode(hudNode.id, `📂 NEW FILE: ${file}`, 0);
               await factory.client.push();

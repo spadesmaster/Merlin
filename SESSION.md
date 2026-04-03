@@ -30,14 +30,36 @@
 2. **Standup:** Initialize Thursday Combat Plan from `merlin_state.json`.
 3. **Execution:** Deploy One UI Stacked Widget setup.
 
-## Thursday (Apr 2) Battle Plan
-- **Events:** 📅 `Court Clerk Check@9:00`
-- **Missions:**
-    - ⚔️ **WARRIOR:** Tidy Van
-    - 🧙 **VIZIER:** Costco / Walmart / Adv Auto
-    - ⚒️ **TINKER:** Configure 'Niagara Bridge' + Install Bullzip Workflow + SPF Fix
-    - ❤️ **LOVER:** Assemble workbench
-    - 📱 **SPECIAL:** Deploy One UI 'Stacked Armory' (Core/Modes)
+## Thursday Apr 2 Battle Plan
+📅 Court Clerk Check@9:00
+⚔️ WARRIOR Setup S24+ for 1-hand ops
+👑 KING Research NC750X Listing
+🧙 VIZIER Mail / Checks / Will (Subtask: Call Court Clerk)
+⚒️ TINKER Configure 'Niagara Bridge' + Install Bullzip + SPF Fix
+❤️ LOVER Tidy Van / Radio / Parasitic Drain
+🕵️ ROGUE 6:30 VB League
+
+## Thursday Apr 2 Status
+⚔️ Warrior ACTIVE (S24+ Niagara Bridge) 🚀
+🧙 Vizier DEFERRED to Friday (Costco/Walmart/Adv Auto) 📬
+👑 King DONE Research report delivered ✅
+🕵️ Rogue DONE VB League 🏐
+⚒️ Tinker ACTIVE (SPF DONE ✅ / Bullzip Pending)
+❤️ LOVER READY (Workbench assembled) ✅
+
+## Next Steps (Friday AM)
+1. **Standup:** Initialize Friday Combat Plan.
+2. **Execution:** Costco / Walmart / Adv Auto run.
+3. **Construction:** Assemble workbench.
+4. **Armory:** Deploy One UI Stacked Widget setup.
+
+## Friday Apr 3 Battle Plan
+⚔️ WARRIOR Deploy One UI 'Stacked Armory' (Core/Modes)
+👑 KING NC750X Listing Follow-up
+🧙 VIZIER Costco / Walmart / Adv Auto (DEFERRED)
+⚒️ TINKER Install Bullzip Workflow + Niagra Bridge Fix
+❤️ LOVER Assemble workbench (READY)
+🕵️ ROGUE VB League Recovery
 
 ## Inbox
 - **📥 Senstone Integration**

@@ -1,6 +1,6 @@
 {
-  "date": "2026-04-03",
-  "status": "AUTO_INITIALIZED",
+  "date": "2026-04-02",
+  "status": "INITIALIZED",
   "stats": {
     "win_percent": "0%",
     "sleep": null,
@@ -12,32 +12,46 @@
       "win_percent": "90%",
       "sleep": 79,
       "job_leads": 0,
-      "exercise": 30
+      "exercise": 30,
+      "events": "Meter@9:30 Jeff@10 Msg@2 VB@5",
+      "missions": {
+        "warrior": "Tidy Van/AirTags",
+        "king": "Judge letter, M/C photo shop appts",
+        "vizier": "Daily Standup",
+        "lover": "Mail/Checks",
+        "rogue": "AirTag/MO/Fedex"
+      }
     },
     "2026-04-01": {
       "win_percent": "100%",
       "sleep": 82,
       "job_leads": 0,
-      "exercise": 0
-    },
-    "2026-04-02": {
-      "win_percent": "100%",
-      "sleep": 82,
-      "job_leads": 0,
-      "exercise": 0,
-      "missions": {},
-      "task_snapshot": []
+      "exercise": 30,
+      "events": "Meds@8 Men's@8:40 Fedex@11 VB@7",
+      "missions": {
+        "warrior": "DONE: Judge letter Filed",
+        "king": "DONE: MC Prep Complete",
+        "vizier": "Mail / Checks / Will",
+        "lover": "DONE: Early Bed (11 PM)",
+        "rogue": "DONE: VB (Cancelled)"
+      }
     }
   },
   "missions": {
     "thursday": {
-      "warrior": "Tidy Van",
-      "king": "Research NC750X Listing",
-      "vizier": "Costco / Walmart / Adv Auto",
-      "tinker": "Configure 'Niagara Bridge' + Install Bullzip + SPF Fix",
-      "lover": "Assemble workbench",
-      "special": "Deploy One UI 'Stacked Armory'",
-      "rogue": "6:30 VB League (Deer Safety: High Alert on River Rd at dusk)"
+      "warrior": { "task": "Setup S24+ for 1-hand ops", "status": "RED" },
+      "king": { "task": "Research NC750X Listing", "status": "GREEN" },
+      "vizier": { "task": "Mail / Checks / Will", "status": "RED" },
+      "lover": { "task": "Tidy Van / Radio / Parasitic Drain", "status": "RED" },
+      "rogue": { "task": "6:30 VB League", "status": "GREEN" }
+    },
+    "friday": {
+      "warrior": { "task": "Deploy One UI Stacked Armory (Core/Modes)", "status": "RED" },
+      "king": { "task": "NC750X Listing Follow-up", "status": "RED" },
+      "vizier": { "task": "Costco / Walmart / Adv Auto (DEFERRED)", "status": "YELLOW" },
+      "tinker": { "task": "Install Bullzip Workflow + Niagra Bridge Fix", "status": "RED" },
+      "lover": { "task": "Assemble workbench (READY)", "status": "GREEN" },
+      "rogue": { "task": "VB League Recovery", "status": "YELLOW" }
     }
   },
   "inbox": [

@@ -20,7 +20,12 @@ const STATE_PATH = path.join(__dirname, 'merlin_state.json');
 async function rotateState(auth, sheets, headerMap, allSheetRows) {
   if (!fs.existsSync(STATE_PATH)) return;
   const state = JSON.parse(fs.readFileSync(STATE_PATH, 'utf8'));
-  const todayStr = new Date().toISOString().split('T')[0];
+  
+  // Use local ISO-style date (YYYY-MM-DD) correctly
+  const now = new Date();
+  const offset = now.getTimezoneOffset();
+  const localNow = new Date(now.getTime() - (offset * 60 * 1000));
+  const todayStr = localNow.toISOString().split('T')[0];
 
   if (state.date === todayStr) {
     return;
@@ -41,21 +46,22 @@ async function rotateState(auth, sheets, headerMap, allSheetRows) {
     notes: row[headerMap.notes]
   }));
 
+  const lastDayName = getDayName(state.date);
   state.history[state.date] = {
     win_percent: state.stats.win_percent,
     sleep: state.stats.sleep,
     job_leads: state.stats.job_leads,
     exercise: state.stats.exercise,
-    missions: state.missions[getDayName(state.date)] || {},
+    missions: state.missions[lastDayName] || {},
     task_snapshot: taskBackup // THE BACKUP
   };
 
-  // 2. Shift Missions (Tomorrow -> Today)
-  const tomorrowDay = getDayName(todayStr);
+  // 2. Identify Missions for the New Day
+  const todayDayName = getDayName(todayStr);
 
-  if (!state.missions[tomorrowDay]) {
-    console.log(`[FOREMAN] Warning: No missions found for ${tomorrowDay}. Initializing blank.`);
-    state.missions[tomorrowDay] = {};
+  if (!state.missions[todayDayName]) {
+    console.log(`[FOREMAN] Warning: No missions found for ${todayDayName}. Initializing blank.`);
+    state.missions[todayDayName] = {};
   }
 
   // 3. Reset Daily Stats
@@ -71,21 +77,22 @@ async function rotateState(auth, sheets, headerMap, allSheetRows) {
   fs.writeFileSync(STATE_PATH, JSON.stringify(state, null, 2));
   console.log(`[FOREMAN] State rotated to ${todayStr} and tasks backed up.`);
 
-  // 4. Trigger Mission Briefing Push
+  // 4. Trigger Mission Briefing Push for Today
   try {
     const factory = require('./merlin_factory.js');
-    const missions = state.missions[tomorrowDay];
+    const missions = state.missions[todayDayName];
     
     const weatherStr = "🌤️ Weather: [Pending Fetch]";
     const kpiStr = `📊 #KPIs | Win: 🏆 0% | Sleep: [Pending] | Leads: ☹️ 0 | Exercise: ☹️ 0`;
-    const dateFormatted = new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+    
+    // Format: "Thursday, April 2, 2026"
+    const dateFormatted = now.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
 
     const missionLines = Object.keys(missions).map(role => {
-      const emoji = { warrior: '⚔️', king: '👑', vizier: '🧙', tinker: '⚒️', lover: '❤️', rogue: '🕵️', bard: '🧚' }[role.toLowerCase()] || '📝';
-      return `${emoji} #${role.toUpperCase()}: <b>${missions[role]}</b>`;
+      return factory.formatMission(role, missions[role]);
     });
 
-    console.log(`[FOREMAN] Pushing auto-briefing to Workflowy for ${dateFormatted}...`);
+    console.log(`[FOREMAN] Pushing auto-briefing for ${todayStr} (${todayDayName})...`);
     await factory.createOrUpdateBriefing(dateFormatted, {
       kpis: kpiStr,
       weather: weatherStr,
