@@ -1,5 +1,9 @@
 # workflowy-sync
 
+## Engineering Standards
+- **CRLF Mandate:** All project files MUST use **CRLF** line endings for Windows compatibility.
+- **Wrap-up Protocol:** After completing any major task, cleanup, or standup, the agent MUST ask the user: "Should we wrap up the session now?"
+
 ## Session Startup
 At the beginning of every session in this project:
 1. Read `SESSION.md` and output a concise bulleted summary of "Last Steps" and "Next Steps."
