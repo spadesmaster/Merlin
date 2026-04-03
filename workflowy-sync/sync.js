@@ -605,9 +605,39 @@ async function sync() {
   console.log(`Sync complete.`);
 }
 
+const LOCK_FILE = path.join(__dirname, '.sync.lock');
+
+/**
+ * Sentinel: Prevents overlapping processes and API flooding.
+ */
+function acquireLock() {
+  if (fs.existsSync(LOCK_FILE)) {
+    const stats = fs.statSync(LOCK_FILE);
+    const ageMinutes = (Date.now() - stats.mtimeMs) / 1000 / 60;
+    if (ageMinutes < 10) {
+      console.error(`[SENTINEL] Sync already in progress (Lock age: ${ageMinutes.toFixed(1)}m). Aborting to prevent API flooding.`);
+      process.exit(0);
+    }
+    console.warn(`[SENTINEL] Stale lock found (age: ${ageMinutes.toFixed(1)}m). Breaking lock.`);
+  }
+  fs.writeFileSync(LOCK_FILE, process.pid.toString());
+}
+
+function releaseLock() {
+  if (fs.existsSync(LOCK_FILE)) fs.unlinkSync(LOCK_FILE);
+}
+
 if (require.main === module) {
-  // Run once immediately, then every 30 seconds
-  sync().catch(console.error);
-  setInterval(() => sync().catch(console.error), 30000);
+  acquireLock();
+  sync()
+    .then(() => {
+      releaseLock();
+      process.exit(0);
+    })
+    .catch(err => {
+      console.error(`[SYNC ERROR]`, err.message);
+      releaseLock();
+      process.exit(1);
+    });
 }
 module.exports = { sync };

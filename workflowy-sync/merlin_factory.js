@@ -34,7 +34,7 @@ class MerlinFactory {
       'PURPLE': 'c-purple'
     };
 
-    const colorClass = colorMap[status];
+    const colorClass = (status === 'GREEN' || status === 'RED') ? colorMap[status] : null;
     const taskFormatted = colorClass 
       ? `<b><span class="colored ${colorClass}">${taskText}</span></b>` 
       : `<b>${taskText}</b>`;

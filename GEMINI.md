@@ -21,6 +21,14 @@ To maintain high-speed interactivity during standups and strategy sessions:
 ## Project Overview
 This project is a specialized Node.js automation tool designed to provide a bidirectional synchronization between **Workflowy** and **Google Sheets**. It serves as a custom task management system that leverages Workflowy's flexible outlining for capture and Google Sheets' structured data for prioritization and reporting.
 
+## Persistence and Crash-Recovery Protocol (CRITICAL)
+To prevent context loss during sessions:
+1. **Immediate Task Initialization:** For any new research, problem-solving, or deep-dive task, the agent MUST create a new task in Workflowy via the `!MERLIN-COMMANDS!` node for the background Commander to process.
+2. **Assignment Prompt:** The agent MUST prompt the user for: **Priority**, **Room**, and **Mission Lead**.
+3. **Local Scratchpad:** Use the local `/home/chrisw/.gemini/tmp/merlin/` directory for all transient context, research logs, and draft data. DO NOT use Workflowy for temporary storage.
+4. **Batching Mandate:** All Google Sheets updates MUST be batched into a single `batchUpdate` call per session to minimize write requests and avoid quota issues.
+5. **Session Reconstruction:** If a crash occurs, the agent's first priority is to re-sync from the local scratchpad or Workflowy to rebuild the active state.
+
 **Key Features:**
 *   **Two-Way Sync:**
     *   **Pull:** Fetches tasks from specific "Room" nodes in a Workflowy outline.
@@ -63,6 +71,24 @@ This project is a specialized Node.js automation tool designed to provide a bidi
     *   **Clean View:** The "ID" column is automatically hidden on all active task tabs to keep the interface focused on priorities and task names.
     *   **Sorting:** Automatically sorts all tabs by Priority -> Room -> Task Name (except the Priority tab which sorts by Room -> Task Name).
     *   **Dropdowns:** Includes rooms (Office, Garage, Temple, Shop, Kitchen, Dining, Bath, Bed, Living, Errand, Yard, Calls, Fun, Bridge) and status.
+
+## Mission Management Architecture (CRITICAL)
+1. **The Authority (Daily Tab):** The manual entries on the Google Sheets **Daily** tab are the primary "Source of Truth." The system MUST synchronize *from* the Sheet to the JSON state.
+2. **The Reflection (MissionBriefing):** The Workflowy **#MissionBriefing** node is a display-focused reflection of the JSON state.
+3. **The Vault (merlin_state.json):** The central hub for state storage. It must never overwrite the "Authority" (Sheet) without explicit user confirmation.
+4. **Unity Backend Mandate:** The Google Sheet serves as the prototype data-layer for the future Unity app. All Sheets logic MUST be encapsulated in `MerlinFactory` or `DashboardManager` methods.
+5. **Offset KPI Reporting Rule:** KPIs (Win %, Sleep, etc.) recorded on a specific date row in the Sheet and Workflowy Briefing MUST represent the results of the **previous calendar day**.
+6. **Green-Locked Sync Rule:** If a mission cell in the **Daily** tab is colored **Green**, the system MUST mark the mission as `GREEN` (Complete) in JSON and Workflowy. Once Green, the mission is "Locked"—it cannot be deleted or deferred, and only minor text renames are permitted.
+7. **Shorthand Mandate:** When the agent adds *new* missions to the **Daily** tab, it MUST shorten the names to 20-25 characters. Existing manual entries or renames MUST NOT be automatically shortened or altered.
+8. **Commander Pre-Flight Protocol:** The background Commander MUST perform a "Read-Compare-Log" sync from the **Daily** tab before executing any task. This protects manual user edits from race conditions. Discrepancies MUST be logged to the `state_changes.log`.
+
+## Conflict Resolution Protocol
+1. **Sheet-First Priority:** If the Sheet changes, update the JSON state immediately.
+2. **Briefing Monitoring:** The system MUST monitor the Workflowy Briefing node for user edits.
+3. **Smart Renaming:** If a task name in the Briefing or Sheet changes but the Role (Warrior, King, etc.) remains the same, treat it as a rename and sync the change across all platforms.
+4. **Complex Conflicts:** If a role is moved or a task is replaced with a completely different objective, the agent MUST notify the user and suggest a **Merge** or **Deferral**.
+5. **Information Preservation:** Never delete a mission from the state unless it is marked "DONE." Any displaced mission MUST be moved to the next available day or returned to the **Inbox** node (`📥`).
+6. **Mandatory Confirmation:** Always obtain user approval before resolving complex conflicts or changing the mission structure.
 
 ## Architecture & Key Files
 

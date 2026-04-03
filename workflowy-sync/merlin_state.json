@@ -1,8 +1,8 @@
 {
-  "date": "2026-04-02",
-  "status": "INITIALIZED",
+  "date": "2026-04-03",
+  "status": "AUTO_INITIALIZED",
   "stats": {
-    "win_percent": "0%",
+    "win_percent": "80%",
     "sleep": null,
     "job_leads": 0,
     "exercise": 0
@@ -23,35 +23,102 @@
       }
     },
     "2026-04-01": {
-      "win_percent": "100%",
+      "win_percent": "80%",
       "sleep": 82,
       "job_leads": 0,
       "exercise": 30,
       "events": "Meds@8 Men's@8:40 Fedex@11 VB@7",
       "missions": {
-        "warrior": "DONE: Judge letter Filed",
-        "king": "DONE: MC Prep Complete",
+        "warrior": "Judge letter Filed",
+        "king": "MC Prep Complete",
         "vizier": "Mail / Checks / Will",
-        "lover": "DONE: Early Bed (11 PM)",
-        "rogue": "DONE: VB (Cancelled)"
+        "lover": "Early Bed (11 PM)",
+        "rogue": "VB (Cancelled)"
+      }
+    },
+    "2026-04-02": {
+      "win_percent": "100%",
+      "sleep": 84,
+      "job_leads": 1,
+      "exercise": 90,
+      "missions": {
+        "warrior": "Catchup on email and Meetups",
+        "king": "Research NC750X Listing",
+        "vizier": "Mail / Checks / Will",
+        "lover": "Tidy Van / Radio / Parasitic Drain",
+        "rogue": "6:30 VB League",
+        "tinker": "Setup S24+ for 1-hand ops"
       }
     }
   },
   "missions": {
-    "thursday": {
-      "warrior": { "task": "Setup S24+ for 1-hand ops", "status": "RED" },
-      "king": { "task": "Research NC750X Listing", "status": "GREEN" },
-      "vizier": { "task": "Mail / Checks / Will", "status": "RED" },
-      "lover": { "task": "Tidy Van / Radio / Parasitic Drain", "status": "RED" },
-      "rogue": { "task": "6:30 VB League", "status": "GREEN" }
-    },
     "friday": {
-      "warrior": { "task": "Deploy One UI Stacked Armory (Core/Modes)", "status": "RED" },
-      "king": { "task": "NC750X Listing Follow-up", "status": "RED" },
-      "vizier": { "task": "Costco / Walmart / Adv Auto (DEFERRED)", "status": "YELLOW" },
-      "tinker": { "task": "Install Bullzip Workflow + Niagra Bridge Fix", "status": "RED" },
-      "lover": { "task": "Assemble workbench (READY)", "status": "GREEN" },
-      "rogue": { "task": "VB League Recovery", "status": "YELLOW" }
+      "warrior": {
+        "task": "Insurance Claim + Meds",
+        "status": "GREEN"
+      },
+      "king": {
+        "task": "M/C Research Shld/Can/Tire",
+        "status": "GREEN"
+      },
+      "vizier": {
+        "task": "Mail / Checks / Will",
+        "status": "NONE"
+      },
+      "lover": {
+        "task": "Coleman Saluspa Maintenance",
+        "status": "GREEN"
+      },
+      "rogue": {
+        "task": "Make iced T and chicken",
+        "status": "NONE"
+      },
+      "tinker": {
+        "task": "Setup S24+ for 1-hand ops",
+        "status": "NONE"
+      }
+    },
+    "saturday": {
+      "warrior": {
+        "task": "Tidy Van / Radio / Parasitic Drain",
+        "status": "NONE"
+      },
+      "king": {
+        "task": "Prep for class + dancing",
+        "status": "NONE"
+      },
+      "lover": {
+        "task": "Have fun / plan to get #s",
+        "status": "NONE"
+      },
+      "tinker": {
+        "task": "Assemble workbench",
+        "status": "NONE"
+      }
+    },
+    "sunday": {
+      "warrior": {
+        "task": "AM VB Be on time!",
+        "status": "NONE"
+      },
+      "king": {
+        "task": "Setup OpenClaw + Unity Mac",
+        "status": "NONE"
+      },
+      "vizier": {
+        "task": "Walmart + Costco + gas?",
+        "status": "NONE"
+      }
+    },
+    "monday": {
+      "warrior": {
+        "task": "M/C Install can/strap/shld",
+        "status": "NONE"
+      },
+      "vizier": {
+        "task": "Auto KPI Slp Wt",
+        "status": "NONE"
+      }
     }
   },
   "inbox": [
