@@ -1,26 +1,43 @@
 {
-  "date": "2026-04-01",
-  "status": "COURT_FILING_COMPLETE",
+  "date": "2026-04-03",
+  "status": "AUTO_INITIALIZED",
   "stats": {
-    "win_percent": "60%",
+    "win_percent": "0%",
     "sleep": null,
     "job_leads": 0,
     "exercise": 0
   },
-  "missions": {
-    "wednesday": {
-      "warrior": "DONE: Judge letter Filed",
-      "king": "DONE: MC Prep Complete",
-      "vizier": "Mail / Checks / Will",
-      "lover": "Early Bed (11 PM)",
-      "rogue": "DONE: VB (Spring Break Cancelled)"
+  "history": {
+    "2026-03-31": {
+      "win_percent": "90%",
+      "sleep": 79,
+      "job_leads": 0,
+      "exercise": 30
     },
+    "2026-04-01": {
+      "win_percent": "100%",
+      "sleep": 82,
+      "job_leads": 0,
+      "exercise": 0
+    },
+    "2026-04-02": {
+      "win_percent": "100%",
+      "sleep": 82,
+      "job_leads": 0,
+      "exercise": 0,
+      "missions": {},
+      "task_snapshot": []
+    }
+  },
+  "missions": {
     "thursday": {
       "warrior": "Tidy Van",
+      "king": "Research NC750X Listing",
       "vizier": "Costco / Walmart / Adv Auto",
-      "tinker": "Configure 'Niagara Bridge' + Install Bullzip Workflow",
+      "tinker": "Configure 'Niagara Bridge' + Install Bullzip + SPF Fix",
       "lover": "Assemble workbench",
-      "special": "Deploy One UI 'Stacked Armory'"
+      "special": "Deploy One UI 'Stacked Armory'",
+      "rogue": "6:30 VB League (Deer Safety: High Alert on River Rd at dusk)"
     }
   },
   "inbox": [
@@ -38,7 +55,7 @@
   },
   "armory": {
     "device": "Samsung Galaxy S24 Ultra",
-    "last_sync": "2026-04-01",
+    "last_sync": "2026-04-02",
     "active_station": "The Bridge"
   },
   "subscriptions": [

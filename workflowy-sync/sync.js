@@ -2,6 +2,8 @@ const axios = require('axios');
 const { authorize, syncPriority, syncTabFormatting, getHeaderMap } = require('./manager.js');
 const { google } = require('googleapis');
 const WorkflowyClient = require('./workflowy_client.js');
+const fs = require('fs');
+const path = require('path');
 require('dotenv').config({ path: __dirname + '/.env' });
 
 const BRANCH_ID_SUFFIX = process.env.WORKFLOWY_BRANCH_SUFFIX;
@@ -9,6 +11,96 @@ const RAW_DUMP_SUFFIX = process.env.WORKFLOWY_RAW_DUMP_SUFFIX;
 const SPREADSHEET_ID = process.env.GOOGLE_SPREADSHEET_ID;
 
 const wf = new WorkflowyClient();
+const STATE_PATH = path.join(__dirname, 'merlin_state.json');
+
+/**
+ * Proactive Foreman: Rotates the state and prepares the day automatically.
+ * Records a full snapshot of all tasks for easy rollback.
+ */
+async function rotateState(auth, sheets, headerMap, allSheetRows) {
+  if (!fs.existsSync(STATE_PATH)) return;
+  const state = JSON.parse(fs.readFileSync(STATE_PATH, 'utf8'));
+  const todayStr = new Date().toISOString().split('T')[0];
+
+  if (state.date === todayStr) {
+    return;
+  }
+
+  console.log(`[FOREMAN] New day detected (${todayStr}). Rotating state...`);
+
+  // 1. Full Backup of all tasks and subtasks before rotation
+  if (!state.history) state.history = {};
+  
+  // Map rows to a more readable object structure for the history log
+  const taskBackup = allSheetRows.map(row => ({
+    id: row[headerMap.taskId],
+    priority: row[headerMap.priority],
+    room: row[headerMap.room],
+    name: row[headerMap.name],
+    status: row[headerMap.status],
+    notes: row[headerMap.notes]
+  }));
+
+  state.history[state.date] = {
+    win_percent: state.stats.win_percent,
+    sleep: state.stats.sleep,
+    job_leads: state.stats.job_leads,
+    exercise: state.stats.exercise,
+    missions: state.missions[getDayName(state.date)] || {},
+    task_snapshot: taskBackup // THE BACKUP
+  };
+
+  // 2. Shift Missions (Tomorrow -> Today)
+  const tomorrowDay = getDayName(todayStr);
+
+  if (!state.missions[tomorrowDay]) {
+    console.log(`[FOREMAN] Warning: No missions found for ${tomorrowDay}. Initializing blank.`);
+    state.missions[tomorrowDay] = {};
+  }
+
+  // 3. Reset Daily Stats
+  state.date = todayStr;
+  state.stats = {
+    win_percent: "0%",
+    sleep: null,
+    job_leads: 0,
+    exercise: 0
+  };
+  state.status = "AUTO_INITIALIZED";
+
+  fs.writeFileSync(STATE_PATH, JSON.stringify(state, null, 2));
+  console.log(`[FOREMAN] State rotated to ${todayStr} and tasks backed up.`);
+
+  // 4. Trigger Mission Briefing Push
+  try {
+    const factory = require('./merlin_factory.js');
+    const missions = state.missions[tomorrowDay];
+    
+    const weatherStr = "🌤️ Weather: [Pending Fetch]";
+    const kpiStr = `📊 #KPIs | Win: 🏆 0% | Sleep: [Pending] | Leads: ☹️ 0 | Exercise: ☹️ 0`;
+    const dateFormatted = new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+
+    const missionLines = Object.keys(missions).map(role => {
+      const emoji = { warrior: '⚔️', king: '👑', vizier: '🧙', tinker: '⚒️', lover: '❤️', rogue: '🕵️', bard: '🧚' }[role.toLowerCase()] || '📝';
+      return `${emoji} #${role.toUpperCase()}: <b>${missions[role]}</b>`;
+    });
+
+    console.log(`[FOREMAN] Pushing auto-briefing to Workflowy for ${dateFormatted}...`);
+    await factory.createOrUpdateBriefing(dateFormatted, {
+      kpis: kpiStr,
+      weather: weatherStr,
+      missions: missionLines
+    });
+    console.log(`[FOREMAN] Auto-briefing successful.`);
+  } catch (err) {
+    console.error(`[FOREMAN] Briefing push failed:`, err.message);
+  }
+}
+
+function getDayName(dateStr) {
+  const days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
+  return days[new Date(dateStr).getDay()];
+}
 
 /**
  * Helper to extract priority, target room, and clean name from text.
@@ -271,6 +363,8 @@ function sortTasks(tasks, map) {
  * Syncs Google Sheets and Workflowy.
  */
 async function sync() {
+  console.log(`[SYNC] Starting sync cycle at ${new Date().toLocaleTimeString()}`);
+  
   const auth = await authorize();
   const sheets = google.sheets({ version: 'v4', auth });
 
@@ -289,6 +383,10 @@ async function sync() {
   
   const allSheetRows = [];
   valueRanges.forEach(vr => { if (vr.values && vr.values.length > 1) allSheetRows.push(...vr.values.slice(1)); });
+
+  // A. Proactive Rotation (Background Foreman)
+  // Now passes all sheet data for the backup snapshot
+  await rotateState(auth, sheets, headerMap, allSheetRows);
 
   const sheetTaskMap = {};
   const newTasksFromSheet = [];
@@ -368,7 +466,7 @@ async function sync() {
             if (info.priority) effectivePriority = info.priority;
           } else {
             effectiveCleanName = info.cleanName;
-            if (info.priority) effectivePriority = info.priority;
+            if (info.priority) effectivePriority = leafInfo.priority;
           }
         }
       }
@@ -454,8 +552,11 @@ async function sync() {
       dateCreated = sheetRow[headerMap.dateCreated] || today;
       notes = sheetRow[headerMap.notes] || notes;
       if (status === 'Complete') {
-        const completedMap = getHeaderMap(valueRanges.find(vr => vr.range.includes('Completed')).values[0]);
-        dateCompleted = sheetRow[completedMap.dateCompleted] || today;
+        const completedTab = valueRanges.find(vr => vr.range.includes('Completed'));
+        if (completedTab && completedTab.values) {
+          const completedMap = getHeaderMap(completedTab.values[0]);
+          dateCompleted = sheetRow[completedMap.dateCompleted] || today;
+        }
       }
     }
 
@@ -498,6 +599,8 @@ async function sync() {
 }
 
 if (require.main === module) {
+  // Run once immediately, then every 30 seconds
   sync().catch(console.error);
+  setInterval(() => sync().catch(console.error), 30000);
 }
 module.exports = { sync };

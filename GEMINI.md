@@ -7,6 +7,17 @@ At the beginning of every session in this project:
 3. Check `workflowy-sync/merlin_state.json` to confirm the current day's initialization status.
 4. **Blocker Management (Scrum Standup):** Prompt the user for any potential blocks on missions or tasks. Record these in the "Blocked" section of the `Daily` tab and offer tactical suggestions to overcome them.
 
+## Background Tasking Mandate
+To maintain high-speed interactivity during standups and strategy sessions:
+1. **Asynchronous Research:** If a user request involves deep research (e.g., product comparisons, technical deep-dives), the agent MUST NOT perform it in the main thread. Instead, the agent must either:
+    - Delegate the task to the `generalist` sub-agent.
+    - Add the directive to the `!MERLIN-COMMANDS!` node in Workflowy for the background `merlin_commander.js` to handle.
+    - Prompt the user to move the request to the Command Console.
+2. **Refactor Workflow (Plan then Delegate):** For any code refactor or architectural change:
+    - The agent MUST first ask the user: "Should we plan and design this refactor now?"
+    - Once the design is approved, the agent MUST delegate the implementation to the `generalist` sub-agent.
+3. **Batch Operations:** Any task involving more than 3 file edits should be delegated to the `generalist`.
+
 ## Project Overview
 This project is a specialized Node.js automation tool designed to provide a bidirectional synchronization between **Workflowy** and **Google Sheets**. It serves as a custom task management system that leverages Workflowy's flexible outlining for capture and Google Sheets' structured data for prioritization and reporting.
 
