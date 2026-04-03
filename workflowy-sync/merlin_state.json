@@ -108,11 +108,19 @@
       "vizier": {
         "task": "Walmart + Costco + gas?",
         "status": "NONE"
+      },
+      "lover": {
+        "task": "Setup Values / 4 Agmts",
+        "status": "NONE"
       }
     },
     "monday": {
       "warrior": {
         "task": "M/C Install can/strap/shld",
+        "status": "NONE"
+      },
+      "king": {
+        "task": "SNAP call volunteer",
         "status": "NONE"
       },
       "vizier": {
