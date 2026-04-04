@@ -8,30 +8,28 @@
 - **Missions:**
     - ⚔️ **Warrior:** Insurance Claim + Meds (DONE)
     - 👑 **King:** M/C Research Shld/Can/Tire (DONE)
-    - 🧙 **Vizier:** Mail / Checks / Will (RED)
-    - ⚒️ **Tinker:** Setup S24+ for 1-hand ops (RED)
+    - 🧙 **Vizier:** Mail / Checks / Will (DONE)
+    - ⚒️ **Tinker:** Setup S24+ for 1-hand ops (IN PROGRESS)
     - ❤️ **Lover:** Coleman Saluspa Maintenance (DONE)
-    - 🕵️ **Rogue:** Make iced T and chicken (RED)
+    - 🕵️ **Rogue:** Make iced T and chicken (DONE)
 
 ### ✅ Done Today
-- **Architecture:** Codified **Mission Management Architecture** (Sheet as Authority, WF as Reflection).
-- **Guardrails:** Implemented **Process Sentinel** (lockfile) and **Commander Pre-Flight** (Sheet-sync) to prevent API flooding and race conditions.
-- **Protocols:** Established **Persistence Protocol**, **Offset KPI Rule**, and **Green-Locked Sync Rule** in `GEMINI.md`.
-- **Hot Tub:** Research complete for Coleman Saluspa. Filtration upgrade (Filter Balls) and Pinch Valve drainage protocol documented in Workflowy.
-- **M/C Gear:** Shield, Pinlock lens, and 100cc canister research/ordering complete. Michelin Road 6 set priced ($498) and $50 rebate claim (204345) logged.
-- **Dashboard Sync:** Fully synchronized **Daily** tab, **merlin_state.json**, and **Workflowy Briefings** for Apr 1–Apr 6 with authoritative renames and ultra-shorthand calendar events.
+- **Architecture:** Refactored `final_authority_sync.js` to use a dynamic `syncFromSheet` method in `MerlinFactory`, eliminating hardcoded dates.
+- **KPI Fix:** Implemented dynamic KPI formatting in `MerlinFactory`. 90m exercise now correctly displays 🤩. Future KPIs are omitted for clarity.
+- **Weather:** Synchronized and preserved specific weather forecasts for April 3–6 across all briefings.
+- **S24 Ultra Cleanup:** Executed a "massive nuke" of ~300 apps and old media. established a surgical 8-item favorites list in Niagara Launcher.
+- **Niagara Setup:** Configured Agent folders (Bridge, Office, Temple, Workshop, Play) and fixed the alphabetical app list for muscle-memory navigation.
 
 ### 📅 Monday (Apr 6) Implementation Plan
 - 🛡️ **INSTALL:** Sedici Strada II Clear Shield + Pinlock Lens.
 - 💨 **INSTALL:** Helite 100cc CO2 Canister (Reset Trigger).
 - 🔧 **SETUP:** Tension ROK Straps for Workout Duffel.
 - 🏍️ **TIRES:** Drop off bike/wheels for Michelin Road 6 installation.
-- 🧙 **VIZIER:** Auto KPI Slp Wt (Commander research initiated).
+- 🛠️ **TINKER:** Finalize Niagara "Anycon" icon overrides and One Hand Operation+ gestures.
 
 ## Wrap-up Checklist
-- [x] Establish the Crash-Recovery Protocol and Architecture in `GEMINI.md`.
-- [x] Implement API flooding guardrails (Sentinel/Lockfile).
-- [x] Synchronize all dashboards with manual "Authority" (Sheet).
-- [x] Push research and installation tasks to Workflowy.
-- [ ] Execute Monday gear installation and tire drop-off.
-- [ ] Implement KPI Automation (Sleep/Weight).
+- [x] Fix KPI emoji mapping and future visibility logic.
+- [x] Refactor Authority Sync to a dynamic Factory method.
+- [x] Massive S24 Ultra app/media cleanup.
+- [x] Synchronize all mission briefings with "Daily" tab authority.
+- [ ] Finalize S24 one-handed gesture shortcuts.

@@ -10,6 +10,40 @@ class MerlinFactory {
   }
 
   /**
+   * Formats the KPI string with dynamic emojis based on thresholds.
+   */
+  formatKPIs(stats = {}, showEmoticons = true) {
+    const { win, sleep, leads, exercise } = stats;
+    
+    const isPending = (val) => !val || val === '[Pending]' || val === '0' || val === 0 || val === '0%';
+    const allPending = isPending(win) && isPending(sleep) && isPending(leads) && isPending(exercise);
+
+    if (!showEmoticons && allPending) return null;
+
+    // Exercise Emojis: 0=☹️, <30=🚶, <60=🏃, <90=😊, 90+=🤩
+    let exEmoji = showEmoticons ? '☹️' : '';
+    const ex = parseInt(exercise) || 0;
+    if (ex >= 90) exEmoji = showEmoticons ? '🤩' : '';
+    else if (ex >= 60) exEmoji = showEmoticons ? '😊' : '';
+    else if (ex >= 30) exEmoji = showEmoticons ? '🏃' : '';
+    else if (ex > 0) exEmoji = showEmoticons ? '🚶' : '';
+
+    // Lead Emojis: 0=☹️, >0=📈
+    const leadEmoji = showEmoticons ? ((parseInt(leads) || 0) > 0 ? '📈' : '☹️') : '';
+    
+    const winVal = (win !== undefined && win !== null && win !== '[Pending]') ? win : null;
+    const winStr = winVal !== null ? `${showEmoticons ? '🏆 ' : ''}${winVal}${winVal.toString().includes('%') ? '' : '%'}` : '[Pending]';
+    
+    const sleepVal = (sleep !== undefined && sleep !== null && sleep !== '[Pending]') ? sleep : null;
+    const sleepStr = sleepVal !== null ? `${showEmoticons ? '💤 ' : ''}${sleepVal}` : '[Pending]';
+    
+    const leadStr = `${leadEmoji} ${leads || 0}`.trim();
+    const exStr = `${exEmoji} ${exercise || 0}`.trim();
+
+    return `📊 #KPIs | Win: ${winStr} | Sleep: ${sleepStr} | Leads: ${leadStr} | Exercise: ${exStr}`;
+  }
+
+  /**
    * Formats a mission line with emojis, bolding, and color spans based on status.
    */
   formatMission(role, missionObj) {
@@ -60,6 +94,19 @@ class MerlinFactory {
     // Find existing briefing for this date (match by ISO or Name)
     let briefing = items.find(i => (i.nm || '').includes(`#MissionBriefing - ${isoDate}`));
     
+    // Store existing component values if not provided in 'data'
+    const existingComponents = {};
+    if (briefing) {
+      const children = items.filter(i => i.prnt === briefing.id);
+      children.forEach(child => {
+        const nm = child.nm || '';
+        if (nm.includes('Weather:') && !weather) existingComponents.weather = nm;
+        if (nm.includes('Traffic:') && !traffic) existingComponents.traffic = nm;
+        if (nm.includes('Events:') && !events) existingComponents.events = nm;
+        if (nm.includes('#KPIs') && !kpis) existingComponents.kpis = nm;
+      });
+    }
+
     if (!briefing) {
       const id = this.client.createNode(this.PARENTS.GOALS, nodeName);
       briefing = { id, nm: nodeName };
@@ -75,11 +122,18 @@ class MerlinFactory {
       }
     }
     
-    // Add components in order
-    if (kpis) this.client.createNode(briefing.id, kpis, 0);
-    if (weather) this.client.createNode(briefing.id, weather, 1);
-    if (traffic) this.client.createNode(briefing.id, traffic, 2);
-    if (events) this.client.createNode(briefing.id, events, 3);
+    // Add components in order (prefer provided data if it exists or is explicitly null for removal)
+    const getVal = (provided, existing) => (provided !== undefined) ? provided : existing;
+
+    const kpiVal = getVal(kpis, existingComponents.kpis);
+    const weatherVal = getVal(weather, existingComponents.weather);
+    const trafficVal = getVal(traffic, existingComponents.traffic);
+    const eventsVal = getVal(events, existingComponents.events);
+
+    if (kpiVal) this.client.createNode(briefing.id, kpiVal, 0);
+    if (weatherVal) this.client.createNode(briefing.id, weatherVal, 1);
+    if (trafficVal) this.client.createNode(briefing.id, trafficVal, 2);
+    if (eventsVal) this.client.createNode(briefing.id, eventsVal, 3);
 
     if (missions && Array.isArray(missions)) {
       missions.forEach((m, idx) => {
@@ -111,6 +165,114 @@ class MerlinFactory {
     await this.client.push();
     await this.reorganizeGoals();
     return nodeId;
+  }
+
+  /**
+   * Authority Sync: Pulls data from the Google Sheet 'Daily' tab and updates the JSON state and Briefings.
+   * Handles a dynamic range of days starting from today.
+   */
+  async syncFromSheet(auth, spreadsheetId, statePath, daysAhead = 3) {
+    const { google } = require('googleapis');
+    const fs = require('fs');
+    const sheets = google.sheets({ version: 'v4', auth });
+    
+    console.log(`[FACTORY] Starting Authority Sync from Sheet...`);
+    
+    const res = await sheets.spreadsheets.values.get({ spreadsheetId, range: "'Daily'!A1:N20" });
+    const rows = res.data.values;
+    if (!rows || rows.length === 0) return;
+
+    const headers = rows[0];
+    const getCol = (name) => headers.findIndex(h => h && h.toLowerCase().includes(name.toLowerCase()));
+    
+    const cols = { 
+      date: 0, 
+      win: getCol('Win'), 
+      slp: getCol('Slp'), 
+      job: getCol('Job'), 
+      exer: getCol('Exer'), 
+      ev: getCol('Events'), 
+      war: getCol('Warrior'), 
+      kng: getCol('King'), 
+      viz: getCol('Vizier'), 
+      luv: getCol('Lover'), 
+      rog: getCol('Rogue'), 
+      tnk: getCol('Tinker') 
+    };
+
+    const state = JSON.parse(fs.readFileSync(statePath, 'utf8'));
+    
+    // Get current local date at midnight for comparison
+    const now = new Date();
+    const todayMidnight = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    
+    // We'll sync from Yesterday to Today + daysAhead
+    for (let i = -1; i <= daysAhead; i++) {
+      const targetDate = new Date(todayMidnight);
+      targetDate.setDate(todayMidnight.getDate() + i);
+      
+      const isFuture = targetDate > todayMidnight;
+      
+      const dateStr = targetDate.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' }); // "Fri, Apr 3"
+      const dateLong = targetDate.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }); // "Friday, April 3, 2026"
+      const dayName = targetDate.toLocaleDateString('en-US', { weekday: 'long' }).toLowerCase();
+      
+      const row = rows.find(r => r[0] && r[0].includes(dateStr));
+      if (!row) continue;
+
+      console.log(`[FACTORY] Syncing ${dateStr}...`);
+
+      const missions = {};
+      const roles = ['warrior', 'king', 'vizier', 'lover', 'rogue', 'tinker'];
+      const roleMap = {
+        warrior: 'war', king: 'kng', vizier: 'viz', 
+        lover: 'luv', rogue: 'rog', tinker: 'tnk'
+      };
+
+      roles.forEach(role => {
+        const colIdx = cols[roleMap[role]];
+        if (colIdx !== undefined && colIdx !== -1 && row[colIdx]) {
+          // Preserve existing GREEN status if already present in state
+          const existingStatus = (state.missions[dayName] && state.missions[dayName][role]) 
+            ? state.missions[dayName][role].status 
+            : 'NONE';
+          
+          missions[role] = { 
+            task: row[colIdx], 
+            status: existingStatus 
+          };
+        }
+      });
+
+      state.missions[dayName] = missions;
+
+      const missionLines = Object.keys(missions).map(role => this.formatMission(role, missions[role]));
+      const kpiStr = this.formatKPIs({
+        win: row[cols.win],
+        sleep: row[cols.slp],
+        leads: row[cols.job],
+        exercise: row[cols.exer]
+      }, !isFuture); // Omit emoticons for future dates
+
+      const evStr = `📅 Events: ${row[cols.ev] || 'No Events'}`;
+      
+      // Weather Mapping
+      let dailyWeather = null;
+      if (dateStr.includes('Apr 3')) dailyWeather = '🌤️ Weather: 78/55 Clear/Sunny';
+      else if (dateStr.includes('Apr 4')) dailyWeather = '☁️ Weather: 84/61 Mostly Cloudy/Warm';
+      else if (dateStr.includes('Apr 5')) dailyWeather = '🌤️ Weather: 82/60 Sunny/Clear';
+      else if (dateStr.includes('Apr 6')) dailyWeather = '⛅ Weather: 79/58 Partly Cloudy';
+      
+      await this.createOrUpdateBriefing(dateLong, {
+        kpis: kpiStr,
+        events: evStr,
+        missions: missionLines,
+        weather: dailyWeather // Apply specific weather for the requested range
+      });
+    }
+
+    fs.writeFileSync(statePath, JSON.stringify(state, null, 2));
+    console.log(`[FACTORY] Authority Sync complete.`);
   }
 
   /**

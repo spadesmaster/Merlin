@@ -32,14 +32,14 @@ async function syncKPIs() {
 
   const missionsFri = Object.keys(state.missions.friday).map(role => factory.formatMission(role, state.missions.friday[role]));
   await factory.createOrUpdateBriefing('Friday, April 3, 2026', {
-    kpis: '📊 #KPIs | Win: 🏆 80% | Sleep: 💤 84 | Leads: ☹️ 0 | Exercise: ☹️ 90',
+    kpis: factory.formatKPIs({ win: '80%', sleep: 84, leads: 0, exercise: 90 }),
     weather: '🌤️ Weather: 78/55 Clear/Sunny',
     missions: missionsFri
   });
 
   const missionsSat = Object.keys(state.missions.saturday).map(role => factory.formatMission(role, state.missions.saturday[role]));
   await factory.createOrUpdateBriefing('Saturday, April 4, 2026', {
-    kpis: '📊 #KPIs | Win: [Pending] | Sleep: [Pending] | Leads: ☹️ 0 | Exercise: ☹️ 0',
+    kpis: factory.formatKPIs({ leads: 0, exercise: 0 }),
     weather: '☁️ Weather: 84/61 Mostly Cloudy/Warm',
     missions: missionsSat
   });

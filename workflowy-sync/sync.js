@@ -83,7 +83,12 @@ async function rotateState(auth, sheets, headerMap, allSheetRows) {
     const missions = state.missions[todayDayName];
     
     const weatherStr = "🌤️ Weather: [Pending Fetch]";
-    const kpiStr = `📊 #KPIs | Win: 🏆 0% | Sleep: [Pending] | Leads: ☹️ 0 | Exercise: ☹️ 0`;
+    const kpiStr = factory.formatKPIs({
+      win: "0%",
+      sleep: "[Pending]",
+      leads: 0,
+      exercise: 0
+    });
     
     // Format: "Thursday, April 2, 2026"
     const dateFormatted = now.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });

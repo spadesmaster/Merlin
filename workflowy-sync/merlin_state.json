@@ -66,11 +66,11 @@
         "status": "NONE"
       },
       "lover": {
-        "task": "Coleman Saluspa Maintenance",
+        "task": "Order spa stuff, fix inflator valve",
         "status": "GREEN"
       },
       "rogue": {
-        "task": "Make iced T and chicken",
+        "task": "Water plants Iced T AirTag batts",
         "status": "NONE"
       },
       "tinker": {
@@ -91,6 +91,10 @@
         "task": "Have fun / plan to get #s",
         "status": "NONE"
       },
+      "rogue": {
+        "task": "Prep VB Costco Walmart",
+        "status": "NONE"
+      },
       "tinker": {
         "task": "Assemble workbench",
         "status": "NONE"
@@ -106,11 +110,15 @@
         "status": "NONE"
       },
       "vizier": {
-        "task": "Walmart + Costco + gas?",
+        "task": "Walmart + Costco",
         "status": "NONE"
       },
       "lover": {
         "task": "Setup Values / 4 Agmts",
+        "status": "NONE"
+      },
+      "rogue": {
+        "task": "Auto KPI Slp Wt Win",
         "status": "NONE"
       }
     },
@@ -122,10 +130,32 @@
       "king": {
         "task": "SNAP call volunteer",
         "status": "NONE"
+      }
+    },
+    "thursday": {
+      "warrior": {
+        "task": "Catchup on email and Meetups",
+        "status": "GREEN"
+      },
+      "king": {
+        "task": "Research NC750X Listing",
+        "status": "GREEN"
       },
       "vizier": {
-        "task": "Auto KPI Slp Wt",
-        "status": "NONE"
+        "task": "Mail / Checks / Will",
+        "status": "GREEN"
+      },
+      "lover": {
+        "task": "Tidy Van / Radio / Parasitic Drain",
+        "status": "GREEN"
+      },
+      "rogue": {
+        "task": "6:30 VB League",
+        "status": "GREEN"
+      },
+      "tinker": {
+        "task": "Setup S24+ for 1-hand ops",
+        "status": "GREEN"
       }
     }
   },
