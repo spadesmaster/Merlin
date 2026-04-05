@@ -1,8 +1,8 @@
 {
-  "date": "2026-04-03",
+  "date": "2026-04-04",
   "status": "AUTO_INITIALIZED",
   "stats": {
-    "win_percent": "80%",
+    "win_percent": "0%",
     "sleep": null,
     "job_leads": 0,
     "exercise": 0
@@ -49,6 +49,2505 @@
         "rogue": "6:30 VB League",
         "tinker": "Setup S24+ for 1-hand ops"
       }
+    },
+    "2026-04-03": {
+      "win_percent": "80%",
+      "sleep": null,
+      "job_leads": 0,
+      "exercise": 0,
+      "missions": {
+        "warrior": {
+          "task": "Catchup on email and Meetups",
+          "status": "GREEN"
+        },
+        "king": {
+          "task": "Research NC750X Listing",
+          "status": "GREEN"
+        },
+        "vizier": {
+          "task": "Mail / Checks / Will",
+          "status": "GREEN"
+        },
+        "lover": {
+          "task": "Tidy Van / Radio / Parasitic Drain",
+          "status": "GREEN"
+        },
+        "rogue": {
+          "task": "6:30 VB League",
+          "status": "GREEN"
+        },
+        "tinker": {
+          "task": "Setup S24+ for 1-hand ops",
+          "status": "GREEN"
+        }
+      },
+      "task_snapshot": [
+        {
+          "id": "b4fbf4db-bc9c-0995-aa7a-0025980959ed",
+          "priority": "1",
+          "room": "Calls",
+          "name": "Capital One about over limit",
+          "status": "Pending"
+        },
+        {
+          "id": "f48c4ce5-d21e-6005-fea8-1fb53070e14e",
+          "priority": "1",
+          "room": "Calls",
+          "name": "King Soopers prescription testosterone",
+          "status": "Pending"
+        },
+        {
+          "id": "c26944cd-d7e6-173a-52d5-85e1f5544a38",
+          "priority": "1",
+          "room": "Calls",
+          "name": "Newell research facts about delays in meeting",
+          "status": "Pending"
+        },
+        {
+          "id": "cf07f4a1-8261-c071-b373-bc08665499b2",
+          "priority": "1",
+          "room": "Errand",
+          "name": "Pick up Airtag at bowling alley",
+          "status": "Pending"
+        },
+        {
+          "id": "1a6055a3-51c2-4b25-b7d4-64833c3aa7c7",
+          "priority": "1",
+          "room": "Garage",
+          "name": "Execute M/C Gear Install (⚔️ WARRIOR Mission) [Mon 6-Apr]",
+          "status": "Pending"
+        },
+        {
+          "id": "6cb14022-de2a-419e-835e-fa73bb840d83",
+          "priority": "1",
+          "room": "Garage",
+          "name": "Finalize M/C gear (⚔️ WARRIOR Mission)",
+          "status": "Pending"
+        },
+        {
+          "id": "1e528718-df28-3e62-cf37-0fd6e6e0cdd1",
+          "priority": "1",
+          "room": "Garage",
+          "name": "Motorcycle: vest reload, tire air, fairing",
+          "status": "Pending"
+        },
+        {
+          "id": "cd938cd8-98b4-c149-af2c-6138da24c76a",
+          "priority": "1",
+          "room": "Kitchen",
+          "name": "Make drink eggs iced T and bachelor chicken",
+          "status": "Pending"
+        },
+        {
+          "id": "1642433b-f329-3a8e-0b47-a241edceaabc",
+          "priority": "1",
+          "room": "Office",
+          "name": "Add board items including Unclaimed",
+          "status": "Pending"
+        },
+        {
+          "id": "a05a135a-4168-e64a-b42a-1f56be94c788",
+          "priority": "1",
+          "room": "Office",
+          "name": "Catchup on mail, let Dylan know about his check",
+          "status": "Pending"
+        },
+        {
+          "id": "86ea3f35-c182-f923-cedc-97d975ae3f3f",
+          "priority": "1",
+          "room": "Office",
+          "name": "Clear out Inbox",
+          "status": "Pending"
+        },
+        {
+          "id": "e771f648-d9eb-f4d5-e1c9-2e822198c4c6",
+          "priority": "1",
+          "room": "Office",
+          "name": "Contact insurance agent and file motorcycle claim",
+          "status": "Pending"
+        },
+        {
+          "id": "256129da-5ddf-6016-814b-b7951a49aa51",
+          "priority": "1",
+          "room": "Office",
+          "name": "Contact insurance and update lawyer",
+          "status": "Pending"
+        },
+        {
+          "id": "2c8853fd-229b-7321-210a-6a1365696f5e",
+          "priority": "1",
+          "room": "Office",
+          "name": "Gather receipts and send pics and email to mom",
+          "status": "Pending"
+        },
+        {
+          "id": "aa66c6e7-5fe5-3b04-503f-42b228fd30c7",
+          "priority": "1",
+          "room": "Office",
+          "name": "Locate checks and deposit, respond to Caryl",
+          "status": "Pending"
+        },
+        {
+          "id": "af407f7e-a91d-ddf5-ce9b-2127be1202ab",
+          "priority": "1",
+          "room": "Office",
+          "name": "Merlin - AI: Daily review of priorities tasks completed, next up, and calendar for the day",
+          "status": "Pending"
+        },
+        {
+          "id": "331fbae6-dc1d-34ef-0934-c0d3e626a424",
+          "priority": "1",
+          "room": "Office",
+          "name": "Merlin - Review and plan day",
+          "status": "Pending"
+        },
+        {
+          "id": "79e62e20-3d45-8daf-88f6-640d1e17669d",
+          "priority": "1",
+          "room": "Office",
+          "name": "Merlin - Setup ideal day timeline and voice/music prompt",
+          "status": "Pending"
+        },
+        {
+          "id": "624ec50f-6a02-3574-babd-e6d25509eac8",
+          "priority": "1",
+          "room": "Office",
+          "name": "Merlin - Sheets script to generate a printable dashboard / web page showing status",
+          "status": "Pending"
+        },
+        {
+          "id": "0358a396-34ef-d925-3994-55bd8222fa1a",
+          "priority": "1",
+          "room": "Office",
+          "name": "Pay credit cards and update budget",
+          "status": "Pending"
+        },
+        {
+          "id": "03651c27-5702-d116-f624-fea303ac95be",
+          "priority": "1",
+          "room": "Office",
+          "name": "Reschedule Ultrahuman Blood draw test, fix Home unit, and put ring into Chill mode",
+          "status": "Pending"
+        },
+        {
+          "id": "10394421-238c-1139-7de3-92d900f61889",
+          "priority": "1",
+          "room": "Office",
+          "name": "Review will and email Caryl",
+          "status": "Pending"
+        },
+        {
+          "id": "6d30924a-e735-59ca-43ba-c232aeb90261",
+          "priority": "1",
+          "room": "Office",
+          "name": "Set up script for daily plan",
+          "status": "Pending"
+        },
+        {
+          "id": "ca1282c9-fb00-15eb-8573-4673702e6f5e",
+          "priority": "1",
+          "room": "Office",
+          "name": "Setup github repo for my AI agents",
+          "status": "Pending"
+        },
+        {
+          "id": "9147919a-4a9e-9eb1-ecf3-d5a0988131ef",
+          "priority": "1",
+          "room": "Office",
+          "name": "Setup laptop with clawed code and Co working with mobile",
+          "status": "Pending"
+        },
+        {
+          "id": "3ae111fc-bc3e-d954-e03b-81035c4fbfc6",
+          "priority": "1",
+          "room": "Office",
+          "name": "Snap volunteering reinstatement",
+          "status": "Pending"
+        },
+        {
+          "id": "eae64b44-5f6b-2980-732a-19966172571b",
+          "priority": "1",
+          "room": "Office",
+          "name": "Take pics of dental issues in prep for trip and for claim suppport",
+          "status": "Pending"
+        },
+        {
+          "id": "aed82103-ddad-1e17-0923-1649580fc413",
+          "priority": "1",
+          "room": "Office",
+          "name": "Update calendar and show weekly goals",
+          "status": "Pending"
+        },
+        {
+          "id": "8d8bdacd-2996-60be-ae4d-2f85c208e58b",
+          "priority": "1",
+          "room": "Temple",
+          "name": "Water plants",
+          "status": "Pending"
+        },
+        {
+          "id": "5b95e582-9887-44a3-a50a-c460d5066c63",
+          "priority": "1",
+          "room": "Yard",
+          "name": "Coleman Saluspa Maintenance (❤️ LOVER Mission)",
+          "status": "Pending"
+        },
+        {
+          "id": "d177975c-b230-ae08-e401-6eadd3577798",
+          "priority": "1",
+          "room": "Yard",
+          "name": "Set up telescope",
+          "status": "Pending"
+        },
+        {
+          "id": "13eaba69-5e98-dc1a-72d1-59719040901d",
+          "priority": "2",
+          "room": "Bath",
+          "name": "Iron clothes and do a load of laundry especially sheets",
+          "status": "Pending"
+        },
+        {
+          "id": "43d350ae-0fe1-ed2b-5e1c-b8372f38a0ff",
+          "priority": "2",
+          "room": "Bed",
+          "name": "Reach out to Nyx and possibly stay with her and invite her out here",
+          "status": "Pending"
+        },
+        {
+          "id": "48f5e7d2-0495-6c36-188c-01ec83303b49",
+          "priority": "2",
+          "room": "Bed",
+          "name": "Setup new Alexa routines for music sleep dark fuck work",
+          "status": "Pending"
+        },
+        {
+          "id": "7e7f6eda-0c20-36fc-1e15-2552c37a4170",
+          "priority": "2",
+          "room": "Calls",
+          "name": "Somerset recycle bin",
+          "status": "Pending"
+        },
+        {
+          "id": "dcd169eb-82f0-aea0-ddbd-15ac0c8328b2",
+          "priority": "2",
+          "room": "Errand",
+          "name": "Bike to cherry blossoms and meet people",
+          "status": "Pending"
+        },
+        {
+          "id": "c4397851-1d3a-9d93-b58c-0ecd2f7f1ffb",
+          "priority": "2",
+          "room": "Errand",
+          "name": "Costco shrimp chips belvita dim sum pops havarti mango rice crisps fruit pops chix salad ban berry mush battery core receipt",
+          "status": "Pending"
+        },
+        {
+          "id": "7bfb1ca0-001e-3cc7-f1b9-45c14ecc88df",
+          "priority": "2",
+          "room": "Fun",
+          "name": "Balatro Sapphire Stamp to get unlocked",
+          "status": "Pending"
+        },
+        {
+          "id": "e9747736-13e8-4ef8-a03c-e8b99fcd9be0",
+          "priority": "2",
+          "room": "Fun",
+          "name": "Https://washington.org/things-to-do-this-may-in-washington-dc",
+          "status": "Pending"
+        },
+        {
+          "id": "8c648a6d-32fc-cca4-ce7b-8276f3e99b18",
+          "priority": "2",
+          "room": "Garage",
+          "name": "Bike Fasten and rack and tighten and Lube chain",
+          "status": "Pending"
+        },
+        {
+          "id": "5b129822-9ac1-8e8f-447c-a4d38bb88d30",
+          "priority": "2",
+          "room": "Garage",
+          "name": "Clean and fix opener",
+          "status": "Pending"
+        },
+        {
+          "id": "cb2b763c-0f85-440c-95a8-3fe28ea78427",
+          "priority": "2",
+          "room": "Garage",
+          "name": "Clean up and put away tools",
+          "status": "Pending"
+        },
+        {
+          "id": "333aca14-7b2f-c6b9-46bc-186f2f74f7c8",
+          "priority": "2",
+          "room": "Garage",
+          "name": "Find urethane spray and use on table",
+          "status": "Pending"
+        },
+        {
+          "id": "10bbc78c-5b11-3252-5fcd-6495b126cc17",
+          "priority": "2",
+          "room": "Garage",
+          "name": "Motorcycle Lube chain oil gear shift find Angel Wings kit",
+          "status": "Pending"
+        },
+        {
+          "id": "1f6fafb6-1f2a-6a4b-6099-b5ea6286de80",
+          "priority": "2",
+          "room": "Kitchen",
+          "name": "Defrost and cook bachelor chicken and make eggs drink and salads",
+          "status": "Pending"
+        },
+        {
+          "id": "7b4d3c26-b71b-dad7-7f1a-6cda169491be",
+          "priority": "2",
+          "room": "Kitchen",
+          "name": "Make squash soup",
+          "status": "Pending"
+        },
+        {
+          "id": "00b0d06f-5907-f254-1e87-c628ec86d232",
+          "priority": "2",
+          "room": "Kitchen",
+          "name": "Run power to acre and install towel rod Press",
+          "status": "Pending"
+        },
+        {
+          "id": "25f1bb08-e56f-3b08-7194-0327cd209f5c",
+          "priority": "2",
+          "room": "Kitchen",
+          "name": "Set up smoothie station",
+          "status": "Pending"
+        },
+        {
+          "id": "1dc4e8a3-fb38-38da-bea9-203ea2432603",
+          "priority": "2",
+          "room": "Office",
+          "name": "Appeal SNAP decision provide volunteer details",
+          "status": "Pending"
+        },
+        {
+          "id": "975bdb75-4f91-9e67-22b2-d364ab179652",
+          "priority": "2",
+          "room": "Office",
+          "name": "Contact O station about double A batteries charging to only 30%",
+          "status": "Pending"
+        },
+        {
+          "id": "16434504-3518-dee2-5bd0-7a445abdfa6e",
+          "priority": "2",
+          "room": "Office",
+          "name": "Figure out how to use communicator voice dictation into my laptop or iPad",
+          "status": "Pending"
+        },
+        {
+          "id": "a0df4b30-c3a8-5cb8-6b51-e7744875635f",
+          "priority": "2",
+          "room": "Office",
+          "name": "File Insurance Case Number 260010839, Officer Bissett, Badge Number 3191",
+          "status": "Pending"
+        },
+        {
+          "id": "9f0ccc1a-7725-7444-6206-8036bc021d9d",
+          "priority": "2",
+          "room": "Office",
+          "name": "Finish replacing fans on 3-fan GPU for other system",
+          "status": "Pending"
+        },
+        {
+          "id": "1c151184-1ee5-698f-cc64-de7521da926b",
+          "priority": "2",
+          "room": "Office",
+          "name": "Fix pzizz license to sleep and Lords of Waterdeep on iPad",
+          "status": "Pending"
+        },
+        {
+          "id": "e6543030-5ca6-c17f-b82b-84a9f123ab72",
+          "priority": "2",
+          "room": "Office",
+          "name": "Fix vacuum",
+          "status": "Pending"
+        },
+        {
+          "id": "9c83925a-5ed9-01dc-bce8-f49571e3bf21",
+          "priority": "2",
+          "room": "Office",
+          "name": "Laptop with voice dev tools and linux so i can reimage the PC",
+          "status": "Pending"
+        },
+        {
+          "id": "2afc83e0-872b-6c25-bd8c-326245c94c23",
+          "priority": "2",
+          "room": "Office",
+          "name": "Merlin - Rewards list",
+          "status": "Pending"
+        },
+        {
+          "id": "417b168a-b976-4bc2-7597-dbe383732587",
+          "priority": "2",
+          "room": "Office",
+          "name": "Move secure stuff off Google Drive",
+          "status": "Pending"
+        },
+        {
+          "id": "48ac817f-a3de-91b2-7918-0d3b1372adad",
+          "priority": "2",
+          "room": "Office",
+          "name": "Plan trip and look for concerts by Tiesto Christian or A and B",
+          "status": "Pending"
+        },
+        {
+          "id": "091e96f5-88c9-45ff-69f9-c781737d190a",
+          "priority": "2",
+          "room": "Office",
+          "name": "Replace backmost GPU fan in the back of 2-fan PC",
+          "status": "Pending"
+        },
+        {
+          "id": "871c9a91-22eb-84e6-be64-086a1a906bd6",
+          "priority": "2",
+          "room": "Office",
+          "name": "Research Google Voicemail full is it it working now?",
+          "status": "Pending"
+        },
+        {
+          "id": "4f231ec9-9e05-6deb-8df6-f2df1f13b33b",
+          "priority": "2",
+          "room": "Office",
+          "name": "Respond to Stewart wedding in May",
+          "status": "Pending"
+        },
+        {
+          "id": "dc5c97fd-180d-7fb0-7344-102ec9f9deb6",
+          "priority": "2",
+          "room": "Office",
+          "name": "Review dads will and ask caryl for Cpap and trains",
+          "status": "Pending"
+        },
+        {
+          "id": "3257689e-2257-5358-9cc1-339f87e62e63",
+          "priority": "2",
+          "room": "Office",
+          "name": "Review Starred emails",
+          "status": "Pending"
+        },
+        {
+          "id": "bf38aa87-68fd-a449-d22c-ec20c59b8bfc",
+          "priority": "2",
+          "room": "Office",
+          "name": "Send TY cards to Mom Revi Gurpreet Kelly",
+          "status": "Pending"
+        },
+        {
+          "id": "15cd55c1-1950-186c-f885-75211f127be9",
+          "priority": "2",
+          "room": "Office",
+          "name": "Set up time blocks and music",
+          "status": "Pending"
+        },
+        {
+          "id": "508a033a-0f16-8b27-5250-212731f1c316",
+          "priority": "2",
+          "room": "Office",
+          "name": "Set up VR apps",
+          "status": "Pending"
+        },
+        {
+          "id": "bbbfa5ae-ad66-98c2-7850-e57c9a64c187",
+          "priority": "2",
+          "room": "Office",
+          "name": "Setup base Unity app with Doozy OdinInspector TextMeshPro HexJSON UnityRider dotCover Trace",
+          "status": "Pending"
+        },
+        {
+          "id": "a0c58b2d-6c79-cacc-eaa8-81a654c9ba36",
+          "priority": "2",
+          "room": "Office",
+          "name": "Setup Claude Code",
+          "status": "Pending"
+        },
+        {
+          "id": "4fd06467-5809-44cf-bc50-68765ebde9fb",
+          "priority": "2",
+          "room": "Office",
+          "name": "Setup Downloads and Docs mount points in ubuntu WSL for Gemini to access",
+          "status": "Pending"
+        },
+        {
+          "id": "99abd45e-8e3a-e6b9-ae98-861b68bca91f",
+          "priority": "2",
+          "room": "Office",
+          "name": "Setup time blocks and checklists Wakeup Pre-Work Work Lunch Chore Sleep",
+          "status": "Pending"
+        },
+        {
+          "id": "f4182612-2f8b-e3a6-c531-a8d703c00d9e",
+          "priority": "2",
+          "room": "Office",
+          "name": "Setup Unity build Mac Mini",
+          "status": "Pending"
+        },
+        {
+          "id": "e2f54ee1-36fe-3a32-14c8-067df2dd42a7",
+          "priority": "2",
+          "room": "Shop",
+          "name": "Update NAS security and figure out hammering drive, test video output to TV speed <a href=\"https://bigred3.us1.quickconnect.to/\">https://bigred3.us1.quickconnect.to/</a> new4SR$",
+          "status": "Pending"
+        },
+        {
+          "id": "db1146af-8b89-011a-8e2a-d27c3974969a",
+          "priority": "2",
+          "room": "Temple",
+          "name": "Setup fertilizer sticks and put dishes under all plants and then water",
+          "status": "Pending"
+        },
+        {
+          "id": "1a17bfbb-83db-e82e-6298-b70dc6653872",
+          "priority": "2",
+          "room": "Yard",
+          "name": "Bring hose and pots in",
+          "status": "Pending"
+        },
+        {
+          "id": "4efff34c-2f19-ad2a-a7f3-2188e426723d",
+          "priority": "3",
+          "room": "Bed",
+          "name": "People Reach out to Maria Adams Karate Kid, Kelly Ruof, Cynthia Right Here Waiting For You",
+          "status": "Pending"
+        },
+        {
+          "id": "3ac7098e-2d68-307a-ed81-c16ea6705653",
+          "priority": "3",
+          "room": "Fun",
+          "name": "Balatro final hand flush 5 5 of a kind and bulwark",
+          "status": "Pending"
+        },
+        {
+          "id": "0e9d8df3-55ba-f5b8-d97f-d381bb26cdb5",
+          "priority": "3",
+          "room": "Fun",
+          "name": "Balatro Ghost Black Abandoned black checkered black Zodiac",
+          "status": "Pending"
+        },
+        {
+          "id": "2121dba3-218d-3099-9f70-36dbf00f021a",
+          "priority": "3",
+          "room": "Fun",
+          "name": "Research BGG ticket and hotel",
+          "status": "Pending"
+        },
+        {
+          "id": "62f4eb5c-d248-6a57-fd99-e531f60a3c51",
+          "priority": "3",
+          "room": "Fun",
+          "name": "Research World Masters Games and ticket from Carol",
+          "status": "Pending"
+        },
+        {
+          "id": "6540b4f0-e808-eaa5-8b31-49600196b4f9",
+          "priority": "3",
+          "room": "Garage",
+          "name": "Motorcycle mirrors kickstand puck air tires fairing panniers quickstraps scratched saddlebags",
+          "status": "Pending"
+        },
+        {
+          "id": "a31c978c-e2af-1c37-199e-6acf4847f5f6",
+          "priority": "3",
+          "room": "Garage",
+          "name": "Motorcycle Setup for oil change and clutch spring replacement mirrors",
+          "status": "Pending"
+        },
+        {
+          "id": "1f377e71-22b2-6734-6db7-71e29b6f06d5",
+          "priority": "3",
+          "room": "Garage",
+          "name": "Setup power washer with feeder hose from new one",
+          "status": "Pending"
+        },
+        {
+          "id": "a0cd9229-e702-9d50-ded9-93233228ea8d",
+          "priority": "3",
+          "room": "Kitchen",
+          "name": "Empty unused cabinets and sort through jars",
+          "status": "Pending"
+        },
+        {
+          "id": "945a1c02-12a9-20ef-e9c5-9792dc629ebf",
+          "priority": "3",
+          "room": "Kitchen",
+          "name": "Setup air fryer outlet and towel rack",
+          "status": "Pending"
+        },
+        {
+          "id": "70ff6704-a64e-b39a-178c-ebcc43782a6d",
+          "priority": "3",
+          "room": "Office",
+          "name": "Add node.js schedule automation to resume",
+          "status": "Pending"
+        },
+        {
+          "id": "7312047d-4799-d1b5-7dab-2c99ff9fe783",
+          "priority": "3",
+          "room": "Office",
+          "name": "Backup and trim/organize Google Photos",
+          "status": "Pending"
+        },
+        {
+          "id": "4679e8bb-6a6c-37f2-5c9a-002b3ed1b518",
+          "priority": "3",
+          "room": "Office",
+          "name": "Cleanup Documents and Downloads",
+          "status": "Pending"
+        },
+        {
+          "id": "c6cc2c90-824f-cf32-38ee-3c7bf1c3ecd7",
+          "priority": "3",
+          "room": "Office",
+          "name": "Download series into Plex Rivalry Hated Rivalry Sinners King is Dead Weapons The Pit",
+          "status": "Pending"
+        },
+        {
+          "id": "f990cbf6-41d5-d700-716b-f8e13e4ddd15",
+          "priority": "3",
+          "room": "Office",
+          "name": "Figure out how to sync monitors to YouTube or Plex via Merlin server",
+          "status": "Pending"
+        },
+        {
+          "id": "e2ed9b5b-cd0e-57a3-af12-a65669f29c45",
+          "priority": "3",
+          "room": "Office",
+          "name": "June 1 Apply for Medicaid renewal expires end of July",
+          "status": "Pending"
+        },
+        {
+          "id": "eb41eca5-405f-c9e4-e037-39a023f3e123",
+          "priority": "3",
+          "room": "Office",
+          "name": "Setup old laptop with FydeOS like Chrome with Linux AI",
+          "status": "Pending"
+        },
+        {
+          "id": "0a313959-e7c5-8f0b-e20f-07e664b77eea",
+          "priority": "3",
+          "room": "Office",
+          "name": "Test/fix/use NFC injectable",
+          "status": "Pending"
+        },
+        {
+          "id": "bd679921-51be-7c2a-b9c6-9fd226ad22f3",
+          "priority": "3",
+          "room": "Office",
+          "name": "Update PC install checklist document",
+          "status": "Pending"
+        },
+        {
+          "id": "5f75b55e-cd66-dc62-6945-4e39bc97feb2",
+          "priority": "3",
+          "room": "Office",
+          "name": "Update TRT health weight document",
+          "status": "Pending"
+        },
+        {
+          "id": "cf85ca55-e84d-35e8-2a61-212d432c413c",
+          "priority": "3",
+          "room": "Shop",
+          "name": "Finish moving George/Mom stuff upstairs",
+          "status": "Pending"
+        },
+        {
+          "id": "1da31b93-af4f-76dd-69b2-8feba302c04f",
+          "priority": "3",
+          "room": "Shop",
+          "name": "Move freezer/fridge and clean out to defrost",
+          "status": "Pending"
+        },
+        {
+          "id": "ef8ff427-ccaf-0227-fd1b-b9bf10456013",
+          "priority": "3",
+          "room": "Shop",
+          "name": "Setup tub electrical outlet",
+          "status": "Pending"
+        },
+        {
+          "id": "ea295646-6d19-3346-e8a0-ed432e3a8b70",
+          "priority": "3",
+          "room": "Shop",
+          "name": "Setup workout area",
+          "status": "Pending"
+        },
+        {
+          "id": "1d001c5d-7e6f-20ae-ec63-dcf765f8f560",
+          "priority": "3",
+          "room": "Shop",
+          "name": "Telescope setup finder and USB dongle and then figure out camera",
+          "status": "Pending"
+        },
+        {
+          "id": "dde7303a-84e3-6877-2850-c67e12e664c1",
+          "priority": "3",
+          "room": "Shop",
+          "name": "Tidy server area and move shelf",
+          "status": "Pending"
+        },
+        {
+          "id": "9e2d51c0-eb0c-90e5-07ee-834e3333beb4",
+          "priority": "3",
+          "room": "Temple",
+          "name": "Move shelf and cleanup",
+          "status": "Pending"
+        },
+        {
+          "id": "329c6e79-e134-aa6a-6684-b2b502c865ac",
+          "priority": "3",
+          "room": "Temple",
+          "name": "Tidy piano music",
+          "status": "Pending"
+        },
+        {
+          "id": "a81bc0ab-f5f6-81f6-85bc-f0e6f7ef9855",
+          "priority": "3",
+          "room": "Yard",
+          "name": "Dorset yard 2 workers mark@backyardbounty.net",
+          "status": "Pending"
+        },
+        {
+          "id": "80fe9897-baea-86bf-34de-bc756eec4ac9",
+          "priority": "3",
+          "room": "Yard",
+          "name": "Power wash back tub deck",
+          "status": "Pending"
+        },
+        {
+          "id": "c62ab7e2-2d31-175e-5d7e-dafddb27a611",
+          "priority": "3",
+          "room": "Yard",
+          "name": "Power wash front patio",
+          "status": "Pending"
+        },
+        {
+          "id": "a5e1e1a7-77c8-4003-88e1-f50bb347c6e2",
+          "priority": "",
+          "room": "Garage",
+          "name": "🛒 LUGGAGE: Quick-release for workout duffel - 🏆 CHOICE 1: ROK Straps (Best for using existing bag; 2-click release)",
+          "status": "Pending"
+        },
+        {
+          "id": "72fc34eb-b87f-434d-a2cd-cc61e140e71a",
+          "priority": "",
+          "room": "Garage",
+          "name": "🛒 LUGGAGE: Quick-release for workout duffel - 🏆 CHOICE 2: Nelson-Rigg Commuter Bag (Dedicated bag with clip-system)",
+          "status": "Pending"
+        },
+        {
+          "id": "7c4ee9f7-c755-4a31-893c-3526b9b31b86",
+          "priority": "",
+          "room": "Garage",
+          "name": "🛒 LUGGAGE: Quick-release for workout duffel - 🏆 CHOICE 3: SW-Motech PRO (Premium quick-lock tech)",
+          "status": "Pending"
+        },
+        {
+          "id": "07dd1186-9525-4dba-8f36-8a62ca11f048",
+          "priority": "",
+          "room": "Garage",
+          "name": "🛒 TIRES: Order All-Season / Sport Touring set - 🏆 CHOICE 1: Michelin Road 6 (Best wet grip/cold performance)",
+          "status": "Pending"
+        },
+        {
+          "id": "44a81ced-bf07-4fec-9cd9-1ddaef7f738d",
+          "priority": "",
+          "room": "Garage",
+          "name": "🛒 TIRES: Order All-Season / Sport Touring set - 🏆 CHOICE 2: Dunlop Roadsmart IV (Successor to Sportmax; touring focused)",
+          "status": "Pending"
+        },
+        {
+          "id": "c5cb2f96-2035-4240-bd05-d210bf6ed27a",
+          "priority": "",
+          "room": "Garage",
+          "name": "🛒 TIRES: Order All-Season / Sport Touring set - 📏 FRONT: 120/60/ZR17",
+          "status": "Pending"
+        },
+        {
+          "id": "c15c27dd-3845-4d58-9d3a-ee50e290496c",
+          "priority": "",
+          "room": "Garage",
+          "name": "🛒 TIRES: Order All-Season / Sport Touring set - 📏 REAR: 160/60/ZR17",
+          "status": "Pending"
+        },
+        {
+          "id": "7d20c1d3-cd57-433b-878c-cfed0bc9f10a",
+          "priority": "",
+          "room": "Garage",
+          "name": "Execute M/C Gear Install (⚔️ WARRIOR Mission) [Mon 6-Apr] - 🏍️ TIRES: Drop off bike/wheels for Michelin Road 6 installation",
+          "status": "Pending"
+        },
+        {
+          "id": "b90b8bf5-8fa9-4b26-bdf6-c56c630bd0f2",
+          "priority": "",
+          "room": "Garage",
+          "name": "Execute M/C Gear Install (⚔️ WARRIOR Mission) [Mon 6-Apr] - 💨 INSTALL: Helite 100cc CO2 Canister (Reset Trigger)",
+          "status": "Pending"
+        },
+        {
+          "id": "a1e3332d-2ee8-48ab-aea8-2fadf66b4a99",
+          "priority": "",
+          "room": "Garage",
+          "name": "Execute M/C Gear Install (⚔️ WARRIOR Mission) [Mon 6-Apr] - 🔧 SETUP: Tension ROK Straps for Workout Duffel",
+          "status": "Pending"
+        },
+        {
+          "id": "91e46726-8ede-43ed-ac64-5f4d5f93f7ab",
+          "priority": "",
+          "room": "Garage",
+          "name": "Execute M/C Gear Install (⚔️ WARRIOR Mission) [Mon 6-Apr] - 🛡️ INSTALL: Sedici Strada II Clear Shield + Pinlock Lens",
+          "status": "Pending"
+        },
+        {
+          "id": "839db804-418c-4a5e-a2b7-519c4900d1cc",
+          "priority": "",
+          "room": "Garage",
+          "name": "Finalize M/C gear (⚔️ WARRIOR Mission) - ⚠️ NOTE: Roadsmart IV 120/60 front is SPECIAL ORDER at RevZilla; 120/70 is standard stock",
+          "status": "Pending"
+        },
+        {
+          "id": "1b1673e3-733f-4e3c-b391-3d0d1352bc55",
+          "priority": "",
+          "room": "Garage",
+          "name": "Finalize M/C gear (⚔️ WARRIOR Mission) - ⚠️ WARNING: 85cc will under-inflate a Turtle 2 LL; keep 85cc for Equestrian vests only",
+          "status": "Pending"
+        },
+        {
+          "id": "b4e7b605-f43a-4dad-8e67-b9cd996216ec",
+          "priority": "",
+          "room": "Garage",
+          "name": "Finalize M/C gear (⚔️ WARRIOR Mission) - ⚠️ WARNING: 85cc will under-inflate an Original Turtle LL; stick to 100cc",
+          "status": "Pending"
+        },
+        {
+          "id": "28b654ee-89a1-425a-8430-c4c338db9177",
+          "priority": "",
+          "room": "Garage",
+          "name": "Finalize M/C gear (⚔️ WARRIOR Mission) - ⚠️ WARNING: Do not use stick-ons and Pinlock together; choose one system",
+          "status": "Pending"
+        },
+        {
+          "id": "68471ea8-9bdb-4975-b3f6-247cc505fc59",
+          "priority": "",
+          "room": "Garage",
+          "name": "Finalize M/C gear (⚔️ WARRIOR Mission) - ✅ CONFIRMED: Canister size is 100cc for Original Turtle LL",
+          "status": "Pending"
+        },
+        {
+          "id": "b47ff5a3-7882-4db4-abcf-6c21775215e2",
+          "priority": "",
+          "room": "Garage",
+          "name": "Finalize M/C gear (⚔️ WARRIOR Mission) - ✅ DONE: Insurance Finalized",
+          "status": "Pending"
+        },
+        {
+          "id": "b1f691aa-75a7-4b81-afe5-b2e9208f8310",
+          "priority": "",
+          "room": "Garage",
+          "name": "Finalize M/C gear (⚔️ WARRIOR Mission) - ✅ ORDERED: Helite 100cc Canister (RevZilla)",
+          "status": "Pending"
+        },
+        {
+          "id": "1529d341-460e-4fbd-aa0f-993da2ab2c02",
+          "priority": "",
+          "room": "Garage",
+          "name": "Finalize M/C gear (⚔️ WARRIOR Mission) - ✅ SUBMITTED: Michelin 0 Rebate (Claim: 204345)",
+          "status": "Pending"
+        },
+        {
+          "id": "398f4236-c238-4cf3-996e-821162ad454a",
+          "priority": "",
+          "room": "Garage",
+          "name": "Finalize M/C gear (⚔️ WARRIOR Mission) - 🏆 RECOMMENDATION: Michelin Road 6 for best rain/cold tech and immediate 120/60 availability",
+          "status": "Pending"
+        },
+        {
+          "id": "01976d28-439a-4feb-be2e-e08f01701416",
+          "priority": "",
+          "room": "Garage",
+          "name": "Finalize M/C gear (⚔️ WARRIOR Mission) - 💨 ORDER: Helite Turtle Airbag Vest Replacement Canister",
+          "status": "Pending"
+        },
+        {
+          "id": "6435088a-77f6-4c39-8dbc-1a606312ca8b",
+          "priority": "",
+          "room": "Garage",
+          "name": "Finalize M/C gear (⚔️ WARRIOR Mission) - 💰 REBATE (0): Michelin Spring 2026 - Submit by 31-May at two-wheel.tirerewardcenter.com",
+          "status": "Pending"
+        },
+        {
+          "id": "d1fe1caf-b0d2-404c-b0c2-29969f8d49a9",
+          "priority": "",
+          "room": "Garage",
+          "name": "Finalize M/C gear (⚔️ WARRIOR Mission) - 📊 TIRE COMPARE: Michelin Road 6 (98 - 0 rebate) vs Dunlop Roadsmart IV (98 - 00 rebate if local)",
+          "status": "Pending"
+        },
+        {
+          "id": "0549f45d-9ec5-4ee7-85e1-134704cd71af",
+          "priority": "",
+          "room": "Garage",
+          "name": "Finalize M/C gear (⚔️ WARRIOR Mission) - 📋 TIP: Keep RevZilla itemized receipt for the rebate claim",
+          "status": "Pending"
+        },
+        {
+          "id": "08a940a4-c239-4bdc-9728-b85a8207910b",
+          "priority": "",
+          "room": "Garage",
+          "name": "Finalize M/C gear (⚔️ WARRIOR Mission) - 🔍 CHECK: Look at inside vest label or original canister engraving for exact size (60cc vs 100cc)",
+          "status": "Pending"
+        },
+        {
+          "id": "c9d74fa4-e0ff-4f01-a08b-9535fc00e2f3",
+          "priority": "",
+          "room": "Garage",
+          "name": "Finalize M/C gear (⚔️ WARRIOR Mission) - 🔧 SETUP: Install and tension ROK straps for workout duffel",
+          "status": "Pending"
+        },
+        {
+          "id": "b37f9d72-c478-4331-9ae4-dbd45b1c4526",
+          "priority": "",
+          "room": "Garage",
+          "name": "Finalize M/C gear (⚔️ WARRIOR Mission) - 🛒 CANISTER (Confirmed): 100cc CO2 for your Turtle 2 LL",
+          "status": "Pending"
+        },
+        {
+          "id": "89d7cc85-8538-4ee3-9b6a-9caea026e1f3",
+          "priority": "",
+          "room": "Garage",
+          "name": "Finalize M/C gear (⚔️ WARRIOR Mission) - 🛒 CANISTER (LL Size): You need the 100cc CO2 canister (not 85cc) for proper Turtle 2 inflation",
+          "status": "Pending"
+        },
+        {
+          "id": "41c79320-b3c0-4586-9751-8ea9f9c827f0",
+          "priority": "",
+          "room": "Garage",
+          "name": "Finalize M/C gear (⚔️ WARRIOR Mission) - 🛒 CANISTER (Original Turtle LL): You need the 100cc CO2 canister (not 85cc) for proper inflation",
+          "status": "Pending"
+        },
+        {
+          "id": "da9f1713-75f9-4b08-ad5d-8eee2369330c",
+          "priority": "",
+          "room": "Garage",
+          "name": "Finalize M/C gear (⚔️ WARRIOR Mission) - 🛒 CANISTER: Helite 60cc CO2 (for Standard L/XL) or 100cc (for L-L/XL-L Plus/Long)",
+          "status": "Pending"
+        },
+        {
+          "id": "b128f64a-77fb-45a6-adfa-9c1afd4c2bd3",
+          "priority": "",
+          "room": "Garage",
+          "name": "Finalize M/C gear (⚔️ WARRIOR Mission) - 🛒 HELITE 100cc (Alt): motorcyclegear.com",
+          "status": "Pending"
+        },
+        {
+          "id": "ed8d8f16-7ab6-427d-b9ce-c25d6bf6e31e",
+          "priority": "",
+          "room": "Garage",
+          "name": "Finalize M/C gear (⚔️ WARRIOR Mission) - 🛒 HELITE 100cc (Bundle): revzilla.com/motorcycle/helite-co2-cartridge",
+          "status": "Pending"
+        },
+        {
+          "id": "59f1a59c-84a0-4194-b6cb-0d8e949f1b22",
+          "priority": "",
+          "room": "Garage",
+          "name": "Finalize M/C gear (⚔️ WARRIOR Mission) - 🛒 HELITE 100cc (Direct): helitemoto.com/products/co2-cartridges",
+          "status": "Pending"
+        },
+        {
+          "id": "1bf21112-b367-4696-b076-6e0f0160f179",
+          "priority": "",
+          "room": "Garage",
+          "name": "Finalize M/C gear (⚔️ WARRIOR Mission) - 🛒 LUGGAGE: Quick-release for workout duffel",
+          "status": "Pending"
+        },
+        {
+          "id": "71058943-d892-4995-af63-3184019223a4",
+          "priority": "",
+          "room": "Garage",
+          "name": "Finalize M/C gear (⚔️ WARRIOR Mission) - 🛒 SHIELD (Confirmed): Sedici Strada II Clear Face Shield (Model FF-80) - 4.99 at RevZilla/Cycle Gear",
+          "status": "Pending"
+        },
+        {
+          "id": "ae0f1cd3-438d-4540-844b-01a13ca0458f",
+          "priority": "",
+          "room": "Garage",
+          "name": "Finalize M/C gear (⚔️ WARRIOR Mission) - 🛒 SHIELD: Sedici Strada II Clear Face Shield (Pinlock 70 Ready) - check RevZilla/Cycle Gear",
+          "status": "Pending"
+        },
+        {
+          "id": "9518e2c6-d0bb-4147-8b33-346721c9e63e",
+          "priority": "",
+          "room": "Garage",
+          "name": "Finalize M/C gear (⚔️ WARRIOR Mission) - 🛒 TIRES: Michelin Road 6 Set - 98.98 at RevZilla",
+          "status": "Pending"
+        },
+        {
+          "id": "02ecc319-dcff-4c5a-b171-a918f8c6a8af",
+          "priority": "",
+          "room": "Garage",
+          "name": "Finalize M/C gear (⚔️ WARRIOR Mission) - 🛒 TIRES: Order All-Season / Sport Touring set",
+          "status": "Pending"
+        },
+        {
+          "id": "54fcd48f-46bb-47fa-8e1c-2423a50e1672",
+          "priority": "",
+          "room": "Garage",
+          "name": "Finalize M/C gear (⚔️ WARRIOR Mission) - 🛡️ ORDER: Sedici Strada II Clear Replacement Shield",
+          "status": "Pending"
+        },
+        {
+          "id": "bd238685-e76e-431e-915d-fff483dd69a8",
+          "priority": "",
+          "room": "Garage",
+          "name": "Finalize M/C gear (⚔️ WARRIOR Mission) - 🛡️ SHIELD OPTION 1: Shield only (5) + use Amazon stick-ons (Lower cost)",
+          "status": "Pending"
+        },
+        {
+          "id": "20126106-eb55-4591-95df-8fd848d66686",
+          "priority": "",
+          "room": "Garage",
+          "name": "Finalize M/C gear (⚔️ WARRIOR Mission) - 🛡️ SHIELD OPTION 2: Shield (5) + Pinlock 70 Lens (5) = 0 (Best for snow/rain)",
+          "status": "Pending"
+        },
+        {
+          "id": "9d15e0c1-13e9-42be-3caf-824ff4e4fa5b",
+          "priority": "",
+          "room": "King (Damage/Bike/Gear)",
+          "name": "Gather damage photos",
+          "status": "Pending"
+        },
+        {
+          "id": "16e84c48-c365-4887-2bc2-c6507c69544b",
+          "priority": "",
+          "room": "King (Damage/Bike/Gear)",
+          "name": "Schedule bike shop repair",
+          "status": "Pending"
+        },
+        {
+          "id": "fb2b85e0-ccff-4fc4-d8bf-05d0db238175",
+          "priority": "",
+          "room": "King (Damage/Bike/Gear)",
+          "name": "Visit Cycle Gear (helmet/vest)",
+          "status": "Pending"
+        },
+        {
+          "id": "93795668-3c20-4087-8204-faeb1ccce50f",
+          "priority": "",
+          "room": "Lover (Mail/Checks)",
+          "name": "Dakota (from mail)",
+          "status": "Pending"
+        },
+        {
+          "id": "f9f3cd19-5509-417f-3ed6-14e7c964b9f1",
+          "priority": "",
+          "room": "Lover (Mail/Checks)",
+          "name": "Deposit checks",
+          "status": "Pending"
+        },
+        {
+          "id": "1cf8f116-ed62-4e1a-85b9-b8c2b6aef3eb",
+          "priority": "",
+          "room": "Lover (Mail/Checks)",
+          "name": "Open sort mail",
+          "status": "Pending"
+        },
+        {
+          "id": "87f9b955-74b4-4183-b3ca-a0590ce12713",
+          "priority": "",
+          "room": "Rogue (AirTag/MO/Fedex)",
+          "name": "Buy Money Order",
+          "status": "Pending"
+        },
+        {
+          "id": "d426d84d-9614-46de-3a07-762296e9484c",
+          "priority": "",
+          "room": "Rogue (AirTag/MO/Fedex)",
+          "name": "Ship Fedex package",
+          "status": "Pending"
+        },
+        {
+          "id": "8df6678c-040b-4508-4a0e-b7b36edb154d",
+          "priority": "",
+          "room": "Rogue (AirTag/MO/Fedex)",
+          "name": "Visit Msg (message center)",
+          "status": "Pending"
+        },
+        {
+          "id": "f80b2763-5a67-407a-6925-306d0b046748",
+          "priority": "",
+          "room": "Vizier (Daily Standup)",
+          "name": "Finalize Daily/Weekly sync",
+          "status": "Pending"
+        },
+        {
+          "id": "aac61533-9c89-49cb-bb01-ab5a05e88b67",
+          "priority": "",
+          "room": "Vizier (Daily Standup)",
+          "name": "Process Wednesday calendar",
+          "status": "Pending"
+        },
+        {
+          "id": "c4674424-c5bc-403e-df1b-4fc60df788c3",
+          "priority": "",
+          "room": "Vizier (Daily Standup)",
+          "name": "Update Checklist tab",
+          "status": "Pending"
+        },
+        {
+          "id": "b99989b9-ad9c-4fb4-ba0e-5c5154f33911",
+          "priority": "",
+          "room": "Warrior (Tidy van)",
+          "name": "Clear sensors",
+          "status": "Pending"
+        },
+        {
+          "id": "3b2eb265-1bbf-4966-4322-55dc7d447df9",
+          "priority": "",
+          "room": "Warrior (Tidy van)",
+          "name": "Drain gray water",
+          "status": "Pending"
+        },
+        {
+          "id": "7153656d-b829-421e-57cb-00b342fc9a79",
+          "priority": "",
+          "room": "Warrior (Tidy van)",
+          "name": "Reset AirTags (CPAP, Wallet)",
+          "status": "Pending"
+        },
+        {
+          "id": "bc667686-7c20-41b1-842e-83604a17c933",
+          "priority": "",
+          "room": "Yard",
+          "name": "Coleman Saluspa Maintenance (❤️ LOVER Mission) - ⚠️ WARNING: Bag filter balls tightly; loose balls WILL destroy the pump impeller",
+          "status": "Pending"
+        },
+        {
+          "id": "c1b5fb72-4188-46f6-b77c-d3b2cb140782",
+          "priority": "",
+          "room": "Yard",
+          "name": "Coleman Saluspa Maintenance (❤️ LOVER Mission) - 💨 DRYING: Use HAIRDRYER (COOL SETTING ONLY) to evaporate remaining internal moisture",
+          "status": "Pending"
+        },
+        {
+          "id": "f9605e23-25a0-465a-99a0-f681cdb05371",
+          "priority": "",
+          "room": "Yard",
+          "name": "Coleman Saluspa Maintenance (❤️ LOVER Mission) - 🔍 VALVE ID: Boston (Removable screw-on) vs. Pinch (Welded push-in)",
+          "status": "Pending"
+        },
+        {
+          "id": "774374dd-c06e-46eb-91cf-14f83ee0ab32",
+          "priority": "",
+          "room": "Yard",
+          "name": "Coleman Saluspa Maintenance (❤️ LOVER Mission) - 🔧 SETUP: Place mesh bag INSIDE gray filter housing (replaces Type VI cartridge)",
+          "status": "Pending"
+        },
+        {
+          "id": "4922ccb8-430c-4e8e-ad1e-316be65996b6",
+          "priority": "",
+          "room": "Yard",
+          "name": "Coleman Saluspa Maintenance (❤️ LOVER Mission) - 🔧 VALVE FIX: Drain condensation from bladder before reseating seal",
+          "status": "Pending"
+        },
+        {
+          "id": "48b892f7-8023-4bea-acd7-8f7e6ce8c357",
+          "priority": "",
+          "room": "Yard",
+          "name": "Coleman Saluspa Maintenance (❤️ LOVER Mission) - 🔧 VALVE FIX: Use 100% Silicone Lube ONLY (No petroleum/Vaseline) on Boston valve flap",
+          "status": "Pending"
+        },
+        {
+          "id": "adc3c03b-eea0-4852-ad7e-c0e46affbdf6",
+          "priority": "",
+          "room": "Yard",
+          "name": "Coleman Saluspa Maintenance (❤️ LOVER Mission) - 🥤 DRAIN TRICK: Insert straw past internal flap to hold \"gate\" open for water exit",
+          "status": "Pending"
+        },
+        {
+          "id": "c9b55b71-5aba-44a3-91f3-bffe0daead06",
+          "priority": "",
+          "room": "Yard",
+          "name": "Coleman Saluspa Maintenance (❤️ LOVER Mission) - 🧼 CLEANING: Swap every 2-4 weeks; machine wash (no soap) to reuse",
+          "status": "Pending"
+        },
+        {
+          "id": "92f9ae4c-e01f-4a7f-a8dc-47688ce43c74",
+          "priority": "",
+          "room": "Yard",
+          "name": "Coleman Saluspa Maintenance (❤️ LOVER Mission) - 🧼 LUBE: Use Q-tip + 100% Silicone on internal flap/throat for airtight seal",
+          "status": "Pending"
+        },
+        {
+          "id": "0bdee024-6ad2-4ae8-9f4d-3ec46635b2a4",
+          "priority": "",
+          "room": "Yard",
+          "name": "Coleman Saluspa Maintenance (❤️ LOVER Mission) - 🛒 ORDER: 500g bag of Filter Balls (approx 50-70 balls = 5 sets)",
+          "status": "Pending"
+        },
+        {
+          "id": "a6e7dba3-2b74-4a95-810a-4becc56848c7",
+          "priority": "",
+          "room": "Yard",
+          "name": "Coleman Saluspa Maintenance (❤️ LOVER Mission) - 🛒 SETS: Use 10-12 balls per set inside the gray housing",
+          "status": "Pending"
+        },
+        {
+          "id": "2f1a86b5-aec4-442f-a013-76c78d723ca5",
+          "priority": "",
+          "room": "Yard",
+          "name": "Coleman Saluspa Maintenance (❤️ LOVER Mission) - 🛒 SPECS: 100% Polyethylene (PE); 3-5 micron rating; prefer Blue (Antimicrobial)",
+          "status": "Pending"
+        },
+        {
+          "id": "392fce60-b3d8-4afc-a40b-5ba202a2fc91",
+          "priority": "",
+          "room": "Yard",
+          "name": "Coleman Saluspa Maintenance (❤️ LOVER Mission) - 🛠️ UPGRADE: Switch to Filter Balls (Polysphere) with mesh bag for 3-5 micron filtration",
+          "status": "Pending"
+        },
+        {
+          "id": "360941d4-c4b9-442d-939b-16db78265fcb",
+          "priority": "",
+          "room": "Yard",
+          "name": "Coleman Saluspa Maintenance (❤️ LOVER Mission) - 🛠️ UPGRADE: Use Antimicrobial Blue cartridges (Filbur/Pleatco) if sticking with paper",
+          "status": "Pending"
+        },
+        {
+          "id": "6be2ac8b-b838-4104-ba0f-7a8a94c00241",
+          "priority": "",
+          "room": "Yard",
+          "name": "Coleman Saluspa Maintenance (❤️ LOVER Mission) - Inflatable Dome Lid: Water pillows ordered; Action: Drain and lubricate valve on bladder",
+          "status": "Pending"
+        },
+        {
+          "id": "4606fa5f-4ce2-455e-9385-ed38e07cd683",
+          "priority": "",
+          "room": "Yard",
+          "name": "Coleman Saluspa Maintenance (❤️ LOVER Mission) - Poor Filtration: WaterVac ordered; Research better filters",
+          "status": "Pending"
+        },
+        {
+          "id": "8ae33caa-ab98-4eb9-bb53-8bf5e4b763e4",
+          "priority": "",
+          "room": "Yard",
+          "name": "Coleman Saluspa Maintenance (❤️ LOVER Mission) - Tie-down Straps: Water-filled weight cover tiedowns ordered; Resolve attachment difficulty",
+          "status": "Pending"
+        },
+        {
+          "id": "a4f94bec-944f-4a46-57f0-3d60b77f877d",
+          "priority": "1",
+          "room": "Calls",
+          "name": "Medicaid about Prior Auth diagnosis not approvable 800-424-5725",
+          "status": "Complete",
+          "notes": "2026-04-03"
+        },
+        {
+          "id": "f7c8c314-16ee-f349-f1fc-c641ec0c142f",
+          "priority": "1",
+          "room": "Office",
+          "name": "Bait and setup mouse trap up in attic and in pantry",
+          "status": "Complete",
+          "notes": "2026-04-03"
+        },
+        {
+          "id": "0160d7e5-9291-4692-cf09-329de240f637",
+          "priority": "1",
+          "room": "Office",
+          "name": "Deposit checks",
+          "status": "Complete",
+          "notes": "2026-04-03"
+        },
+        {
+          "id": "a5e4fe0f-e011-8268-d59f-4306b3e707d6",
+          "priority": "1",
+          "room": "Office",
+          "name": "Process Mail",
+          "status": "Complete",
+          "notes": "2026-04-03"
+        },
+        {
+          "id": "5c2398f8-6105-9c24-682d-e7e47cb2772f",
+          "priority": "1",
+          "room": "Yard",
+          "name": "Trim rose by light",
+          "status": "Complete",
+          "notes": "2026-04-03"
+        },
+        {
+          "id": "79226fb4-7f18-c82c-0923-7f0b4c4e7a28",
+          "priority": "2",
+          "room": "Errand",
+          "name": "Equestrian shop Helite 85cc cartridge or just get a whole new vest?",
+          "status": "Complete",
+          "notes": "2026-04-03"
+        },
+        {
+          "id": "467e4578-6044-6314-3133-d3a9c7d667e8",
+          "priority": "2",
+          "room": "Kitchen",
+          "name": "And last",
+          "status": "Complete",
+          "notes": "2026-04-03"
+        },
+        {
+          "id": "7b32b12b-5a9e-1e3a-d79c-06fdbf78329f",
+          "priority": "",
+          "room": "Office",
+          "name": "Open sort mail and call Dakota",
+          "status": "Complete",
+          "notes": "2026-04-03"
+        },
+        {
+          "id": "1642433b-f329-3a8e-0b47-a241edceaabc",
+          "priority": "1",
+          "room": "Office",
+          "name": "Add board items including Unclaimed",
+          "status": "Pending"
+        },
+        {
+          "id": "a05a135a-4168-e64a-b42a-1f56be94c788",
+          "priority": "1",
+          "room": "Office",
+          "name": "Catchup on mail, let Dylan know about his check",
+          "status": "Pending"
+        },
+        {
+          "id": "86ea3f35-c182-f923-cedc-97d975ae3f3f",
+          "priority": "1",
+          "room": "Office",
+          "name": "Clear out Inbox",
+          "status": "Pending"
+        },
+        {
+          "id": "e771f648-d9eb-f4d5-e1c9-2e822198c4c6",
+          "priority": "1",
+          "room": "Office",
+          "name": "Contact insurance agent and file motorcycle claim",
+          "status": "Pending"
+        },
+        {
+          "id": "256129da-5ddf-6016-814b-b7951a49aa51",
+          "priority": "1",
+          "room": "Office",
+          "name": "Contact insurance and update lawyer",
+          "status": "Pending"
+        },
+        {
+          "id": "2c8853fd-229b-7321-210a-6a1365696f5e",
+          "priority": "1",
+          "room": "Office",
+          "name": "Gather receipts and send pics and email to mom",
+          "status": "Pending"
+        },
+        {
+          "id": "aa66c6e7-5fe5-3b04-503f-42b228fd30c7",
+          "priority": "1",
+          "room": "Office",
+          "name": "Locate checks and deposit, respond to Caryl",
+          "status": "Pending"
+        },
+        {
+          "id": "af407f7e-a91d-ddf5-ce9b-2127be1202ab",
+          "priority": "1",
+          "room": "Office",
+          "name": "Merlin - AI: Daily review of priorities tasks completed, next up, and calendar for the day",
+          "status": "Pending"
+        },
+        {
+          "id": "331fbae6-dc1d-34ef-0934-c0d3e626a424",
+          "priority": "1",
+          "room": "Office",
+          "name": "Merlin - Review and plan day",
+          "status": "Pending"
+        },
+        {
+          "id": "79e62e20-3d45-8daf-88f6-640d1e17669d",
+          "priority": "1",
+          "room": "Office",
+          "name": "Merlin - Setup ideal day timeline and voice/music prompt",
+          "status": "Pending"
+        },
+        {
+          "id": "624ec50f-6a02-3574-babd-e6d25509eac8",
+          "priority": "1",
+          "room": "Office",
+          "name": "Merlin - Sheets script to generate a printable dashboard / web page showing status",
+          "status": "Pending"
+        },
+        {
+          "id": "0358a396-34ef-d925-3994-55bd8222fa1a",
+          "priority": "1",
+          "room": "Office",
+          "name": "Pay credit cards and update budget",
+          "status": "Pending"
+        },
+        {
+          "id": "03651c27-5702-d116-f624-fea303ac95be",
+          "priority": "1",
+          "room": "Office",
+          "name": "Reschedule Ultrahuman Blood draw test, fix Home unit, and put ring into Chill mode",
+          "status": "Pending"
+        },
+        {
+          "id": "10394421-238c-1139-7de3-92d900f61889",
+          "priority": "1",
+          "room": "Office",
+          "name": "Review will and email Caryl",
+          "status": "Pending"
+        },
+        {
+          "id": "6d30924a-e735-59ca-43ba-c232aeb90261",
+          "priority": "1",
+          "room": "Office",
+          "name": "Set up script for daily plan",
+          "status": "Pending"
+        },
+        {
+          "id": "ca1282c9-fb00-15eb-8573-4673702e6f5e",
+          "priority": "1",
+          "room": "Office",
+          "name": "Setup github repo for my AI agents",
+          "status": "Pending"
+        },
+        {
+          "id": "9147919a-4a9e-9eb1-ecf3-d5a0988131ef",
+          "priority": "1",
+          "room": "Office",
+          "name": "Setup laptop with clawed code and Co working with mobile",
+          "status": "Pending"
+        },
+        {
+          "id": "3ae111fc-bc3e-d954-e03b-81035c4fbfc6",
+          "priority": "1",
+          "room": "Office",
+          "name": "Snap volunteering reinstatement",
+          "status": "Pending"
+        },
+        {
+          "id": "eae64b44-5f6b-2980-732a-19966172571b",
+          "priority": "1",
+          "room": "Office",
+          "name": "Take pics of dental issues in prep for trip and for claim suppport",
+          "status": "Pending"
+        },
+        {
+          "id": "aed82103-ddad-1e17-0923-1649580fc413",
+          "priority": "1",
+          "room": "Office",
+          "name": "Update calendar and show weekly goals",
+          "status": "Pending"
+        },
+        {
+          "id": "1dc4e8a3-fb38-38da-bea9-203ea2432603",
+          "priority": "2",
+          "room": "Office",
+          "name": "Appeal SNAP decision provide volunteer details",
+          "status": "Pending"
+        },
+        {
+          "id": "975bdb75-4f91-9e67-22b2-d364ab179652",
+          "priority": "2",
+          "room": "Office",
+          "name": "Contact O station about double A batteries charging to only 30%",
+          "status": "Pending"
+        },
+        {
+          "id": "16434504-3518-dee2-5bd0-7a445abdfa6e",
+          "priority": "2",
+          "room": "Office",
+          "name": "Figure out how to use communicator voice dictation into my laptop or iPad",
+          "status": "Pending"
+        },
+        {
+          "id": "a0df4b30-c3a8-5cb8-6b51-e7744875635f",
+          "priority": "2",
+          "room": "Office",
+          "name": "File Insurance Case Number 260010839, Officer Bissett, Badge Number 3191",
+          "status": "Pending"
+        },
+        {
+          "id": "9f0ccc1a-7725-7444-6206-8036bc021d9d",
+          "priority": "2",
+          "room": "Office",
+          "name": "Finish replacing fans on 3-fan GPU for other system",
+          "status": "Pending"
+        },
+        {
+          "id": "1c151184-1ee5-698f-cc64-de7521da926b",
+          "priority": "2",
+          "room": "Office",
+          "name": "Fix pzizz license to sleep and Lords of Waterdeep on iPad",
+          "status": "Pending"
+        },
+        {
+          "id": "e6543030-5ca6-c17f-b82b-84a9f123ab72",
+          "priority": "2",
+          "room": "Office",
+          "name": "Fix vacuum",
+          "status": "Pending"
+        },
+        {
+          "id": "9c83925a-5ed9-01dc-bce8-f49571e3bf21",
+          "priority": "2",
+          "room": "Office",
+          "name": "Laptop with voice dev tools and linux so i can reimage the PC",
+          "status": "Pending"
+        },
+        {
+          "id": "2afc83e0-872b-6c25-bd8c-326245c94c23",
+          "priority": "2",
+          "room": "Office",
+          "name": "Merlin - Rewards list",
+          "status": "Pending"
+        },
+        {
+          "id": "417b168a-b976-4bc2-7597-dbe383732587",
+          "priority": "2",
+          "room": "Office",
+          "name": "Move secure stuff off Google Drive",
+          "status": "Pending"
+        },
+        {
+          "id": "48ac817f-a3de-91b2-7918-0d3b1372adad",
+          "priority": "2",
+          "room": "Office",
+          "name": "Plan trip and look for concerts by Tiesto Christian or A and B",
+          "status": "Pending"
+        },
+        {
+          "id": "091e96f5-88c9-45ff-69f9-c781737d190a",
+          "priority": "2",
+          "room": "Office",
+          "name": "Replace backmost GPU fan in the back of 2-fan PC",
+          "status": "Pending"
+        },
+        {
+          "id": "871c9a91-22eb-84e6-be64-086a1a906bd6",
+          "priority": "2",
+          "room": "Office",
+          "name": "Research Google Voicemail full is it it working now?",
+          "status": "Pending"
+        },
+        {
+          "id": "4f231ec9-9e05-6deb-8df6-f2df1f13b33b",
+          "priority": "2",
+          "room": "Office",
+          "name": "Respond to Stewart wedding in May",
+          "status": "Pending"
+        },
+        {
+          "id": "dc5c97fd-180d-7fb0-7344-102ec9f9deb6",
+          "priority": "2",
+          "room": "Office",
+          "name": "Review dads will and ask caryl for Cpap and trains",
+          "status": "Pending"
+        },
+        {
+          "id": "3257689e-2257-5358-9cc1-339f87e62e63",
+          "priority": "2",
+          "room": "Office",
+          "name": "Review Starred emails",
+          "status": "Pending"
+        },
+        {
+          "id": "bf38aa87-68fd-a449-d22c-ec20c59b8bfc",
+          "priority": "2",
+          "room": "Office",
+          "name": "Send TY cards to Mom Revi Gurpreet Kelly",
+          "status": "Pending"
+        },
+        {
+          "id": "15cd55c1-1950-186c-f885-75211f127be9",
+          "priority": "2",
+          "room": "Office",
+          "name": "Set up time blocks and music",
+          "status": "Pending"
+        },
+        {
+          "id": "508a033a-0f16-8b27-5250-212731f1c316",
+          "priority": "2",
+          "room": "Office",
+          "name": "Set up VR apps",
+          "status": "Pending"
+        },
+        {
+          "id": "bbbfa5ae-ad66-98c2-7850-e57c9a64c187",
+          "priority": "2",
+          "room": "Office",
+          "name": "Setup base Unity app with Doozy OdinInspector TextMeshPro HexJSON UnityRider dotCover Trace",
+          "status": "Pending"
+        },
+        {
+          "id": "a0c58b2d-6c79-cacc-eaa8-81a654c9ba36",
+          "priority": "2",
+          "room": "Office",
+          "name": "Setup Claude Code",
+          "status": "Pending"
+        },
+        {
+          "id": "4fd06467-5809-44cf-bc50-68765ebde9fb",
+          "priority": "2",
+          "room": "Office",
+          "name": "Setup Downloads and Docs mount points in ubuntu WSL for Gemini to access",
+          "status": "Pending"
+        },
+        {
+          "id": "99abd45e-8e3a-e6b9-ae98-861b68bca91f",
+          "priority": "2",
+          "room": "Office",
+          "name": "Setup time blocks and checklists Wakeup Pre-Work Work Lunch Chore Sleep",
+          "status": "Pending"
+        },
+        {
+          "id": "f4182612-2f8b-e3a6-c531-a8d703c00d9e",
+          "priority": "2",
+          "room": "Office",
+          "name": "Setup Unity build Mac Mini",
+          "status": "Pending"
+        },
+        {
+          "id": "70ff6704-a64e-b39a-178c-ebcc43782a6d",
+          "priority": "3",
+          "room": "Office",
+          "name": "Add node.js schedule automation to resume",
+          "status": "Pending"
+        },
+        {
+          "id": "7312047d-4799-d1b5-7dab-2c99ff9fe783",
+          "priority": "3",
+          "room": "Office",
+          "name": "Backup and trim/organize Google Photos",
+          "status": "Pending"
+        },
+        {
+          "id": "4679e8bb-6a6c-37f2-5c9a-002b3ed1b518",
+          "priority": "3",
+          "room": "Office",
+          "name": "Cleanup Documents and Downloads",
+          "status": "Pending"
+        },
+        {
+          "id": "c6cc2c90-824f-cf32-38ee-3c7bf1c3ecd7",
+          "priority": "3",
+          "room": "Office",
+          "name": "Download series into Plex Rivalry Hated Rivalry Sinners King is Dead Weapons The Pit",
+          "status": "Pending"
+        },
+        {
+          "id": "f990cbf6-41d5-d700-716b-f8e13e4ddd15",
+          "priority": "3",
+          "room": "Office",
+          "name": "Figure out how to sync monitors to YouTube or Plex via Merlin server",
+          "status": "Pending"
+        },
+        {
+          "id": "e2ed9b5b-cd0e-57a3-af12-a65669f29c45",
+          "priority": "3",
+          "room": "Office",
+          "name": "June 1 Apply for Medicaid renewal expires end of July",
+          "status": "Pending"
+        },
+        {
+          "id": "eb41eca5-405f-c9e4-e037-39a023f3e123",
+          "priority": "3",
+          "room": "Office",
+          "name": "Setup old laptop with FydeOS like Chrome with Linux AI",
+          "status": "Pending"
+        },
+        {
+          "id": "0a313959-e7c5-8f0b-e20f-07e664b77eea",
+          "priority": "3",
+          "room": "Office",
+          "name": "Test/fix/use NFC injectable",
+          "status": "Pending"
+        },
+        {
+          "id": "bd679921-51be-7c2a-b9c6-9fd226ad22f3",
+          "priority": "3",
+          "room": "Office",
+          "name": "Update PC install checklist document",
+          "status": "Pending"
+        },
+        {
+          "id": "5f75b55e-cd66-dc62-6945-4e39bc97feb2",
+          "priority": "3",
+          "room": "Office",
+          "name": "Update TRT health weight document",
+          "status": "Pending"
+        },
+        {
+          "id": "1a6055a3-51c2-4b25-b7d4-64833c3aa7c7",
+          "priority": "1",
+          "room": "Garage",
+          "name": "Execute M/C Gear Install (⚔️ WARRIOR Mission) [Mon 6-Apr]",
+          "status": "Pending"
+        },
+        {
+          "id": "6cb14022-de2a-419e-835e-fa73bb840d83",
+          "priority": "1",
+          "room": "Garage",
+          "name": "Finalize M/C gear (⚔️ WARRIOR Mission)",
+          "status": "Pending"
+        },
+        {
+          "id": "1e528718-df28-3e62-cf37-0fd6e6e0cdd1",
+          "priority": "1",
+          "room": "Garage",
+          "name": "Motorcycle: vest reload, tire air, fairing",
+          "status": "Pending"
+        },
+        {
+          "id": "8c648a6d-32fc-cca4-ce7b-8276f3e99b18",
+          "priority": "2",
+          "room": "Garage",
+          "name": "Bike Fasten and rack and tighten and Lube chain",
+          "status": "Pending"
+        },
+        {
+          "id": "5b129822-9ac1-8e8f-447c-a4d38bb88d30",
+          "priority": "2",
+          "room": "Garage",
+          "name": "Clean and fix opener",
+          "status": "Pending"
+        },
+        {
+          "id": "cb2b763c-0f85-440c-95a8-3fe28ea78427",
+          "priority": "2",
+          "room": "Garage",
+          "name": "Clean up and put away tools",
+          "status": "Pending"
+        },
+        {
+          "id": "333aca14-7b2f-c6b9-46bc-186f2f74f7c8",
+          "priority": "2",
+          "room": "Garage",
+          "name": "Find urethane spray and use on table",
+          "status": "Pending"
+        },
+        {
+          "id": "10bbc78c-5b11-3252-5fcd-6495b126cc17",
+          "priority": "2",
+          "room": "Garage",
+          "name": "Motorcycle Lube chain oil gear shift find Angel Wings kit",
+          "status": "Pending"
+        },
+        {
+          "id": "6540b4f0-e808-eaa5-8b31-49600196b4f9",
+          "priority": "3",
+          "room": "Garage",
+          "name": "Motorcycle mirrors kickstand puck air tires fairing panniers quickstraps scratched saddlebags",
+          "status": "Pending"
+        },
+        {
+          "id": "a31c978c-e2af-1c37-199e-6acf4847f5f6",
+          "priority": "3",
+          "room": "Garage",
+          "name": "Motorcycle Setup for oil change and clutch spring replacement mirrors",
+          "status": "Pending"
+        },
+        {
+          "id": "1f377e71-22b2-6734-6db7-71e29b6f06d5",
+          "priority": "3",
+          "room": "Garage",
+          "name": "Setup power washer with feeder hose from new one",
+          "status": "Pending"
+        },
+        {
+          "id": "a5e1e1a7-77c8-4003-88e1-f50bb347c6e2",
+          "priority": "",
+          "room": "Garage",
+          "name": "🛒 LUGGAGE: Quick-release for workout duffel - 🏆 CHOICE 1: ROK Straps (Best for using existing bag; 2-click release)",
+          "status": "Pending"
+        },
+        {
+          "id": "72fc34eb-b87f-434d-a2cd-cc61e140e71a",
+          "priority": "",
+          "room": "Garage",
+          "name": "🛒 LUGGAGE: Quick-release for workout duffel - 🏆 CHOICE 2: Nelson-Rigg Commuter Bag (Dedicated bag with clip-system)",
+          "status": "Pending"
+        },
+        {
+          "id": "7c4ee9f7-c755-4a31-893c-3526b9b31b86",
+          "priority": "",
+          "room": "Garage",
+          "name": "🛒 LUGGAGE: Quick-release for workout duffel - 🏆 CHOICE 3: SW-Motech PRO (Premium quick-lock tech)",
+          "status": "Pending"
+        },
+        {
+          "id": "07dd1186-9525-4dba-8f36-8a62ca11f048",
+          "priority": "",
+          "room": "Garage",
+          "name": "🛒 TIRES: Order All-Season / Sport Touring set - 🏆 CHOICE 1: Michelin Road 6 (Best wet grip/cold performance)",
+          "status": "Pending"
+        },
+        {
+          "id": "44a81ced-bf07-4fec-9cd9-1ddaef7f738d",
+          "priority": "",
+          "room": "Garage",
+          "name": "🛒 TIRES: Order All-Season / Sport Touring set - 🏆 CHOICE 2: Dunlop Roadsmart IV (Successor to Sportmax; touring focused)",
+          "status": "Pending"
+        },
+        {
+          "id": "c5cb2f96-2035-4240-bd05-d210bf6ed27a",
+          "priority": "",
+          "room": "Garage",
+          "name": "🛒 TIRES: Order All-Season / Sport Touring set - 📏 FRONT: 120/60/ZR17",
+          "status": "Pending"
+        },
+        {
+          "id": "c15c27dd-3845-4d58-9d3a-ee50e290496c",
+          "priority": "",
+          "room": "Garage",
+          "name": "🛒 TIRES: Order All-Season / Sport Touring set - 📏 REAR: 160/60/ZR17",
+          "status": "Pending"
+        },
+        {
+          "id": "7d20c1d3-cd57-433b-878c-cfed0bc9f10a",
+          "priority": "",
+          "room": "Garage",
+          "name": "Execute M/C Gear Install (⚔️ WARRIOR Mission) [Mon 6-Apr] - 🏍️ TIRES: Drop off bike/wheels for Michelin Road 6 installation",
+          "status": "Pending"
+        },
+        {
+          "id": "b90b8bf5-8fa9-4b26-bdf6-c56c630bd0f2",
+          "priority": "",
+          "room": "Garage",
+          "name": "Execute M/C Gear Install (⚔️ WARRIOR Mission) [Mon 6-Apr] - 💨 INSTALL: Helite 100cc CO2 Canister (Reset Trigger)",
+          "status": "Pending"
+        },
+        {
+          "id": "a1e3332d-2ee8-48ab-aea8-2fadf66b4a99",
+          "priority": "",
+          "room": "Garage",
+          "name": "Execute M/C Gear Install (⚔️ WARRIOR Mission) [Mon 6-Apr] - 🔧 SETUP: Tension ROK Straps for Workout Duffel",
+          "status": "Pending"
+        },
+        {
+          "id": "91e46726-8ede-43ed-ac64-5f4d5f93f7ab",
+          "priority": "",
+          "room": "Garage",
+          "name": "Execute M/C Gear Install (⚔️ WARRIOR Mission) [Mon 6-Apr] - 🛡️ INSTALL: Sedici Strada II Clear Shield + Pinlock Lens",
+          "status": "Pending"
+        },
+        {
+          "id": "839db804-418c-4a5e-a2b7-519c4900d1cc",
+          "priority": "",
+          "room": "Garage",
+          "name": "Finalize M/C gear (⚔️ WARRIOR Mission) - ⚠️ NOTE: Roadsmart IV 120/60 front is SPECIAL ORDER at RevZilla; 120/70 is standard stock",
+          "status": "Pending"
+        },
+        {
+          "id": "1b1673e3-733f-4e3c-b391-3d0d1352bc55",
+          "priority": "",
+          "room": "Garage",
+          "name": "Finalize M/C gear (⚔️ WARRIOR Mission) - ⚠️ WARNING: 85cc will under-inflate a Turtle 2 LL; keep 85cc for Equestrian vests only",
+          "status": "Pending"
+        },
+        {
+          "id": "b4e7b605-f43a-4dad-8e67-b9cd996216ec",
+          "priority": "",
+          "room": "Garage",
+          "name": "Finalize M/C gear (⚔️ WARRIOR Mission) - ⚠️ WARNING: 85cc will under-inflate an Original Turtle LL; stick to 100cc",
+          "status": "Pending"
+        },
+        {
+          "id": "28b654ee-89a1-425a-8430-c4c338db9177",
+          "priority": "",
+          "room": "Garage",
+          "name": "Finalize M/C gear (⚔️ WARRIOR Mission) - ⚠️ WARNING: Do not use stick-ons and Pinlock together; choose one system",
+          "status": "Pending"
+        },
+        {
+          "id": "68471ea8-9bdb-4975-b3f6-247cc505fc59",
+          "priority": "",
+          "room": "Garage",
+          "name": "Finalize M/C gear (⚔️ WARRIOR Mission) - ✅ CONFIRMED: Canister size is 100cc for Original Turtle LL",
+          "status": "Pending"
+        },
+        {
+          "id": "b47ff5a3-7882-4db4-abcf-6c21775215e2",
+          "priority": "",
+          "room": "Garage",
+          "name": "Finalize M/C gear (⚔️ WARRIOR Mission) - ✅ DONE: Insurance Finalized",
+          "status": "Pending"
+        },
+        {
+          "id": "b1f691aa-75a7-4b81-afe5-b2e9208f8310",
+          "priority": "",
+          "room": "Garage",
+          "name": "Finalize M/C gear (⚔️ WARRIOR Mission) - ✅ ORDERED: Helite 100cc Canister (RevZilla)",
+          "status": "Pending"
+        },
+        {
+          "id": "1529d341-460e-4fbd-aa0f-993da2ab2c02",
+          "priority": "",
+          "room": "Garage",
+          "name": "Finalize M/C gear (⚔️ WARRIOR Mission) - ✅ SUBMITTED: Michelin 0 Rebate (Claim: 204345)",
+          "status": "Pending"
+        },
+        {
+          "id": "398f4236-c238-4cf3-996e-821162ad454a",
+          "priority": "",
+          "room": "Garage",
+          "name": "Finalize M/C gear (⚔️ WARRIOR Mission) - 🏆 RECOMMENDATION: Michelin Road 6 for best rain/cold tech and immediate 120/60 availability",
+          "status": "Pending"
+        },
+        {
+          "id": "01976d28-439a-4feb-be2e-e08f01701416",
+          "priority": "",
+          "room": "Garage",
+          "name": "Finalize M/C gear (⚔️ WARRIOR Mission) - 💨 ORDER: Helite Turtle Airbag Vest Replacement Canister",
+          "status": "Pending"
+        },
+        {
+          "id": "6435088a-77f6-4c39-8dbc-1a606312ca8b",
+          "priority": "",
+          "room": "Garage",
+          "name": "Finalize M/C gear (⚔️ WARRIOR Mission) - 💰 REBATE (0): Michelin Spring 2026 - Submit by 31-May at two-wheel.tirerewardcenter.com",
+          "status": "Pending"
+        },
+        {
+          "id": "d1fe1caf-b0d2-404c-b0c2-29969f8d49a9",
+          "priority": "",
+          "room": "Garage",
+          "name": "Finalize M/C gear (⚔️ WARRIOR Mission) - 📊 TIRE COMPARE: Michelin Road 6 (98 - 0 rebate) vs Dunlop Roadsmart IV (98 - 00 rebate if local)",
+          "status": "Pending"
+        },
+        {
+          "id": "0549f45d-9ec5-4ee7-85e1-134704cd71af",
+          "priority": "",
+          "room": "Garage",
+          "name": "Finalize M/C gear (⚔️ WARRIOR Mission) - 📋 TIP: Keep RevZilla itemized receipt for the rebate claim",
+          "status": "Pending"
+        },
+        {
+          "id": "08a940a4-c239-4bdc-9728-b85a8207910b",
+          "priority": "",
+          "room": "Garage",
+          "name": "Finalize M/C gear (⚔️ WARRIOR Mission) - 🔍 CHECK: Look at inside vest label or original canister engraving for exact size (60cc vs 100cc)",
+          "status": "Pending"
+        },
+        {
+          "id": "c9d74fa4-e0ff-4f01-a08b-9535fc00e2f3",
+          "priority": "",
+          "room": "Garage",
+          "name": "Finalize M/C gear (⚔️ WARRIOR Mission) - 🔧 SETUP: Install and tension ROK straps for workout duffel",
+          "status": "Pending"
+        },
+        {
+          "id": "b37f9d72-c478-4331-9ae4-dbd45b1c4526",
+          "priority": "",
+          "room": "Garage",
+          "name": "Finalize M/C gear (⚔️ WARRIOR Mission) - 🛒 CANISTER (Confirmed): 100cc CO2 for your Turtle 2 LL",
+          "status": "Pending"
+        },
+        {
+          "id": "89d7cc85-8538-4ee3-9b6a-9caea026e1f3",
+          "priority": "",
+          "room": "Garage",
+          "name": "Finalize M/C gear (⚔️ WARRIOR Mission) - 🛒 CANISTER (LL Size): You need the 100cc CO2 canister (not 85cc) for proper Turtle 2 inflation",
+          "status": "Pending"
+        },
+        {
+          "id": "41c79320-b3c0-4586-9751-8ea9f9c827f0",
+          "priority": "",
+          "room": "Garage",
+          "name": "Finalize M/C gear (⚔️ WARRIOR Mission) - 🛒 CANISTER (Original Turtle LL): You need the 100cc CO2 canister (not 85cc) for proper inflation",
+          "status": "Pending"
+        },
+        {
+          "id": "da9f1713-75f9-4b08-ad5d-8eee2369330c",
+          "priority": "",
+          "room": "Garage",
+          "name": "Finalize M/C gear (⚔️ WARRIOR Mission) - 🛒 CANISTER: Helite 60cc CO2 (for Standard L/XL) or 100cc (for L-L/XL-L Plus/Long)",
+          "status": "Pending"
+        },
+        {
+          "id": "b128f64a-77fb-45a6-adfa-9c1afd4c2bd3",
+          "priority": "",
+          "room": "Garage",
+          "name": "Finalize M/C gear (⚔️ WARRIOR Mission) - 🛒 HELITE 100cc (Alt): motorcyclegear.com",
+          "status": "Pending"
+        },
+        {
+          "id": "ed8d8f16-7ab6-427d-b9ce-c25d6bf6e31e",
+          "priority": "",
+          "room": "Garage",
+          "name": "Finalize M/C gear (⚔️ WARRIOR Mission) - 🛒 HELITE 100cc (Bundle): revzilla.com/motorcycle/helite-co2-cartridge",
+          "status": "Pending"
+        },
+        {
+          "id": "59f1a59c-84a0-4194-b6cb-0d8e949f1b22",
+          "priority": "",
+          "room": "Garage",
+          "name": "Finalize M/C gear (⚔️ WARRIOR Mission) - 🛒 HELITE 100cc (Direct): helitemoto.com/products/co2-cartridges",
+          "status": "Pending"
+        },
+        {
+          "id": "1bf21112-b367-4696-b076-6e0f0160f179",
+          "priority": "",
+          "room": "Garage",
+          "name": "Finalize M/C gear (⚔️ WARRIOR Mission) - 🛒 LUGGAGE: Quick-release for workout duffel",
+          "status": "Pending"
+        },
+        {
+          "id": "71058943-d892-4995-af63-3184019223a4",
+          "priority": "",
+          "room": "Garage",
+          "name": "Finalize M/C gear (⚔️ WARRIOR Mission) - 🛒 SHIELD (Confirmed): Sedici Strada II Clear Face Shield (Model FF-80) - 4.99 at RevZilla/Cycle Gear",
+          "status": "Pending"
+        },
+        {
+          "id": "ae0f1cd3-438d-4540-844b-01a13ca0458f",
+          "priority": "",
+          "room": "Garage",
+          "name": "Finalize M/C gear (⚔️ WARRIOR Mission) - 🛒 SHIELD: Sedici Strada II Clear Face Shield (Pinlock 70 Ready) - check RevZilla/Cycle Gear",
+          "status": "Pending"
+        },
+        {
+          "id": "9518e2c6-d0bb-4147-8b33-346721c9e63e",
+          "priority": "",
+          "room": "Garage",
+          "name": "Finalize M/C gear (⚔️ WARRIOR Mission) - 🛒 TIRES: Michelin Road 6 Set - 98.98 at RevZilla",
+          "status": "Pending"
+        },
+        {
+          "id": "02ecc319-dcff-4c5a-b171-a918f8c6a8af",
+          "priority": "",
+          "room": "Garage",
+          "name": "Finalize M/C gear (⚔️ WARRIOR Mission) - 🛒 TIRES: Order All-Season / Sport Touring set",
+          "status": "Pending"
+        },
+        {
+          "id": "54fcd48f-46bb-47fa-8e1c-2423a50e1672",
+          "priority": "",
+          "room": "Garage",
+          "name": "Finalize M/C gear (⚔️ WARRIOR Mission) - 🛡️ ORDER: Sedici Strada II Clear Replacement Shield",
+          "status": "Pending"
+        },
+        {
+          "id": "bd238685-e76e-431e-915d-fff483dd69a8",
+          "priority": "",
+          "room": "Garage",
+          "name": "Finalize M/C gear (⚔️ WARRIOR Mission) - 🛡️ SHIELD OPTION 1: Shield only (5) + use Amazon stick-ons (Lower cost)",
+          "status": "Pending"
+        },
+        {
+          "id": "20126106-eb55-4591-95df-8fd848d66686",
+          "priority": "",
+          "room": "Garage",
+          "name": "Finalize M/C gear (⚔️ WARRIOR Mission) - 🛡️ SHIELD OPTION 2: Shield (5) + Pinlock 70 Lens (5) = 0 (Best for snow/rain)",
+          "status": "Pending"
+        },
+        {
+          "id": "8d8bdacd-2996-60be-ae4d-2f85c208e58b",
+          "priority": "1",
+          "room": "Temple",
+          "name": "Water plants",
+          "status": "Pending"
+        },
+        {
+          "id": "db1146af-8b89-011a-8e2a-d27c3974969a",
+          "priority": "2",
+          "room": "Temple",
+          "name": "Setup fertilizer sticks and put dishes under all plants and then water",
+          "status": "Pending"
+        },
+        {
+          "id": "9e2d51c0-eb0c-90e5-07ee-834e3333beb4",
+          "priority": "3",
+          "room": "Temple",
+          "name": "Move shelf and cleanup",
+          "status": "Pending"
+        },
+        {
+          "id": "329c6e79-e134-aa6a-6684-b2b502c865ac",
+          "priority": "3",
+          "room": "Temple",
+          "name": "Tidy piano music",
+          "status": "Pending"
+        },
+        {
+          "id": "e2f54ee1-36fe-3a32-14c8-067df2dd42a7",
+          "priority": "2",
+          "room": "Shop",
+          "name": "Update NAS security and figure out hammering drive, test video output to TV speed <a href=\"https://bigred3.us1.quickconnect.to/\">https://bigred3.us1.quickconnect.to/</a> new4SR$",
+          "status": "Pending"
+        },
+        {
+          "id": "cf85ca55-e84d-35e8-2a61-212d432c413c",
+          "priority": "3",
+          "room": "Shop",
+          "name": "Finish moving George/Mom stuff upstairs",
+          "status": "Pending"
+        },
+        {
+          "id": "1da31b93-af4f-76dd-69b2-8feba302c04f",
+          "priority": "3",
+          "room": "Shop",
+          "name": "Move freezer/fridge and clean out to defrost",
+          "status": "Pending"
+        },
+        {
+          "id": "ef8ff427-ccaf-0227-fd1b-b9bf10456013",
+          "priority": "3",
+          "room": "Shop",
+          "name": "Setup tub electrical outlet",
+          "status": "Pending"
+        },
+        {
+          "id": "ea295646-6d19-3346-e8a0-ed432e3a8b70",
+          "priority": "3",
+          "room": "Shop",
+          "name": "Setup workout area",
+          "status": "Pending"
+        },
+        {
+          "id": "1d001c5d-7e6f-20ae-ec63-dcf765f8f560",
+          "priority": "3",
+          "room": "Shop",
+          "name": "Telescope setup finder and USB dongle and then figure out camera",
+          "status": "Pending"
+        },
+        {
+          "id": "dde7303a-84e3-6877-2850-c67e12e664c1",
+          "priority": "3",
+          "room": "Shop",
+          "name": "Tidy server area and move shelf",
+          "status": "Pending"
+        },
+        {
+          "id": "cd938cd8-98b4-c149-af2c-6138da24c76a",
+          "priority": "1",
+          "room": "Kitchen",
+          "name": "Make drink eggs iced T and bachelor chicken",
+          "status": "Pending"
+        },
+        {
+          "id": "1f6fafb6-1f2a-6a4b-6099-b5ea6286de80",
+          "priority": "2",
+          "room": "Kitchen",
+          "name": "Defrost and cook bachelor chicken and make eggs drink and salads",
+          "status": "Pending"
+        },
+        {
+          "id": "7b4d3c26-b71b-dad7-7f1a-6cda169491be",
+          "priority": "2",
+          "room": "Kitchen",
+          "name": "Make squash soup",
+          "status": "Pending"
+        },
+        {
+          "id": "00b0d06f-5907-f254-1e87-c628ec86d232",
+          "priority": "2",
+          "room": "Kitchen",
+          "name": "Run power to acre and install towel rod Press",
+          "status": "Pending"
+        },
+        {
+          "id": "25f1bb08-e56f-3b08-7194-0327cd209f5c",
+          "priority": "2",
+          "room": "Kitchen",
+          "name": "Set up smoothie station",
+          "status": "Pending"
+        },
+        {
+          "id": "a0cd9229-e702-9d50-ded9-93233228ea8d",
+          "priority": "3",
+          "room": "Kitchen",
+          "name": "Empty unused cabinets and sort through jars",
+          "status": "Pending"
+        },
+        {
+          "id": "945a1c02-12a9-20ef-e9c5-9792dc629ebf",
+          "priority": "3",
+          "room": "Kitchen",
+          "name": "Setup air fryer outlet and towel rack",
+          "status": "Pending"
+        },
+        {
+          "id": "13eaba69-5e98-dc1a-72d1-59719040901d",
+          "priority": "2",
+          "room": "Bath",
+          "name": "Iron clothes and do a load of laundry especially sheets",
+          "status": "Pending"
+        },
+        {
+          "id": "43d350ae-0fe1-ed2b-5e1c-b8372f38a0ff",
+          "priority": "2",
+          "room": "Bed",
+          "name": "Reach out to Nyx and possibly stay with her and invite her out here",
+          "status": "Pending"
+        },
+        {
+          "id": "48f5e7d2-0495-6c36-188c-01ec83303b49",
+          "priority": "2",
+          "room": "Bed",
+          "name": "Setup new Alexa routines for music sleep dark fuck work",
+          "status": "Pending"
+        },
+        {
+          "id": "4efff34c-2f19-ad2a-a7f3-2188e426723d",
+          "priority": "3",
+          "room": "Bed",
+          "name": "People Reach out to Maria Adams Karate Kid, Kelly Ruof, Cynthia Right Here Waiting For You",
+          "status": "Pending"
+        },
+        {
+          "id": "cf07f4a1-8261-c071-b373-bc08665499b2",
+          "priority": "1",
+          "room": "Errand",
+          "name": "Pick up Airtag at bowling alley",
+          "status": "Pending"
+        },
+        {
+          "id": "dcd169eb-82f0-aea0-ddbd-15ac0c8328b2",
+          "priority": "2",
+          "room": "Errand",
+          "name": "Bike to cherry blossoms and meet people",
+          "status": "Pending"
+        },
+        {
+          "id": "c4397851-1d3a-9d93-b58c-0ecd2f7f1ffb",
+          "priority": "2",
+          "room": "Errand",
+          "name": "Costco shrimp chips belvita dim sum pops havarti mango rice crisps fruit pops chix salad ban berry mush battery core receipt",
+          "status": "Pending"
+        },
+        {
+          "id": "5b95e582-9887-44a3-a50a-c460d5066c63",
+          "priority": "1",
+          "room": "Yard",
+          "name": "Coleman Saluspa Maintenance (❤️ LOVER Mission)",
+          "status": "Pending"
+        },
+        {
+          "id": "d177975c-b230-ae08-e401-6eadd3577798",
+          "priority": "1",
+          "room": "Yard",
+          "name": "Set up telescope",
+          "status": "Pending"
+        },
+        {
+          "id": "1a17bfbb-83db-e82e-6298-b70dc6653872",
+          "priority": "2",
+          "room": "Yard",
+          "name": "Bring hose and pots in",
+          "status": "Pending"
+        },
+        {
+          "id": "a81bc0ab-f5f6-81f6-85bc-f0e6f7ef9855",
+          "priority": "3",
+          "room": "Yard",
+          "name": "Dorset yard 2 workers mark@backyardbounty.net",
+          "status": "Pending"
+        },
+        {
+          "id": "80fe9897-baea-86bf-34de-bc756eec4ac9",
+          "priority": "3",
+          "room": "Yard",
+          "name": "Power wash back tub deck",
+          "status": "Pending"
+        },
+        {
+          "id": "c62ab7e2-2d31-175e-5d7e-dafddb27a611",
+          "priority": "3",
+          "room": "Yard",
+          "name": "Power wash front patio",
+          "status": "Pending"
+        },
+        {
+          "id": "bc667686-7c20-41b1-842e-83604a17c933",
+          "priority": "",
+          "room": "Yard",
+          "name": "Coleman Saluspa Maintenance (❤️ LOVER Mission) - ⚠️ WARNING: Bag filter balls tightly; loose balls WILL destroy the pump impeller",
+          "status": "Pending"
+        },
+        {
+          "id": "c1b5fb72-4188-46f6-b77c-d3b2cb140782",
+          "priority": "",
+          "room": "Yard",
+          "name": "Coleman Saluspa Maintenance (❤️ LOVER Mission) - 💨 DRYING: Use HAIRDRYER (COOL SETTING ONLY) to evaporate remaining internal moisture",
+          "status": "Pending"
+        },
+        {
+          "id": "f9605e23-25a0-465a-99a0-f681cdb05371",
+          "priority": "",
+          "room": "Yard",
+          "name": "Coleman Saluspa Maintenance (❤️ LOVER Mission) - 🔍 VALVE ID: Boston (Removable screw-on) vs. Pinch (Welded push-in)",
+          "status": "Pending"
+        },
+        {
+          "id": "774374dd-c06e-46eb-91cf-14f83ee0ab32",
+          "priority": "",
+          "room": "Yard",
+          "name": "Coleman Saluspa Maintenance (❤️ LOVER Mission) - 🔧 SETUP: Place mesh bag INSIDE gray filter housing (replaces Type VI cartridge)",
+          "status": "Pending"
+        },
+        {
+          "id": "4922ccb8-430c-4e8e-ad1e-316be65996b6",
+          "priority": "",
+          "room": "Yard",
+          "name": "Coleman Saluspa Maintenance (❤️ LOVER Mission) - 🔧 VALVE FIX: Drain condensation from bladder before reseating seal",
+          "status": "Pending"
+        },
+        {
+          "id": "48b892f7-8023-4bea-acd7-8f7e6ce8c357",
+          "priority": "",
+          "room": "Yard",
+          "name": "Coleman Saluspa Maintenance (❤️ LOVER Mission) - 🔧 VALVE FIX: Use 100% Silicone Lube ONLY (No petroleum/Vaseline) on Boston valve flap",
+          "status": "Pending"
+        },
+        {
+          "id": "adc3c03b-eea0-4852-ad7e-c0e46affbdf6",
+          "priority": "",
+          "room": "Yard",
+          "name": "Coleman Saluspa Maintenance (❤️ LOVER Mission) - 🥤 DRAIN TRICK: Insert straw past internal flap to hold \"gate\" open for water exit",
+          "status": "Pending"
+        },
+        {
+          "id": "c9b55b71-5aba-44a3-91f3-bffe0daead06",
+          "priority": "",
+          "room": "Yard",
+          "name": "Coleman Saluspa Maintenance (❤️ LOVER Mission) - 🧼 CLEANING: Swap every 2-4 weeks; machine wash (no soap) to reuse",
+          "status": "Pending"
+        },
+        {
+          "id": "92f9ae4c-e01f-4a7f-a8dc-47688ce43c74",
+          "priority": "",
+          "room": "Yard",
+          "name": "Coleman Saluspa Maintenance (❤️ LOVER Mission) - 🧼 LUBE: Use Q-tip + 100% Silicone on internal flap/throat for airtight seal",
+          "status": "Pending"
+        },
+        {
+          "id": "0bdee024-6ad2-4ae8-9f4d-3ec46635b2a4",
+          "priority": "",
+          "room": "Yard",
+          "name": "Coleman Saluspa Maintenance (❤️ LOVER Mission) - 🛒 ORDER: 500g bag of Filter Balls (approx 50-70 balls = 5 sets)",
+          "status": "Pending"
+        },
+        {
+          "id": "a6e7dba3-2b74-4a95-810a-4becc56848c7",
+          "priority": "",
+          "room": "Yard",
+          "name": "Coleman Saluspa Maintenance (❤️ LOVER Mission) - 🛒 SETS: Use 10-12 balls per set inside the gray housing",
+          "status": "Pending"
+        },
+        {
+          "id": "2f1a86b5-aec4-442f-a013-76c78d723ca5",
+          "priority": "",
+          "room": "Yard",
+          "name": "Coleman Saluspa Maintenance (❤️ LOVER Mission) - 🛒 SPECS: 100% Polyethylene (PE); 3-5 micron rating; prefer Blue (Antimicrobial)",
+          "status": "Pending"
+        },
+        {
+          "id": "392fce60-b3d8-4afc-a40b-5ba202a2fc91",
+          "priority": "",
+          "room": "Yard",
+          "name": "Coleman Saluspa Maintenance (❤️ LOVER Mission) - 🛠️ UPGRADE: Switch to Filter Balls (Polysphere) with mesh bag for 3-5 micron filtration",
+          "status": "Pending"
+        },
+        {
+          "id": "360941d4-c4b9-442d-939b-16db78265fcb",
+          "priority": "",
+          "room": "Yard",
+          "name": "Coleman Saluspa Maintenance (❤️ LOVER Mission) - 🛠️ UPGRADE: Use Antimicrobial Blue cartridges (Filbur/Pleatco) if sticking with paper",
+          "status": "Pending"
+        },
+        {
+          "id": "6be2ac8b-b838-4104-ba0f-7a8a94c00241",
+          "priority": "",
+          "room": "Yard",
+          "name": "Coleman Saluspa Maintenance (❤️ LOVER Mission) - Inflatable Dome Lid: Water pillows ordered; Action: Drain and lubricate valve on bladder",
+          "status": "Pending"
+        },
+        {
+          "id": "4606fa5f-4ce2-455e-9385-ed38e07cd683",
+          "priority": "",
+          "room": "Yard",
+          "name": "Coleman Saluspa Maintenance (❤️ LOVER Mission) - Poor Filtration: WaterVac ordered; Research better filters",
+          "status": "Pending"
+        },
+        {
+          "id": "8ae33caa-ab98-4eb9-bb53-8bf5e4b763e4",
+          "priority": "",
+          "room": "Yard",
+          "name": "Coleman Saluspa Maintenance (❤️ LOVER Mission) - Tie-down Straps: Water-filled weight cover tiedowns ordered; Resolve attachment difficulty",
+          "status": "Pending"
+        },
+        {
+          "id": "b4fbf4db-bc9c-0995-aa7a-0025980959ed",
+          "priority": "1",
+          "room": "Calls",
+          "name": "Capital One about over limit",
+          "status": "Pending"
+        },
+        {
+          "id": "f48c4ce5-d21e-6005-fea8-1fb53070e14e",
+          "priority": "1",
+          "room": "Calls",
+          "name": "King Soopers prescription testosterone",
+          "status": "Pending"
+        },
+        {
+          "id": "c26944cd-d7e6-173a-52d5-85e1f5544a38",
+          "priority": "1",
+          "room": "Calls",
+          "name": "Newell research facts about delays in meeting",
+          "status": "Pending"
+        },
+        {
+          "id": "7e7f6eda-0c20-36fc-1e15-2552c37a4170",
+          "priority": "2",
+          "room": "Calls",
+          "name": "Somerset recycle bin",
+          "status": "Pending"
+        },
+        {
+          "id": "7bfb1ca0-001e-3cc7-f1b9-45c14ecc88df",
+          "priority": "2",
+          "room": "Fun",
+          "name": "Balatro Sapphire Stamp to get unlocked",
+          "status": "Pending"
+        },
+        {
+          "id": "e9747736-13e8-4ef8-a03c-e8b99fcd9be0",
+          "priority": "2",
+          "room": "Fun",
+          "name": "Https://washington.org/things-to-do-this-may-in-washington-dc",
+          "status": "Pending"
+        },
+        {
+          "id": "3ac7098e-2d68-307a-ed81-c16ea6705653",
+          "priority": "3",
+          "room": "Fun",
+          "name": "Balatro final hand flush 5 5 of a kind and bulwark",
+          "status": "Pending"
+        },
+        {
+          "id": "0e9d8df3-55ba-f5b8-d97f-d381bb26cdb5",
+          "priority": "3",
+          "room": "Fun",
+          "name": "Balatro Ghost Black Abandoned black checkered black Zodiac",
+          "status": "Pending"
+        },
+        {
+          "id": "2121dba3-218d-3099-9f70-36dbf00f021a",
+          "priority": "3",
+          "room": "Fun",
+          "name": "Research BGG ticket and hotel",
+          "status": "Pending"
+        },
+        {
+          "id": "62f4eb5c-d248-6a57-fd99-e531f60a3c51",
+          "priority": "3",
+          "room": "Fun",
+          "name": "Research World Masters Games and ticket from Carol",
+          "status": "Pending"
+        }
+      ]
     }
   },
   "missions": {
@@ -87,12 +2586,16 @@
         "task": "Prep for class + dancing",
         "status": "NONE"
       },
+      "vizier": {
+        "task": "Mail / Checks / Will",
+        "status": "NONE"
+      },
       "lover": {
-        "task": "Have fun / plan to get #s",
+        "task": "Prep Dancing VB Costco WM",
         "status": "NONE"
       },
       "rogue": {
-        "task": "Prep VB Costco Walmart",
+        "task": "Emergency Dental exam",
         "status": "NONE"
       },
       "tinker": {
@@ -110,7 +2613,7 @@
         "status": "NONE"
       },
       "vizier": {
-        "task": "Walmart + Costco",
+        "task": "Find Documents and Pictures",
         "status": "NONE"
       },
       "lover": {
@@ -118,15 +2621,15 @@
         "status": "NONE"
       },
       "rogue": {
+        "task": "Walmart + Costco",
+        "status": "NONE"
+      },
+      "tinker": {
         "task": "Auto KPI Slp Wt Win",
         "status": "NONE"
       }
     },
     "monday": {
-      "warrior": {
-        "task": "M/C Install can/strap/shld",
-        "status": "NONE"
-      },
       "king": {
         "task": "SNAP call volunteer",
         "status": "NONE"
@@ -156,6 +2659,20 @@
       "tinker": {
         "task": "Setup S24+ for 1-hand ops",
         "status": "GREEN"
+      }
+    },
+    "tuesday": {
+      "warrior": {
+        "task": "M/C Install can/strap/shld",
+        "status": "NONE"
+      },
+      "lover": {
+        "task": "Picnic w/Sharon @ Blossoms",
+        "status": "NONE"
+      },
+      "rogue": {
+        "task": "Organize Google Photos",
+        "status": "NONE"
       }
     }
   },
